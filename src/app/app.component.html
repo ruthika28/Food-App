@@ -1,2 +1,154 @@
-<h1>Welcome to food app</h1>
-<h1>Food App</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- A vertical navbar -->
+<div class="row">
+    <div class="col-sm-2 ml-1">
+           <h1>appetiser</h1> 
+       
+            <nav class="navbar bg-light nav-fill max-width:100 ">
+
+                <!-- Links -->
+                <ul class="navbar-nav ml-4">
+                    <button type="button" class="btn btn-info">Signup/Login</button>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Feed</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Articles</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Browse</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link text-dark" href="#"><h5>Saved Recipes</h5></a>
+                  </li>
+                  <ul style="list-style-type:circle;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Breakfasts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Desserts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dinners</a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="#">Drinks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sides</a>
+                    </li>
+                  </ul> 
+                  <div id="mySidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                    <a href="#">About</a>
+                    <a href="#">Services</a>
+                    <a href="#">Clients</a>
+                    <a href="#">Contact</a>
+                  </div>
+                  
+                  <div id="main">
+                    <button class="openbtn" class="btn-btn-info" onclick="openNav()"> More</button>  
+    
+                  </div>
+                  
+                </ul>
+              
+              </nav>
+    
+    </div>
+    <div class="col-sm-10"></div>
+</div>
+<script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+      document.getElementById("main").style.marginRight = "250px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginRight= "0";
+    }
+    </script>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
