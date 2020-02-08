@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Make the image fully responsive */
+        .checked {
+  color: orange;
+}
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+  position: relative;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.text-block {
+  position: absolute;
+  bottom: 60px;
+  right: 560px;
+  background-color: white;
+  color:green;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.con{
+  position: relative;
+  font-family: Arial;
+}
+
+.featured {
+  position: absolute;
+  bottom: 0px;
+  right: 300px;
+  background-color: white;
+  color: brown;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.featured-again {
+  position: absolute;
+  bottom: 0px;
+  right: 100px;
+  background-color: white;
+  color: olivedrab;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+    </style>
+</head>
+
+<body>
+    <h2 class="font-bold h4-text mt-5 ml-5">Tags</h2>
+    <div id="demo" class="carousel slide mt-5 ml-5 mr-5" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="onboarding-bubble">
+                            <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-mexican" role="button"
+                                aria-label="Mexican"><img alt=""
+                                    src="https://images.ctfassets.net/3vz37y2qhojh/1IItBb7zCq7TfO0BIo0Iaq/3b6f8533704df043b213033adf43dd27/articles-categories-lowcarb_3x.png"
+                                    class="bubble-image" data-pin-nopin="true"><span
+                                    class="carousel-caption text micro-caps font-bold bubble-text">Low-Carb</span></div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="onboarding-bubble">
+                            <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-swedish" role="button"
+                                aria-label="Swedish"><img alt=""
+                                    src="https://images.ctfassets.net/3vz37y2qhojh/12nVYE072XMFGYA5BRqXPU/34fc3d49f0ce8ba18cdff36f7c7fa49e/articles-categories-vegetarian_3x.png"
+                                    class="bubble-image" data-pin-nopin="true"><span
+                                    class="carousel-caption text micro-caps font-bold bubble-text">Vegetarian</span></div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="onboarding-bubble">
+                            <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-portuguese" role="button"
+                                aria-label="Portuguese"><img alt=""
+                                    src="https://images.ctfassets.net/3vz37y2qhojh/5HdwcvFLtkbDNChdxYI2rk/462bdf410dca9e88b12c7133981de909/articles-categories-dessert_3x.png"
+                                    class="bubble-image" data-pin-nopin="true"><span
+                                    class="carousel-caption text micro-caps font-bold bubble-text">Dessert</span></div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="onboarding-bubble">
+                            <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-southern" role="button"
+                                aria-label="Southern / Soul Food"><img alt=""
+                                    src="https://images.ctfassets.net/3vz37y2qhojh/2PnPIjig6sCSMe7i5wQupT/7d27950616c7a404cc8201242008938e/articles-categories-chicken_3x.png"
+                                    class="bubble-image" data-pin-nopin="true"><span
+                                    class="carousel-caption text micro-caps font-bold bubble-text">Chicken</span></div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="onboarding-bubble">
+                            <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-spanish" role="button"
+                                aria-label="Spanish"><img alt=""
+                                    src="https://images.ctfassets.net/3vz37y2qhojh/3G3fDIxnbOBSKHpNPqSMUe/974192ee632870bd858344758e85cde9/articles-categories-healthy_3x.png"
+                                    class="bubble-image" data-pin-nopin="true"><span
+                                    class="carousel-caption text micro-caps font-bold bubble-text">Healthy</span></div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="onboarding-bubble">
+                            <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-thai" role="button"
+                                aria-label="Thai"><img alt=""
+                                    src="https://images.ctfassets.net/3vz37y2qhojh/DQ1U6Ce6RYqenhH1BDrL2/69dc5ed18a12f9dfaeef07d99f3c1433/articles-categories-cookies_3x.png"
+                                    class="bubble-image" data-pin-nopin="true"><span
+                                    class="carousel-caption text micro-caps font-bold bubble-text">Cookies</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container mt-5 mb-2">
+        <img src="http://www.indobase.com/recipes/rec-images/fish-fry.jpg" style="width:100%;">
+        <div class="text-block">
+          <p class="font-bold micro-caps">Recipe Roundup</p>
+                  <h2 class="font-bold h4-text">Lucky Foods for the Lunar New Year </h2>
+                  <p class="p2-text" style="-webkit-box-orient: vertical;">Around the world, preparations are being 
+                  made to usher in the beginning of a new lunar year. We've pulled together a collection of east Indian recipes 
+                  to help you eat your way to good fortune in the new year.</p>
+        </div>
+      </div>
+      <h2 class="font-bold h4-text mt-5 mb-2 ml-2">Featured Articles</h2>
+      <div class=row>
+          <div class="col-sm-6 ">
+            <table style="width:100%">
+ 
+                <tr>
+                  <td><img src="https://www.cdc.gov/foodsafety/images/comms/GettyImages-898001644-300px.png" alt="" style="width: 70%;"></td>
+                  <td><p class="font-bold micro-caps">Yummly Cooking Story</p>
+                                      <h3 class="font-bold p2-text">What to Eat Now: January</h3></td>
+                </tr>
+                <tr>
+                  <td><img src="https://www.cdc.gov/foodsafety/images/comms/GettyImages-898001644-300px.png" alt="" style="width: 70%;"></td>
+                  <td><p class="font-bold micro-caps">Yummly Cooking Story</p>
+                                      <h3 class="font-bold p2-text">What to Eat Now: January</h3></td>
+                </tr>
+                <tr>
+                  <td><img src="https://www.cdc.gov/foodsafety/images/comms/GettyImages-898001644-300px.png" alt="" style="width: 70%;"></td>
+                  <td><p class="font-bold micro-caps">Yummly Cooking Story</p>
+                                      <h3 class="font-bold p2-text">What to Eat Now: January</h3></td>
+                </tr>
+              </table>
+            </div>
+          <div class="col-sm-6">
+            <div class="con">
+                <img src="https://369t7u43n93dgc5pt43uc681-wpengine.netdna-ssl.com/wp-content/uploads/2019/02/mix-match-meal-prep-16.jpg" alt="Nature" style="width:100%;height: 100%;">
+                <div class="featured">
+                   <p class="font-bold micro-caps">Recipe Roundup</p>
+                  <h2 class="font-bold h4-text">Easy Meal Prep Recipes for Healthy Lunches on the Go</h2>
+                </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="container mt-5">
+        <img src="http://www.shopempire.co.in/wp-content/uploads/2019/08/masala-omlette.jpg" alt="Nature" style="width:100%;">
+        <div class="featured-again">
+            <p class="font-bold micro-caps">kitchen Tips</p>
+            <h2 class="font-bold h4-text">Easy Meal Prep Recipes for Healthy Dinners on the Go</h2>
+        </div>
+      </div>
+     
+      <div class="card-deck mt-5 ml-5 mr-5 mb-5">
+        <div class="card">
+      <img class="card-img-top" src="https://images.herzindagi.info/image/2019/Sep/easy-kitchen-hacks-main.jpg" alt="Card image" style="width:100%">
+      <div class="card-body display-5"><a href="#">Kitchen Tips</a></div>
+      <div class="card-footer">
+       <h2>21 Tips To Kick-Start Your Meal Planning Strategy</h2>
+       <p>eal planning can go a long way to help you stay healthy and organized, but it's easier said than done.
+            We put together 21 tips to kick-start your meal planning strategy.</p>
+      </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="https://etimg.etb2bimg.com/photo/69972172.cms" alt="Card image" style="width:100%">
+        <div class="card-body display-5"><a href="#">Recipe RoundUp</a></div>
+        <div class="card-footer">
+         <h2>21 Tips To Kick-Start Your Meal Planning Strategy</h2>
+         <p>eal planning can go a long way to help you stay healthy and organized, but it's easier said than done.
+              We put together 21 tips to kick-start your meal planning strategy.</p>
+        </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgv_HXAj96PZ4R6T_CWGZkHEDAIUose04pAf8_DlX8obBDkWlzrA&s" alt="Card image" style="width:100%">
+            <div class="card-body display-5"><a href="#">Kitchen Tips</a></div>
+            <div class="card-footer">
+             <h2>21 Tips To Kick-Start Your Meal Planning Strategy</h2>
+             <p>eal planning can go a long way to help you stay healthy and organized, but it's easier said than done.
+                  We put together 21 tips to kick-start your meal planning strategy.</p>
+            </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="https://i.pinimg.com/originals/16/21/33/162133d2ac8fb7c4596df5a76664b54b.jpg" alt="Card image" style="width:100%">
+                <div class="card-body display-5"><a href="#">Appetizer Cooking Story</a></div>
+                <div class="card-footer">
+                 <h2>21 Tips To Kick-Start Your Meal Planning Strategy</h2>
+                 <p>eal planning can go a long way to help you stay healthy and organized, but it's easier said than done.
+                      We put together 21 tips to kick-start your meal planning strategy.</p>
+                </div>
+                </div>
+      </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
