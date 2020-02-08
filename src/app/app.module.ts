@@ -10,6 +10,7 @@ import { ChickenComponent } from './tags/chicken/chicken.component';
 import { VegetarianComponent } from './tags/vegetarian/vegetarian.component';
 import { DesertsComponent } from './tags/deserts/deserts.component';
 import { BrowseComponent } from './browse/browse.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BrowseComponent } from './browse/browse.component';
     ChickenComponent,
     VegetarianComponent,
     DesertsComponent,
-    BrowseComponent  
+    BrowseComponent,
+    LoginComponent  
   ],
   imports: [
     BrowserModule,

@@ -7,11 +7,13 @@ import { ChickenComponent } from './tags/chicken/chicken.component';
 import { DesertsComponent } from './tags/deserts/deserts.component';
 import { BrowseComponent } from './browse/browse.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'browse', component:BrowseComponent},
 {path:'home',component:HomeComponent},
+{path:'login',component:LoginComponent},
 {path:'articles',component:ArticlesComponent,children:
 [{path:'tags/healthy',component:HealthyComponent},
 {path:'tags/vegetarian',component:VegetarianComponent},
