@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 <<<<<<< HEAD
 import { SideComponent } from './side/side.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 =======
 import { ArticlesComponent } from './articles/articles.component';
 import { HealthyComponent } from './tags/healthy/healthy.component';
@@ -19,7 +21,9 @@ import { DesertsComponent } from './tags/deserts/deserts.component';
     AppComponent,
 <<<<<<< HEAD
     SideComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    SignupComponent
 =======
     ArticlesComponent,
     HealthyComponent,
