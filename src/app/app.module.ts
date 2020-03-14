@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,10 @@ import { VegetarianComponent } from './tags/vegetarian/vegetarian.component';
 import { DesertsComponent } from './tags/deserts/deserts.component';
 import { BrowseComponent } from './browse/browse.component';
 import { LoginComponent } from './login/login.component';
+import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
+import { UserdashboardComponent } from './user/userdashboard/userdashboard.component';
+import { RegisterComponent } from './register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,11 +27,16 @@ import { LoginComponent } from './login/login.component';
     VegetarianComponent,
     DesertsComponent,
     BrowseComponent,
-    LoginComponent  
+    LoginComponent,
+    AdmindashboardComponent,
+    UserdashboardComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
