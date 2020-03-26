@@ -9,30 +9,33 @@ import { LoginService } from '../login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router:Router,private ls:LoginService) { }
+  constructor(private router: Router, private ls: LoginService) { }
 
   ngOnInit() {
-    this.ls.userLoginStatus=false;
-    this.ls.doLogout();
+    setTimeout(() => {
+      this.ls.userLoginStatus = false;
+      this.ls.doLogout();
+    });
   }
-  submitForm(dataObj)
-  {
+  submitForm(dataObj) {
 
-    this.ls.doLogin(dataObj).subscribe((result)=>{
-      if(result["message"]=="invalid username")
-      {
+    this.ls.doLogin(dataObj).subscribe((result) => {
+      if (result["message"] == "invalid username") {
         alert("invalid user name");
       }
-      else if(result["message"]=="invalid password")
-      {
+      else if (result["message"] == "invalid password") {
         alert("Invalid password");
       }
-      else{
+      else {
         alert("login sucess");
-        localStorage.setItem("token",result["message"]);
-        this.ls.userLoginStatus=true;
-        this.ls.username=result["username"];
-        //redirect to userdashboard component
+        localStorage.setItem("token", result["message"]);
+        this.ls.userLoginStatus = true;
+        this.ls.username = result["username"];
+        //redirect to admindashboard component
+        if(result["role"] == "admin")
+        this.router.navigate(['/admindashboard']);
+         //redirect to userdashboard component
+        else
         this.router.navigate(['/userdashboard']);
       }
     })

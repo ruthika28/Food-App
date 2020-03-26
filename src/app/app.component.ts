@@ -9,10 +9,10 @@ import { LoginService } from './login.service';
 export class AppComponent {
   constructor(private ls:LoginService){}
   title = 'food-app';
-  status:boolean=true;
-  changeStatus()
-  {
-    this.status=!this.status;
-  }
+  // status:boolean=true;
+  // changeStatus()
+  // {
+  //   this.status=!this.status;
+  // }
   
 }
