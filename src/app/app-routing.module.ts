@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
 import { UserdashboardComponent } from './user/userdashboard/userdashboard.component';
 import { RegisterComponent } from './register/register.component';
+import { ArticleOperationComponent } from './article-operation/article-operation.component';
 
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
@@ -20,6 +21,7 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'admindashboard',component:AdmindashboardComponent},
 {path:'userdashboard',component:UserdashboardComponent},
 {path:'user/register',component:RegisterComponent},
+{path:'article-operation',component:ArticleOperationComponent},
 {path:'articles',component:ArticlesComponent,children:
 [{path:'tags/healthy',component:HealthyComponent},
 {path:'tags/vegetarian',component:VegetarianComponent},

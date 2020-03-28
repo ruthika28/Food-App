@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admindashboard',
@@ -8,10 +9,13 @@ import { LoginService } from 'src/app/login.service';
 })
 export class AdmindashboardComponent implements OnInit {
   username:String;
-  constructor(private ls:LoginService) { }
+  constructor(private router:Router,private ls:LoginService) { }
 
   ngOnInit() {
     this.username=this.ls.username;
+  }
+  addArticle() {
+    this.router.navigate(['/article-operation'])
   }
 
 }

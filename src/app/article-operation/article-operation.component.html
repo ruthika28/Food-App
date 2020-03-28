@@ -1,0 +1,30 @@
+<h1>ADD Articles</h1>
+<form #ref="ngForm" (ngSubmit)="submitForm(ref.value);">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" type="text" name="title" [(ngModel)]="model.title" id="title">
+    </div>
+    <label for="category">Category</label>
+    <ng-multiselect-dropdown name="category" [data]="model.categoryList" [(ngModel)]="model.selectedItems"
+        [settings]="model.dropdownSettings" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)">
+    </ng-multiselect-dropdown>
+    <div class="form-group shadow-textarea">
+        <label for="description">Description</label>
+        <textarea class="form-control z-depth-1" name="description" rows="2"
+            placeholder="give brief description here..."></textarea>
+    </div>
+    <label>Content</label>
+    <div class="row">
+        <div class="col-md-12">
+            <quill-editor [styles]="{'min-height': '300px','max-height': '300px'}" [(ngModel)]="model.content"
+                [(formControl)]="model.articleContent" [placeholder]="placeholder"></quill-editor>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="author">Author</label>
+        <input class="form-control" type="text" name="author" [(ngModel)]="model.author" id="author" required>
+    </div>
+    <button type="button" class="btn btn-outline-danger waves-effect">Cancel</button>
+    <button type="button" class="btn btn-outline-success float-md-right waves-effect">Post</button>
+
+</form>
