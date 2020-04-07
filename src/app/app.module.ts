@@ -18,6 +18,8 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ArticleOperationComponent } from './article-operation/article-operation.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -33,11 +35,13 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AdmindashboardComponent,
     UserdashboardComponent,
     RegisterComponent,
-    ArticleOperationComponent
+    ArticleOperationComponent,
+    RecipeOperationComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,

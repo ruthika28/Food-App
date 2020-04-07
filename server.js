@@ -11,10 +11,12 @@ app.use(exp.static(path.join(__dirname,'./dist/food-app')))
 
 const adminApp=require("./apis/adminapi")
 const userApp=require("./apis/userapi")
+const recipeOperationApp=require("./apis/recipeoperationapi")
+
 //forwarding req object to apis
 app.use("/admin",adminApp);
 app.use("/user",userApp);
-
+app.use('/recipe',recipeOperationApp)
 
 //assign port no
 const port=3000;
