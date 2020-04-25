@@ -4,6 +4,8 @@ var mc=require("mongodb").MongoClient;
 var dbo;
 var userCollectionObj;
 var adminCollectionObj;
+var articleCollectionObj;
+var categoryCollectionObj;
 //database url
 var dbUrl="mongodb+srv://project:project@cluster0-donss.mongodb.net/test?retryWrites=true&w=majority";
 //var dbUrl="mongodb+srv://keerthi:keerthi@cluster0-i25dr.mongodb.net/test?retryWrites=true&w=majority";
@@ -16,8 +18,10 @@ function initDb(){
         }
         console.log("connected to database");
         dbo=client.db("userdb");
-        userCollectionObj=dbo.collection("usercollection")
-        adminCollectionObj=dbo.collection("admincollection")
+        userCollectionObj = dbo.collection("usercollection");
+        adminCollectionObj = dbo.collection("admincollection");
+        articleCollectionObj = dbo.collection("articlecollection");
+        categoryCollectionObj = dbo.collection("categorycollection");
     })
 }
 //function to return db object
@@ -25,7 +29,9 @@ function getDb(){
    // console.log(dbo,"db has not been initialised.please call init");
     return {
         userCollectionObj:userCollectionObj,
-        adminCollectionObj:adminCollectionObj
+        adminCollectionObj:adminCollectionObj,
+        articleCollectionObj:articleCollectionObj,
+        categoryCollectionObj:categoryCollectionObj
     }
 }
 //export 2 functions
