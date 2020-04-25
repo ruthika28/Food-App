@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import {  IDropdownSettings } from 'ng-multiselect-dropdown';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { LoginService } from '../login.service';
+import { ArticleOperationService } from '../article-operation.service';
 
 @Component({
   selector: 'app-article-operation',
@@ -9,12 +11,13 @@ import {  IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class ArticleOperationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private articleOperationService:ArticleOperationService,private ls:LoginService) { }
   placeholder = "enter details..";
   model = {
     content: '',
     title: '',
     author: '',
+    description: '',
     articleContent: new FormControl(),
     categoryList: [],
     selectedItems: [],
@@ -34,27 +37,29 @@ export class ArticleOperationComponent implements OnInit {
     };
   }
 
-  onItemSelect(item: any) {
-    this.model.selectedItems.push(item);
+  postArticle() {
+    if(this.isFormPopulated()) {
+      const request = {
+        'title': this.model.title,
+        'category': this.model.selectedItems,
+        'description': this.model.description,
+        'content': this.model.content,
+        'author': this.model.author,
+        'createBy': this.ls.username,
+        'createdOn': new Date()
+      };
+      this.articleOperationService.addArticle(request).subscribe(res=>{
+        if(res["message"] === "sucessfully added") {
+          console.log(res["message"]);
+          alert("sucessfully added an article");
+        }
+      });
+    }
   }
 
-  onItemDeSelect(item: any) {
-    this.model.selectedItems = this.model.selectedItems.filter(category => category !== item);
-  }
-  submitForm(userObj) {
-    // if (this.model.isRegisterEnabled) {
-    //   this.rs.doRegister(userObj).subscribe((res) => {
-    //     //alert(res['message'])
-    //     if (res["message"] === "username already existed") {
-    //       this.model.isRegisterEnabled = false;
-    //       this.model.usernameErrMsg = 'Username already exists';
-    //       this.model.isUsernameValid = false;
-    //     }
-    //     if (res["message"] === "register successful") {
-    //       this.route.navigate(["./login"]);
-    //     }
-    //   })
-    // }
+  isFormPopulated() {
+    return this.model.title.length && this.model.selectedItems.length && this.model.author.length && this.model.description.length 
+    && this.model.content.length;
   }
 
 }

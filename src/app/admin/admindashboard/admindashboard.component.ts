@@ -17,5 +17,7 @@ export class AdmindashboardComponent implements OnInit {
   addArticle() {
     this.router.navigate(['/article-operation'])
   }
-
+  addCategory() {
+    this.router.navigate(['/category-operation'])
+  }
 }

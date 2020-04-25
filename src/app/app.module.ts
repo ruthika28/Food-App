@@ -18,6 +18,8 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ArticleOperationComponent } from './article-operation/article-operation.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgbModule, NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { CategoryOperationComponent } from './category-operation/category-operation.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AdmindashboardComponent,
     UserdashboardComponent,
     RegisterComponent,
-    ArticleOperationComponent
+    ArticleOperationComponent,
+    CategoryOperationComponent
   ],
   imports: [
     FormsModule,
@@ -42,6 +45,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     HttpClientModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    NgbModule,
     QuillModule.forRoot({
       modules: {
         syntax: false,
@@ -69,7 +73,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
       }
     })
   ],
-  providers: [],
+  providers: [NgbCarousel, NgbCarouselConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

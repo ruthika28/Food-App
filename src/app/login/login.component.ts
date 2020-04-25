@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.ls.userLoginStatus = false;
+      this.ls.adminLoginStatus = false;
       this.ls.doLogout();
     });
   }
@@ -33,7 +34,10 @@ export class LoginComponent implements OnInit {
         this.ls.username = result["username"];
         //redirect to admindashboard component
         if(result["role"] == "admin")
-        this.router.navigate(['/admindashboard']);
+        {
+          this.ls.adminLoginStatus = true;
+          this.router.navigate(['/admindashboard']);
+        }
          //redirect to userdashboard component
         else
         this.router.navigate(['/userdashboard']);

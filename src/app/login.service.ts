@@ -9,6 +9,7 @@ export class LoginService {
 
   username:String;
   userLoginStatus:boolean;
+  adminLoginStatus:boolean;
   //inject HttpClient
   constructor(private hc:HttpClient) {}
   //a method to make http post  
