@@ -6,10 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ArticlesComponent } from './articles/articles.component';
-import { HealthyComponent } from './tags/healthy/healthy.component';
-import { ChickenComponent } from './tags/chicken/chicken.component';
-import { VegetarianComponent } from './tags/vegetarian/vegetarian.component';
-import { DesertsComponent } from './tags/deserts/deserts.component';
 import { BrowseComponent } from './browse/browse.component';
 import { LoginComponent } from './login/login.component';
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
@@ -20,27 +16,27 @@ import { ArticleOperationComponent } from './article-operation/article-operation
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule, NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryOperationComponent } from './category-operation/category-operation.component';
+import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ArticlesComponent,
-    HealthyComponent,
-    ChickenComponent,
-    VegetarianComponent,
-    DesertsComponent,
     BrowseComponent,
     LoginComponent,
     AdmindashboardComponent,
     UserdashboardComponent,
     RegisterComponent,
     ArticleOperationComponent,
-    CategoryOperationComponent
+    CategoryOperationComponent,
+    RecipeOperationComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,

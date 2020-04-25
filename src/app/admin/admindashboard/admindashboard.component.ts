@@ -20,4 +20,8 @@ export class AdmindashboardComponent implements OnInit {
   addCategory() {
     this.router.navigate(['/category-operation'])
   }
+  addRecipe() {
+    this.router.navigate(['/recipe-operation'])
+  }
+
 }
