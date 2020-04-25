@@ -1,73 +1,78 @@
 <head>
-  <style>
-    
-#sidebar {
-    z-index: 999;
-    position: fixed;
-    width: 250px;
-    height: 100%;
-    left: 0px;
-    overflow-y: auto;
-    background: #455963;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-#sidebar .sidebar-header a {
-    color: #fff;
-    display: block;
-    text-decoration: none;
-    font-weight: bold;
-    letter-spacing: 3px;
-    padding: 5px 0px;
-}
-#sidebar .sidebar-header {
-    background-color: #e22a69;
-    font-size: 20px;
-    line-height: 52px;
-    text-align: center;
-}
-#sidebar ul li a {
-    padding: 15px 10px;
-    font-size: 17px;
-    display: block;
-    color: #fff;
-    border-bottom: 1px solid #939fa5;
-    text-decoration: none;
-    transition: 0.4s;
-}
-#sidebar ul li a:hover {
-    color: #263238;
-    background: #fff;
-}
-#sidebar ul ul a {
-    font-size: 16px !important;
-    padding-left: 30px !important;
-    background: palegoldenrod;
-}
-a.dropdown-toggle.collapsed.dropdown-toggle::after {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 5px;
-    vertical-align: 5px;
-    content: "";
-    border-bottom: 5px solid;
-    border-right: 5px solid transparent;
-    border-top: 0;
-    float: right;
-    margin-top: 10px;
-}
-#sidebar .dropdown-toggle::after {
-    float: right;
-    margin-top: 10px;
-}
-#sidebar .icon {
-    padding-right: 15px;
-}
+    <style>
+        #sidebar {
+            z-index: 999;
+            position: fixed;
+            width: 250px;
+            height: 100%;
+            left: 0px;
+            overflow-y: auto;
+            background: #455963;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
 
+        #sidebar .sidebar-header a {
+            color: #fff;
+            display: block;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 3px;
+            padding: 5px 0px;
+        }
 
+        #sidebar .sidebar-header {
+            background-color: #e22a69;
+            font-size: 20px;
+            line-height: 52px;
+            text-align: center;
+        }
+
+        #sidebar ul li a {
+            padding: 15px 10px;
+            font-size: 17px;
+            display: block;
+            color: #fff;
+            border-bottom: 1px solid #939fa5;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        #sidebar ul li a:hover {
+            color: #263238;
+            background: #fff;
+        }
+
+        #sidebar ul ul a {
+            font-size: 16px !important;
+            padding-left: 30px !important;
+            background: palegoldenrod;
+        }
+
+        a.dropdown-toggle.collapsed.dropdown-toggle::after {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 5px;
+            vertical-align: 5px;
+            content: "";
+            border-bottom: 5px solid;
+            border-right: 5px solid transparent;
+            border-top: 0;
+            float: right;
+            margin-top: 10px;
+        }
+
+        #sidebar .dropdown-toggle::after {
+            float: right;
+            margin-top: 10px;
+        }
+
+        #sidebar .icon {
+            padding-right: 15px;
+        }
     </style>
     <title>Appetite Crush</title>
     <meta charset="utf-8">
@@ -78,54 +83,60 @@ a.dropdown-toggle.collapsed.dropdown-toggle::after {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-<div class="row">
-  <div class="col-2">
-<nav id="sidebar">
-    <div class="sidebar-header">
-        <a href="#">Appetite Crush</a>
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <a href="#">Appetite Crush</a>
+                </div>
+
+                <ul class="list-unstyled">
+
+                    <li>
+                        <a routerLink="home"><span class="icon"><i class="fas fa-info-circle"></i></span>Feed</a>
+                    </li>
+
+                    <li>
+                        <a routerLink="browse"><span class="icon"><i class="fas fa-camera"></i></span>Browse</a>
+                    </li>
+                    <li>
+                        <a routerLink="articles"><span class="icon"><i class="fas fa-mobile-alt"></i></span>Articles</a>
+                    </li>
+                    <li>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle collapsed">
+                            <span class="icon"><i class="fas fa-file"></i></span>More</a>
+
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li><a href="#">Page 1</a></li>
+                            <li><a href="#">Page 2</a></li>
+                            <li><a href="#">Page 3</a></li>
+                        </ul>
+                    </li>
+                    <li *ngIf="ls.adminLoginStatus">
+                        <a routerLink="admindashboard"><span class="icon"></span><button
+                                class="btn btn-success center">Admin Dashboard</button></a>
+                    </li>
+                    <li *ngIf="!ls.userLoginStatus">
+                        <a routerLink="login"><span class="icon"></span><button
+                                class="btn btn-success center">Login</button></a>
+                    </li>
+                    <li *ngIf="ls.userLoginStatus">
+                        <a routerLink="login"><span class="icon"></span><button
+                                class="btn btn-success center">Logout</button></a>
+                    </li>
+                    <li *ngIf="!ls.userLoginStatus">
+                        <a routerLink="user/register"><span class="icon"></span><button
+                                class="btn btn-success center">Register</button></a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="col-10 mt-5">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-
-    <ul class="list-unstyled">
-        
-        <li>
-            <a routerLink="home"><span class="icon"><i class="fas fa-info-circle"></i></span>Feed</a>
-        </li>
-        
-        <li>
-            <a routerLink="browse"><span class="icon"><i class="fas fa-camera"></i></span>Browse</a>
-        </li>
-        <li>
-            <a routerLink="articles"><span class="icon"><i class="fas fa-mobile-alt"></i></span>Articles</a>
-        </li>
-        <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">  
-      <span class="icon"><i class="fas fa-file"></i></span>More</a>
-
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
-            </ul>
-        </li>
-        <li *ngIf="ls.adminLoginStatus">
-            <a routerLink="admindashboard"><span class="icon"></span><button class="btn btn-success center">Admin Dashboard</button></a>
-          </li>
-        <li *ngIf="!ls.userLoginStatus">
-          <a routerLink="login"><span class="icon"></span><button class="btn btn-success center">Login</button></a>
-        </li>
-        <li *ngIf="ls.userLoginStatus">
-            <a routerLink="login"><span class="icon"></span><button class="btn btn-success center">Logout</button></a>
-        </li>
-        <li *ngIf="!ls.userLoginStatus">
-            <a routerLink="user/register"><span class="icon"></span><button class="btn btn-success center">Register</button></a>
-        </li>
-    </ul>
-
-</nav>
-</div>
-<div class="col-10 mt-5">
-    <router-outlet></router-outlet>
-</div>
-</div>
 </body>
