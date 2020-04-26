@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +20,8 @@ import { ArticleOperationComponent } from './article-operation/article-operation
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule, NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryOperationComponent } from './category-operation/category-operation.component';
+import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,16 +38,21 @@ import { CategoryOperationComponent } from './category-operation/category-operat
     UserdashboardComponent,
     RegisterComponent,
     ArticleOperationComponent,
-    CategoryOperationComponent
+    CategoryOperationComponent,
+    RecipeOperationComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgbModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
     QuillModule.forRoot({
       modules: {
         syntax: false,

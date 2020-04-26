@@ -15,9 +15,14 @@ export class AdmindashboardComponent implements OnInit {
     this.username=this.ls.username;
   }
 
+  addRecipe() {
+    this.router.navigate(['/recipe-operation'])
+  }
+
   addArticle() {
     this.router.navigate(['/article-operation'])
   }
+  
   addCategory() {
     this.router.navigate(['/category-operation'])
   }

@@ -13,6 +13,7 @@ import { UserdashboardComponent } from './user/userdashboard/userdashboard.compo
 import { RegisterComponent } from './register/register.component';
 import { ArticleOperationComponent } from './article-operation/article-operation.component';
 import { CategoryOperationComponent } from './category-operation/category-operation.component';
+import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
 
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
@@ -24,6 +25,8 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'user/register',component:RegisterComponent},
 {path:'article-operation',component:ArticleOperationComponent},
 {path:'category-operation',component:CategoryOperationComponent},
+{path:'recipe-operation',component:RecipeOperationComponent},
+{path:'recipe-operation/add',component:RecipeOperationComponent},
 {path:'articles',component:ArticlesComponent,children:
 [{path:'tags/healthy',component:HealthyComponent},
 {path:'tags/vegetarian',component:VegetarianComponent},

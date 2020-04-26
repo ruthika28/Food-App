@@ -23,12 +23,17 @@ const userApp = require("./apis/userapi")
 const articleOperationApp = require("./apis/articleoperationapi");
 const categoryOperationApp = require("./apis/categoryoperationapi");
 const fileUploadApp = require("./apis/fileuploadapi");
+const recipeOperationApp=require("./apis/recipeoperationapi")
+const recentActionsApp=require("./apis/recentactionsapi")
+
 //forwarding req object to apis
 app.use("/admin", adminApp);
 app.use("/user", userApp);
 app.use("/article", articleOperationApp);
 app.use("/category", categoryOperationApp);
 app.use("/uploadfile",fileUploadApp);
+app.use('/recipe',recipeOperationApp);
+app.use('/recent-actions',recentActionsApp);
 
 //assign port no
 const port = 3000;

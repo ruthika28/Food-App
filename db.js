@@ -6,14 +6,15 @@ var userCollectionObj;
 var adminCollectionObj;
 var articleCollectionObj;
 var categoryCollectionObj;
+var recipeCollectionObj;
+var recent_actions_collectionObj;
 //database url
 var dbUrl="mongodb+srv://project:project@cluster0-donss.mongodb.net/test?retryWrites=true&w=majority";
 //var dbUrl="mongodb+srv://keerthi:keerthi@cluster0-i25dr.mongodb.net/test?retryWrites=true&w=majority";
 //function to initialise database
-function initDb(){
+function initDb() {
     mc.connect(dbUrl,{useNewUrlParser:true,useUnifiedTopology:true},(err,client)=>{
-        if(err)
-        {
+        if(err) {
             console.log("error in connecting in db");
         }
         console.log("connected to database");
@@ -22,16 +23,20 @@ function initDb(){
         adminCollectionObj = dbo.collection("admincollection");
         articleCollectionObj = dbo.collection("articlecollection");
         categoryCollectionObj = dbo.collection("categorycollection");
+        recipeCollectionObj=dbo.collection("recipecollection");
+        recent_actions_collectionObj=dbo.collection("recent_actions_collections")
     })
 }
 //function to return db object
-function getDb(){
+function getDb() {
    // console.log(dbo,"db has not been initialised.please call init");
     return {
         userCollectionObj:userCollectionObj,
         adminCollectionObj:adminCollectionObj,
         articleCollectionObj:articleCollectionObj,
-        categoryCollectionObj:categoryCollectionObj
+        categoryCollectionObj:categoryCollectionObj,
+        recipeCollectionObj:recipeCollectionObj,
+        recent_actions_collectionObj:recent_actions_collectionObj
     }
 }
 //export 2 functions
