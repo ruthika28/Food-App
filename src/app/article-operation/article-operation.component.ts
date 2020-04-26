@@ -75,6 +75,7 @@ export class ArticleOperationComponent implements OnInit {
   cancel() {
     this.router.navigate(['/admindashboard']);
   }
+
   isFormPopulated() {
     return this.model.title.length && this.model.selectedItems.length && this.model.author.length && this.model.description.length
       && this.model.content.length;
@@ -83,5 +84,4 @@ export class ArticleOperationComponent implements OnInit {
   private isListHasValue(list) {
     return list !== null && list !== undefined && list.length > 0;
   }
-
 }

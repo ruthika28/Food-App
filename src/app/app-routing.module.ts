@@ -26,7 +26,12 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'article-operation',component:ArticleOperationComponent},
 {path:'category-operation',component:CategoryOperationComponent},
 {path:'recipe-operation',component:RecipeOperationComponent},
-{path:'articles',component:ArticlesComponent}];
+{path:'recipe-operation/add',component:RecipeOperationComponent},
+{path:'articles',component:ArticlesComponent,children:
+[{path:'tags/healthy',component:HealthyComponent},
+{path:'tags/vegetarian',component:VegetarianComponent},
+{path:'tags/chicken',component:ChickenComponent},
+{path:'tags/desserts',component:DesertsComponent}]}];
 
 
 @NgModule({

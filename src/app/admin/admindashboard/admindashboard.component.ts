@@ -9,19 +9,21 @@ import { Router } from '@angular/router';
 })
 export class AdmindashboardComponent implements OnInit {
   username:String;
-  constructor(private router:Router,private ls:LoginService) { }
+  constructor(private ls:LoginService,private router:Router) { }
 
   ngOnInit() {
     this.username=this.ls.username;
   }
-  addArticle() {
-    this.router.navigate(['/article-operation'])
-  }
-  addCategory() {
-    this.router.navigate(['/category-operation'])
-  }
+  
   addRecipe() {
     this.router.navigate(['/recipe-operation'])
   }
 
+  addArticle() {
+    this.router.navigate(['/article-operation'])
+  }
+  
+  addCategory() {
+    this.router.navigate(['/category-operation'])
+  }
 }

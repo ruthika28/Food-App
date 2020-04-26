@@ -13,7 +13,7 @@ import { LoginService } from '../login.service';
 export class CategoryOperationComponent implements OnInit {
 
   constructor(private categoryOperationService: CategoryOperationService, private fileUploadService: FileUploadService,
-    private router:Router,private loginService:LoginService) { }
+    private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -31,14 +31,14 @@ export class CategoryOperationComponent implements OnInit {
   private imageObj: {
     imageUrl: '',
     publicId: ''
-  } = {imageUrl: "", publicId: ""};
+  } = { imageUrl: "", publicId: "" };
 
 
   handleFileSelect(evt) {
     const parent = this;
     this.imgFile = <File>evt.target.files[0];
 
-    if (this.filetype.includes(this.imgFile.type)) {
+    if (this.imgFile !== undefined && this.filetype.includes(this.imgFile.type)) {
       if (this.imgFile !== undefined) {
         var reader = new FileReader();
         reader.readAsDataURL(this.imgFile);
@@ -49,7 +49,8 @@ export class CategoryOperationComponent implements OnInit {
     } else {
       this.model.isImageUploaded = false;
       this.imgFile = undefined;
-      evt.target.files = null;
+      evt.target.files = [];
+      this.model.base64textString = "";
       this.model.message = "upload a valid photo of type jpg or jpeg or png";
     }
   }
@@ -101,7 +102,6 @@ export class CategoryOperationComponent implements OnInit {
           }
         });
       });
-      
     }
   }
 
@@ -127,7 +127,7 @@ export class CategoryOperationComponent implements OnInit {
           rejected();
         }
       });
-     });
+    });
   }
 
   private isListHasValue(list) {

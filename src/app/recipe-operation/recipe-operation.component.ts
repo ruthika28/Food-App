@@ -6,7 +6,10 @@ import {  ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { RegisterService } from '../register.service';
 import { RecipeOperationService } from '../recipe-operation.service';
+import { RecentActionsService } from '../recent-actions.service';
 @Component({
   selector: 'app-recipe-operation',
   templateUrl: './recipe-operation.component.html',
@@ -26,7 +29,8 @@ export class RecipeOperationComponent implements OnInit {
     instr: '',
     img: ''
   };
-  constructor(private router:Router,private ls:LoginService,private hc:HttpClient,private rs:RecipeOperationService) { }
+  constructor(private router:Router,private ls:LoginService,private hc:HttpClient,private rs:RecipeOperationService,
+    private ra:RecentActionsService) { }
   username:String;
   ngOnInit(){this.username=this.ls.username;}
   newDynamic: any = [];
@@ -51,8 +55,9 @@ export class RecipeOperationComponent implements OnInit {
         return false;
       }
       deleteRowI(i)
-      {
+      {       
         this.newDynamic1.splice(i,1);
+        let dateTime = new Date()        
       }
       getlenI(i)
       {
@@ -63,21 +68,23 @@ export class RecipeOperationComponent implements OnInit {
       }      
       submitRecipe(user)
       {
+        let action={};
         let dateTime = new Date()
         user['ingrlist']=this.newDynamic
         user['instrlist']=this.newDynamic1
         user['createdBy']=this.username
         user['createdOn']=dateTime
-        console.log(user);
+        console.log(user);            
         this.rs.addRecipe(user).subscribe((res) => {
-          if(res["message"]=="recipe added successfully") {
-            alert("recipe added successfully");
-            this.router.navigate(['/admindashboard']);
-          }
+          if(res["message"]=="recipe added successfully")
+          alert("recipe added successfully")          
         })
-      }  
-
-      Cancel() {
-        this.router.navigate(['/admindashboard']);
+        action['createdBy']=this.username
+        action['createdOn']=dateTime
+        action['Action Done']="Recipe Added"    
+        this.ra.addAction(action).subscribe((res)=>{
+          console.log("added recent action",res)
+        })
       }
+  
 }
