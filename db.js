@@ -7,6 +7,7 @@ var adminCollectionObj;
 var articleCollectionObj;
 var categoryCollectionObj;
 var recipeCollectionObj;
+var recent_actions_collectionObj;
 //database url
 var dbUrl="mongodb+srv://project:project@cluster0-donss.mongodb.net/test?retryWrites=true&w=majority";
 //var dbUrl="mongodb+srv://keerthi:keerthi@cluster0-i25dr.mongodb.net/test?retryWrites=true&w=majority";
@@ -23,6 +24,7 @@ function initDb() {
         articleCollectionObj = dbo.collection("articlecollection");
         categoryCollectionObj = dbo.collection("categorycollection");
         recipeCollectionObj=dbo.collection("recipecollection");
+        recent_actions_collectionObj=dbo.collection("recent_actions_collections")
     })
 }
 //function to return db object
@@ -33,7 +35,8 @@ function getDb() {
         adminCollectionObj:adminCollectionObj,
         articleCollectionObj:articleCollectionObj,
         categoryCollectionObj:categoryCollectionObj,
-        recipeCollectionObj:recipeCollectionObj
+        recipeCollectionObj:recipeCollectionObj,
+        recent_actions_collectionObj:recent_actions_collectionObj
     }
 }
 //export 2 functions

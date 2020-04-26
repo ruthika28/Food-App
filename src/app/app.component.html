@@ -98,16 +98,25 @@
                         <a routerLink="home"><span class="icon"><i class="fas fa-info-circle"></i></span>Feed</a>
                     </li>
 
-                    <li>
-                        <a routerLink="browse"><span class="icon"><i class="fas fa-camera"></i></span>Browse</a>
-                    </li>
-                    <li>
-                        <a routerLink="articles"><span class="icon"><i class="fas fa-mobile-alt"></i></span>Articles</a>
-                    </li>
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
-                            class="dropdown-toggle collapsed">
-                            <span class="icon"><i class="fas fa-file"></i></span>More</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+        </li>
+        <li *ngIf="ls.adminLoginStatus">
+            <a routerLink="admindashboard"><span class="icon"></span><button class="btn btn-success center">Admin Dashboard</button></a>
+          </li>
+        <li *ngIf="!ls.userLoginStatus">
+          <a routerLink="login"><span class="icon"></span><button class="btn btn-success center">Login</button></a>
+        </li>
+        <li *ngIf="ls.userLoginStatus">
+            <a routerLink="login"><span class="icon"></span><button class="btn btn-success center">Logout</button></a>
+        </li>
+        <li *ngIf="!ls.userLoginStatus">
+            <a routerLink="user/register"><span class="icon"></span><button class="btn btn-success center">Register</button></a>
+        </li>
+    </ul>
 
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             <li><a href="#">Page 1</a></li>

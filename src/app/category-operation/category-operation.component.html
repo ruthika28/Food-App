@@ -12,8 +12,9 @@
         <input type="file" id="img" name="img" accept="image/*"> -->
     </div>
     <div class="image-preview mb-3">
-        <img  *ngIf="model.isImageUploaded" [src]="model.base64textString" alt="Preview Image" class="image-preview__image" />
-        <span class="image-preview__default-text">{{model.message}}</span>
+        <img *ngIf="model.isImageUploaded" [src]="model.base64textString" alt="Preview Image"
+            class="image-preview__image" />
+        <span *ngIf="!model.isImageUploaded" class="image-preview__default-text">{{model.message}}</span>
     </div>
     <div>
         <button type="button" (click)="cancel()" class="btn btn-outline-danger waves-effect">Cancel</button>

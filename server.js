@@ -30,7 +30,8 @@ app.use("/user", userApp);
 app.use("/article", articleOperationApp);
 app.use("/category", categoryOperationApp);
 app.use("/uploadfile",fileUploadApp);
-app.use('/recipe',recipeOperationApp)
+app.use('/recipe',recipeOperationApp);
+app.use('/recent-actions',recentActionsApp);
 
 //assign port no
 const port = 3000;
