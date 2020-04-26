@@ -5,6 +5,7 @@ var dbo;
 var userCollectionObj;
 var adminCollectionObj;
 var articleCollectionObj;
+var categoryCollectionObj;
 var recipeCollectionObj;
 var recent_actions_collectionObj;
 //database url
@@ -21,6 +22,7 @@ function initDb() {
         userCollectionObj = dbo.collection("usercollection");
         adminCollectionObj = dbo.collection("admincollection");
         articleCollectionObj = dbo.collection("articlecollection");
+        categoryCollectionObj = dbo.collection("categorycollection");
         recipeCollectionObj=dbo.collection("recipecollection");
         recent_actions_collectionObj=dbo.collection("recent_actions_collections")
     })
@@ -32,6 +34,7 @@ function getDb() {
         userCollectionObj:userCollectionObj,
         adminCollectionObj:adminCollectionObj,
         articleCollectionObj:articleCollectionObj,
+        categoryCollectionObj:categoryCollectionObj,
         recipeCollectionObj:recipeCollectionObj,
         recent_actions_collectionObj:recent_actions_collectionObj
     }
