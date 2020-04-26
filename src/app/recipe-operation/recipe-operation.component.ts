@@ -70,9 +70,14 @@ export class RecipeOperationComponent implements OnInit {
         user['createdOn']=dateTime
         console.log(user);
         this.rs.addRecipe(user).subscribe((res) => {
-          if(res["message"]=="recipe added successfully")
-          alert("recipe added successfully")
+          if(res["message"]=="recipe added successfully") {
+            alert("recipe added successfully");
+            this.router.navigate(['/admindashboard']);
+          }
         })
+      }  
+
+      Cancel() {
+        this.router.navigate(['/admindashboard']);
       }
-  
 }

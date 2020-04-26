@@ -3,6 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { LoginService } from '../login.service';
 import { ArticleOperationService } from '../article-operation.service';
+import { Router } from '@angular/router';
+import { CategoryOperationService } from '../category-operation.service';
+import { CategoryData } from '../data/category-data';
 
 @Component({
   selector: 'app-article-operation',
@@ -11,7 +14,8 @@ import { ArticleOperationService } from '../article-operation.service';
 })
 export class ArticleOperationComponent implements OnInit {
 
-  constructor(private articleOperationService:ArticleOperationService,private ls:LoginService) { }
+  constructor(private articleOperationService: ArticleOperationService, private ls: LoginService, private router: Router
+    , private categoryOperationService: CategoryOperationService) { }
   placeholder = "enter details..";
   model = {
     content: '',
@@ -20,11 +24,21 @@ export class ArticleOperationComponent implements OnInit {
     description: '',
     articleContent: new FormControl(),
     categoryList: [],
+    categoryNameList: [],
     selectedItems: [],
-    dropdownSettings: {}
+    dropdownSettings: {},
+    isDataLoaded: false
   };
   ngOnInit() {
-    this.model.categoryList = ["chicken", "summer", "winter", "american", "desserts", "dinner"]
+    this.categoryOperationService.getCategoryDataList().then(data => {
+      const categoryList = data as CategoryData[];
+      this.model.categoryList = this.isListHasValue(categoryList) ? categoryList : [];
+      for (let i = 0; i < this.model.categoryList.length; i++) {
+        this.model.categoryNameList.push(this.model.categoryList[i].name);
+      }
+      this.model.isDataLoaded = true;
+    });
+    // this.model.categoryNameList = ["chicken", "summer", "winter", "american", "desserts", "dinner"]
     this.model.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
@@ -38,7 +52,7 @@ export class ArticleOperationComponent implements OnInit {
   }
 
   postArticle() {
-    if(this.isFormPopulated()) {
+    if (this.isFormPopulated()) {
       const request = {
         'title': this.model.title,
         'category': this.model.selectedItems,
@@ -48,18 +62,26 @@ export class ArticleOperationComponent implements OnInit {
         'createBy': this.ls.username,
         'createdOn': new Date()
       };
-      this.articleOperationService.addArticle(request).subscribe(res=>{
-        if(res["message"] === "sucessfully added") {
+      this.articleOperationService.addArticle(request).subscribe(res => {
+        if (res["message"] === "sucessfully added") {
           console.log(res["message"]);
           alert("sucessfully added an article");
+          this.router.navigate(['/admindashboard']);
         }
       });
     }
   }
 
+  cancel() {
+    this.router.navigate(['/admindashboard']);
+  }
   isFormPopulated() {
-    return this.model.title.length && this.model.selectedItems.length && this.model.author.length && this.model.description.length 
-    && this.model.content.length;
+    return this.model.title.length && this.model.selectedItems.length && this.model.author.length && this.model.description.length
+      && this.model.content.length;
+  }
+
+  private isListHasValue(list) {
+    return list !== null && list !== undefined && list.length > 0;
   }
 
 }

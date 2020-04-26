@@ -16,10 +16,13 @@
         <span class="image-preview__default-text">{{model.message}}</span>
     </div>
     <div>
-        <ul class="list-inline">
+        <button type="button" (click)="cancel()" class="btn btn-outline-danger waves-effect">Cancel</button>
+        <button type="button" (click)="addCategory()" [disabled]="isValidDetails() === false"
+            class="btn btn-outline-success float-md-right waves-effect">ADD</button>
+        <!-- <ul class="list-inline">
             <li>
                 <button class="btn btn--form" [disabled]="isValidDetails() === false" (click)="addCategory()"  value="ADD" >ADD</button>
             </li>
-        </ul>
+        </ul> -->
     </div>
 </div>

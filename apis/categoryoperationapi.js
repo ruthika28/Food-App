@@ -17,13 +17,14 @@ categoryOperationApp.post('/add', (req,res) => {
 
 categoryOperationApp.get('/get', (req,res) => {
     var categoryCollectionObj = dbo.getDb().categoryCollectionObj;
-    categoryCollectionObj.findOne(req.body, (err,data) => {
+    categoryCollectionObj.find({
+        endedOn: null
+    }).toArray(function (err, data) {
         if(err) {
-            console.log('error');
+            console.log(err);
             return res.status(404).end();
-        } else {
-            return res.status(200).send(data);
         }
-    })
+        return res.status(200).send(data);
+    });
 });
 module.exports = categoryOperationApp;
