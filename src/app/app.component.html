@@ -108,6 +108,9 @@ a.dropdown-toggle.collapsed.dropdown-toggle::after {
                 <li><a href="#">Page 3</a></li>
             </ul>
         </li>
+        <li *ngIf="ls.adminLoginStatus">
+            <a routerLink="admindashboard"><span class="icon"></span><button class="btn btn-success center">Admin Dashboard</button></a>
+          </li>
         <li *ngIf="!ls.userLoginStatus">
           <a routerLink="login"><span class="icon"></span><button class="btn btn-success center">Login</button></a>
         </li>

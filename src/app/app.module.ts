@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { QuillModule } from 'ngx-quill';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ArticlesComponent } from './articles/articles.component';
+import { QuillModule } from 'ngx-quill';
 import { HealthyComponent } from './tags/healthy/healthy.component';
 import { ChickenComponent } from './tags/chicken/chicken.component';
 import { VegetarianComponent } from './tags/vegetarian/vegetarian.component';
@@ -18,6 +18,8 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ArticleOperationComponent } from './article-operation/article-operation.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgbModule, NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { CategoryOperationComponent } from './category-operation/category-operation.component';
 import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -36,6 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserdashboardComponent,
     RegisterComponent,
     ArticleOperationComponent,
+    CategoryOperationComponent,
     RecipeOperationComponent
   ],
   imports: [
@@ -44,6 +47,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    NgbModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
     QuillModule.forRoot({
@@ -73,7 +80,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       }
     })
   ],
-  providers: [],
+  providers: [NgbCarousel, NgbCarouselConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

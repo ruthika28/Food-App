@@ -12,6 +12,7 @@ import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.c
 import { UserdashboardComponent } from './user/userdashboard/userdashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { ArticleOperationComponent } from './article-operation/article-operation.component';
+import { CategoryOperationComponent } from './category-operation/category-operation.component';
 import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
 
 
@@ -23,6 +24,7 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'userdashboard',component:UserdashboardComponent},
 {path:'user/register',component:RegisterComponent},
 {path:'article-operation',component:ArticleOperationComponent},
+{path:'category-operation',component:CategoryOperationComponent},
 {path:'recipe-operation',component:RecipeOperationComponent},
 {path:'recipe-operation/add',component:RecipeOperationComponent},
 {path:'articles',component:ArticlesComponent,children:
