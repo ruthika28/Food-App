@@ -14,7 +14,7 @@ export class AdmindashboardComponent implements OnInit {
   ngOnInit() {
     this.username=this.ls.username;
   }
-
+  
   addRecipe() {
     this.router.navigate(['/recipe-operation'])
   }
