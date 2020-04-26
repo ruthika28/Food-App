@@ -49,7 +49,7 @@ export class CategoryOperationComponent implements OnInit {
     } else {
       this.model.isImageUploaded = false;
       this.imgFile = undefined;
-      evt.target.files = [];
+      evt.target.files = undefined;
       this.model.base64textString = "";
       this.model.message = "upload a valid photo of type jpg or jpeg or png";
     }
