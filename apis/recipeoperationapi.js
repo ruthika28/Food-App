@@ -75,7 +75,25 @@ recipeOperationApp.get('/get-recipe',(req,res)=>{
 });
 
 
-
+recipeOperationApp.get('/display/:id',(req,res,next)=>{
+    
+    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    var x=req.params.id;
+    //console.log("id is ",x);
+    recipeCollectionObj.find({}).toArray(function(err, recipeObj) {
+        if(err)
+        {
+            console.log("error is ", err);
+        }
+        else
+        {
+            //console.log("recipe obj is",recipeObj);
+            //console.log("recipe obj is",recipeObj[x]);   
+            res.send({data:recipeObj[x]});
+        }
+    })   
+}
+);
 
 
 

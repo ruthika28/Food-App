@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { ArticleOperationComponent } from './article-operation/article-operation.component';
 import { CategoryOperationComponent } from './category-operation/category-operation.component';
 import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
+import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
 
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
@@ -26,7 +27,7 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'article-operation',component:ArticleOperationComponent},
 {path:'category-operation',component:CategoryOperationComponent},
 {path:'recipe-operation',component:RecipeOperationComponent},
-{path:'recipe-operation/add',component:RecipeOperationComponent},
+{path:'recipe-display/:id',component:RecipeDisplayComponent},
 {path:'articles',component:ArticlesComponent,children:
 [{path:'tags/healthy',component:HealthyComponent},
 {path:'tags/vegetarian',component:VegetarianComponent},

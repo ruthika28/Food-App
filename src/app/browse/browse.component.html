@@ -10,9 +10,11 @@
             <div class="card-desc">
                 <h5 class="card-title">{{rec.recipe}}</h5>
                 <p class="card-text">{{rec.brief}}</p>
-                <a href="#" class="btn btn-success">Check Recipe</a>
             </div>
-        </div>
+            <a (click)="gotoR(i)" class="btn btn-success">
+                Check Recipe
+            </a>
+        </div>        
     </div>
 </div>
 
