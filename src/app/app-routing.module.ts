@@ -16,6 +16,7 @@ import { CategoryOperationComponent } from './category-operation/category-operat
 import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
 import { SecurerouteGuard } from './secureroute.guard';
 import { ArticleDisplayComponent } from './article-display/article-display.component';
+import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
 
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
@@ -28,8 +29,8 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'article-operation',component:ArticleOperationComponent,canActivate:[SecurerouteGuard]},
 {path:'article-display/:articletitle',component:ArticleDisplayComponent},
 {path:'category-operation',component:CategoryOperationComponent},
-{path:'recipe-operation',component:RecipeOperationComponent,canActivate:[SecurerouteGuard]},
-{path:'recipe-operation/add',component:RecipeOperationComponent},
+{path:'recipe-operation',component:RecipeOperationComponent},
+{path:'recipe-display/:id',component:RecipeDisplayComponent},
 {path:'articles',component:ArticlesComponent}];
 
 
