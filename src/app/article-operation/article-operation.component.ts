@@ -40,7 +40,6 @@ export class ArticleOperationComponent implements OnInit {
       this.model.isDataLoaded = true;
     });
     // this.model.categoryNameList = ["chicken", "summer", "winter", "american", "desserts", "dinner"]
-
     this.model.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',

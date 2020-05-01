@@ -102,7 +102,6 @@ export class CategoryOperationComponent implements OnInit {
           }
         });
       });
-
     }
   }
 

@@ -30,10 +30,6 @@ import { RecipeDisplayComponent } from './recipe-display/recipe-display.componen
     AppComponent,
     HomeComponent,
     ArticlesComponent,
-    HealthyComponent,
-    ChickenComponent,
-    VegetarianComponent,
-    DesertsComponent,
     BrowseComponent,
     LoginComponent,
     AdmindashboardComponent,
@@ -57,6 +53,7 @@ import { RecipeDisplayComponent } from './recipe-display/recipe-display.componen
     NgbModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    NgbModule,
     QuillModule.forRoot({
       modules: {
         syntax: false,
