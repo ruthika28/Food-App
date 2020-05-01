@@ -124,6 +124,9 @@ export class RecipeOperationComponent implements OnInit {
       cancel() {
         this.router.navigate(['/admindashboard']);
       }
-      
+      isFormPopulated() {
+        return this.model.recipe.length &&this.model.brief.length &&this.model.time.length &&
+        this.model.author.length;
+      }
   
 }

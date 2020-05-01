@@ -23,6 +23,7 @@ import { CategoryOperationComponent } from './category-operation/category-operat
 import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RecipeDisplayComponent } from './recipe-display/recipe-display.componen
     ArticleOperationComponent,
     CategoryOperationComponent,
     RecipeOperationComponent,
-    RecipeDisplayComponent
+    RecipeDisplayComponent,
+    RecipeEditComponent
   ],
   imports: [
     FormsModule,
