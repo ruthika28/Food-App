@@ -11,7 +11,7 @@
                 <h5 class="card-title">{{rec.recipe}}</h5>
                 <p class="card-text">{{rec.brief}}</p>
             </div>
-            <a (click)="gotoR(i)" class="btn btn-success">
+            <a (click)="gotoR(rec,rec.recipe)" class="btn btn-success">
                 Check Recipe
             </a>
         </div>        

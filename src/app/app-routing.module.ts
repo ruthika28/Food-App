@@ -28,7 +28,7 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'article-operation',component:ArticleOperationComponent},
 {path:'category-operation',component:CategoryOperationComponent},
 {path:'recipe-operation',component:RecipeOperationComponent},
-{path:'recipe-display/:id',component:RecipeDisplayComponent},
+{path:'recipe-display/:recipetitle',component:RecipeDisplayComponent},
 {path:'recipe-edit',component:RecipeEditComponent},
 {path:'articles',component:ArticlesComponent,children:
 [{path:'tags/healthy',component:HealthyComponent},
