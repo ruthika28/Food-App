@@ -14,6 +14,8 @@ import { RegisterComponent } from './register/register.component';
 import { ArticleOperationComponent } from './article-operation/article-operation.component';
 import { CategoryOperationComponent } from './category-operation/category-operation.component';
 import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
+import { SecurerouteGuard } from './secureroute.guard';
+import { ArticleDisplayComponent } from './article-display/article-display.component';
 
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
@@ -23,15 +25,12 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'admindashboard',component:AdmindashboardComponent},
 {path:'userdashboard',component:UserdashboardComponent},
 {path:'user/register',component:RegisterComponent},
-{path:'article-operation',component:ArticleOperationComponent},
+{path:'article-operation',component:ArticleOperationComponent,canActivate:[SecurerouteGuard]},
+{path:'article-display/:articletitle',component:ArticleDisplayComponent},
 {path:'category-operation',component:CategoryOperationComponent},
-{path:'recipe-operation',component:RecipeOperationComponent},
+{path:'recipe-operation',component:RecipeOperationComponent,canActivate:[SecurerouteGuard]},
 {path:'recipe-operation/add',component:RecipeOperationComponent},
-{path:'articles',component:ArticlesComponent,children:
-[{path:'tags/healthy',component:HealthyComponent},
-{path:'tags/vegetarian',component:VegetarianComponent},
-{path:'tags/chicken',component:ChickenComponent},
-{path:'tags/desserts',component:DesertsComponent}]}];
+{path:'articles',component:ArticlesComponent}];
 
 
 @NgModule({

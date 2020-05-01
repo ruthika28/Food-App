@@ -26,9 +26,11 @@ export class RecipeOperationComponent implements OnInit {
     value:''
   };
   model1 = {
-    instr: '',
-    img: ''
+    instr: ''
   };
+  
+  file:File;
+  imgUrl:string|ArrayBuffer="";
   constructor(private router:Router,private ls:LoginService,private hc:HttpClient,private rs:RecipeOperationService,
     private ra:RecentActionsService) { }
   username:String;
@@ -36,7 +38,7 @@ export class RecipeOperationComponent implements OnInit {
   newDynamic: any = [];
   newDynamic1: any = [];
       submitIngr(user)
-      {        
+      { 
         this.newDynamic.push(user)
       }
       submitInstr(userobj)
@@ -62,10 +64,32 @@ export class RecipeOperationComponent implements OnInit {
       getlenI(i)
       {
         let x= (Object.keys(this.newDynamic1[i]).length)
-        if(x==2)
+        if(x==1)
         return true;
         return false;
       }      
+
+      getImageFile(imageInfo:File)
+    {
+      this.file=imageInfo;
+      //create FileReader object to read file content
+      let reader=new FileReader();
+
+      //read data of file(image)
+      //readAsdatafile is asynchronous operation 
+      //we need to wait until the data is read
+      reader.readAsDataURL(this.file);
+
+      reader.onload=()=>{
+        this.imgUrl=reader.result;
+        //this gives blob data
+      }
+      console.log("image url",this.imgUrl);
+
+      
+    }
+
+
       submitRecipe(user)
       {
         let action={};
@@ -74,17 +98,32 @@ export class RecipeOperationComponent implements OnInit {
         user['instrlist']=this.newDynamic1
         user['createdBy']=this.username
         user['createdOn']=dateTime
-        console.log(user);            
-        this.rs.addRecipe(user).subscribe((res) => {
+        let fd=new FormData();
+
+        //append file data to fd object
+
+        fd.append("photo",this.file);
+        
+        //append userobj to fd
+        //convert pbject into string
+        console.log("above user object in recipe", user);
+        fd.append("userObj",JSON.stringify(user));
+
+        this.rs.addRecipe(fd).subscribe((res) => {
           if(res["message"]=="recipe added successfully")
           alert("recipe added successfully")          
+          this.router.navigate(['/admindashboard'])
         })
         action['createdBy']=this.username
         action['createdOn']=dateTime
-        action['Action Done']="Recipe Added"    
+        action['ActionDone']="Recipe Added"    
         this.ra.addAction(action).subscribe((res)=>{
           console.log("added recent action",res)
         })
       }
+      cancel() {
+        this.router.navigate(['/admindashboard']);
+      }
+      
   
 }

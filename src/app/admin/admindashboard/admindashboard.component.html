@@ -77,6 +77,7 @@
 
 
       <div class="row" id="table1">
+      <!-- <div class="row" id="table1">
         <div class="col-md-12 grid-margin stretch-card">
           <div class="card" >
             <div class="card-body">
@@ -134,3 +135,29 @@
                 </table>
               </div>
               
+              </div> -->
+              
+
+
+              <div class="form-group">
+                <table class="table-responsive border rounded p-1">
+                  <thead>
+                    <th class="font-weight-bold">User</th>
+                    <th class="font-weight-bold">Action Performed</th>
+                    <th class="font-weight-bold">Performed At</th>
+                    <th class="font-weight-bold">Status</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let x of actions; let i = index;">
+                        <td>{{x.createdBy}}</td>
+                        <td>{{x.ActionDone}}</td>
+                        <td>{{x.createdOn}}</td>
+                        <td><div class="badge badge-success p-2">Success</div></td>
+                    </tr>
+                </tbody>
+                </table>
+              </div>
+
+
+
+

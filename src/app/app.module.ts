@@ -22,6 +22,7 @@ import { NgbModule, NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-boot
 import { CategoryOperationComponent } from './category-operation/category-operation.component';
 import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ArticleDisplayComponent } from './article-display/article-display.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     ArticleOperationComponent,
     CategoryOperationComponent,
-    RecipeOperationComponent
+    RecipeOperationComponent,
+    ArticleDisplayComponent
   ],
   imports: [
     FormsModule,

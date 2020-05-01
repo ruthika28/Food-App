@@ -19,4 +19,20 @@ recentActionsApp.post('/add-action',(req,res)=>{
     })
 });
 
+recentActionsApp.get('/get-action',(req,res)=>{
+    var recentActionsObj=dbo.getDb().recent_actions_collectionObj
+    recentActionsObj.find({}).toArray(function(err, recentObj) {
+        if(err)
+        {
+            console.log("error is ", err);
+        }
+        else
+        {
+            res.send({message:"Recent Actions",recentObj:recentObj});
+        }
+    })
+});
+
+
+
 module.exports = recentActionsApp;

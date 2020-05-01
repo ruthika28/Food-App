@@ -6,6 +6,7 @@ import { ArticleOperationService } from '../article-operation.service';
 import { Router } from '@angular/router';
 import { CategoryOperationService } from '../category-operation.service';
 import { CategoryData } from '../data/category-data';
+import { RecentActionsService } from '../recent-actions.service';
 
 @Component({
   selector: 'app-article-operation',
@@ -15,7 +16,7 @@ import { CategoryData } from '../data/category-data';
 export class ArticleOperationComponent implements OnInit {
 
   constructor(private articleOperationService: ArticleOperationService, private ls: LoginService, private router: Router
-    , private categoryOperationService: CategoryOperationService) { }
+    , private categoryOperationService: CategoryOperationService,private recentActionsService:RecentActionsService) { }
   placeholder = "enter details..";
   model = {
     content: '',
@@ -70,6 +71,13 @@ export class ArticleOperationComponent implements OnInit {
           this.router.navigate(['/admindashboard']);
         }
       });
+      let action ={};
+      action['createdBy']=this.ls.username;
+        action['createdOn']=new Date();
+        action['ActionDone']="Article Added";
+      this.recentActionsService.addAction(action).subscribe((res)=>{
+        console.log("added recent action",res)
+      })
     }
   }
 

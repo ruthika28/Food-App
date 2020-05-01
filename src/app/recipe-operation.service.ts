@@ -13,4 +13,7 @@ export class RecipeOperationService {
     console.log('addRecipe')
      return this.hc.post('/recipe/add',userObj)
   }
+  getRecipe():Observable<any>{
+    return this.hc.get('/recipe/get-recipe');
+  }
 }

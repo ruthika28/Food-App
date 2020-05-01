@@ -1,35 +1,51 @@
- <div class="container" >
+<div *ngIf="!model.isDataLoaded">
+  <div class="loader"></div>
+</div>
+<div class="container">
   <img src="../../assets/foodarticlebg.jpg" alt="articlebg image">
-    <div class="banner">
-      <h1 class="heading">FOOD ARTICLES</h1>
-      <p class="heading1">There is no love sincerer than the love of food</p>
+  <div class="banner">
+    <h1 class="heading">FOOD ARTICLES</h1>
+    <p class="heading1">There is no love sincerer than the love of food</p>
+  </div>
+  <div class="heading">
+    <h1>ARTICLES</h1>
+  </div>
+  <div class="row card-group" *ngIf="model.isDataLoaded">
+    <div class="col-4" *ngFor="let article of model.articleDataList;let i=index">
+      <img *ngIf="article.imageToDisplay === undefined" class="card-img-top" src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" 
+      width="100" height="100" alt="Card image cap">
+      <div *ngIf="article.imageToDisplay !== undefined" class="card-img-top" [innerHTML]="article.imageToDisplay" style="height: 100;width: 100;"></div>
+      <div class="card-desc">
+        <h3>{{article.title}}</h3>
+        <p>{{article.description}}</p>
+        <a class="btn-card" (click)="articleDisplay(article,article.title)">Read</a>
+      </div>
     </div>
-    <div class="heading">
-      <h1>ARTICLES</h1>
-    </div>
-    <div class="card-deck " *ngIf="model.isDataLoaded">
-      <div class="card-item" *ngFor="let articles of model.articleChunkList">
-        <div class="row">
-          <div class="item col-md-3" *ngFor="let article of articles">
-            <div class="card-content">
-              <div class="card-img-top">
-                <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
-                  src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
-                  height="100" alt="Card image cap">
-                <div *ngIf="article.imageToDisplay !== undefined" class="card-img-top" [innerHTML]="article.imageToDisplay" 
-                style="height: 100;width: 100;"></div>
-              </div>
-              <div class="card-desc">
-                <h3>{{article.title}}</h3>
-                <p>{{article.description}}</p>
-                <a href="#" class="btn-card">Read</a>
-              </div>
+  </div>
+</div>
+  <!-- <div class="card-deck " *ngIf="model.isDataLoaded">
+    <div class="card-item" *ngFor="let articles of model.articleChunkList">
+      <div class="row">
+        <div class="item col-md-3" *ngFor="let article of articles">
+          <div class="card-content">
+            <div class="card-img-top">
+              <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
+                src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+                height="100" alt="Card image cap">
+              <div *ngIf="article.imageToDisplay !== undefined" class="card-img-top"
+                [innerHTML]="article.imageToDisplay" style="height: 100;width: 100;"></div>
+            </div>
+            <div class="card-desc">
+              <h3>{{article.title}}</h3>
+              <p>{{article.description}}</p>
+              <a href="#" class="btn-card" (click)="articleDisplay(article._id)">Read</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  <!-- </div>-->
   <!-- <h2 class="font-bold h4-text mt-5 ml-5">Tags</h2> -->
   <!-- <div id="demo" class="carousel slide mt-5 ml-5 mr-5" data-ride="carousel">
     <div class="carousel-inner">

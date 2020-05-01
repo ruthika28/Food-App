@@ -14,5 +14,6 @@ export class AppComponent {
   // {
   //   this.status=!this.status;
   // }
-  
+  isCollapsed = true;
+     
 }

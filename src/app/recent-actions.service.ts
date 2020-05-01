@@ -13,4 +13,8 @@ export class RecentActionsService {
     console.log('addRecipe')
      return this.hc.post('/recent-actions/add-action',userObj)
   }
+  getActions():Observable<any>{
+    console.log('get actions');
+    return this.hc.get('/recent-actions/get-action');
+  }
 }

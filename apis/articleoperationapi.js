@@ -30,9 +30,6 @@ articleOperationApp.get('/get', (req, res) => {
         return res.status(200).send(data);
     });
     var bcrypt = require("bcrypt")
-    articleOperationApp.post('/article-operation/add', (req, res) => {
-        var articleCollectionObj = dbo.getDb().articleCollectionObj;
-
-    });
 });
+// 
 module.exports = articleOperationApp;
