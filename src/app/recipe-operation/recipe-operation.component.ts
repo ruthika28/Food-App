@@ -108,7 +108,10 @@ export class RecipeOperationComponent implements OnInit {
         //console.log("above user object in recipe", fd);
         this.rs.addRecipe(fd).subscribe((res) => {
           if(res["message"]=="recipe added successfully")
-          alert("recipe added successfully")          
+          {
+            alert("recipe added successfully")     
+            this.success=true;     
+          }
           if(this.ls.role === "admin"){
             this.router.navigate(['/admindashboard']);
           } else {
