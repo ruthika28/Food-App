@@ -40,4 +40,8 @@ export class AdmindashboardComponent implements OnInit {
   addCategory() {
     this.router.navigate(['/category-operation'])
   }
+
+  addAdmin() {
+    this.router.navigate(['/admin/adminprofile']);
+  }
 }

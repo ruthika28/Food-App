@@ -6,10 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { QuillModule } from 'ngx-quill';
-import { HealthyComponent } from './tags/healthy/healthy.component';
-import { ChickenComponent } from './tags/chicken/chicken.component';
-import { VegetarianComponent } from './tags/vegetarian/vegetarian.component';
-import { DesertsComponent } from './tags/deserts/deserts.component';
 import { BrowseComponent } from './browse/browse.component';
 import { LoginComponent } from './login/login.component';
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
@@ -25,16 +21,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArticleDisplayComponent } from './article-display/article-display.component';
 import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ArticlesComponent,
-    HealthyComponent,
-    ChickenComponent,
-    VegetarianComponent,
-    DesertsComponent,
     BrowseComponent,
     LoginComponent,
     AdmindashboardComponent,
@@ -45,7 +38,8 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
     RecipeOperationComponent,
     ArticleDisplayComponent,
     RecipeDisplayComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AdminprofileComponent
   ],
   imports: [
     FormsModule,

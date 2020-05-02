@@ -14,6 +14,7 @@ import { SecurerouteGuard } from './secureroute.guard';
 import { ArticleDisplayComponent } from './article-display/article-display.component';
 import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
@@ -21,6 +22,7 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'home',component:HomeComponent},
 {path:'login',component:LoginComponent},
 {path:'admindashboard',component:AdmindashboardComponent},
+{path:'admin/adminprofile',component:AdminprofileComponent},
 {path:'userdashboard',component:UserdashboardComponent},
 {path:'user/register',component:RegisterComponent},
 {path:'article-operation',component:ArticleOperationComponent,canActivate:[SecurerouteGuard]},
