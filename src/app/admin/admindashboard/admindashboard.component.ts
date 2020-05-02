@@ -20,6 +20,10 @@ export class AdmindashboardComponent implements OnInit {
   addRecipe() {
     this.router.navigate(['/recipe-operation'])
   }
+  removeRecipe()
+  {
+    this.router.navigate(['/recipe-edit'])
+  }
 
   getAction()
   {

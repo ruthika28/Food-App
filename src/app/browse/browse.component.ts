@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeOperationService } from '../recipe-operation.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-browse',
@@ -9,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class BrowseComponent implements OnInit {
 
-  constructor(private ar:ActivatedRoute,private rs:RecipeOperationService,private router:Router) { }
+  constructor(private ar:ActivatedRoute,private rs:RecipeOperationService,private router:Router,private ds:DataService) { }
   recipes:object;
   ngOnInit() {
     this.getRecipes();
@@ -21,10 +22,11 @@ export class BrowseComponent implements OnInit {
       //console.log("Inside Browse data is ",this.recipes);
     })
   }
-  gotoR(i)
+  gotoR(recipe,recipetitle)
   {
     //console.log(this.recipes[i]);
-    this.router.navigate([`/recipe-display/${i}`]);
+    this.router.navigate(['/recipe-display',recipetitle]);
+    this.ds.sendRecipe(recipe);
   }
 
 }

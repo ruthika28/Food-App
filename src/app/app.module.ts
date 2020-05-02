@@ -24,6 +24,7 @@ import { RecipeOperationComponent } from './recipe-operation/recipe-operation.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArticleDisplayComponent } from './article-display/article-display.component';
 import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { RecipeDisplayComponent } from './recipe-display/recipe-display.componen
     CategoryOperationComponent,
     RecipeOperationComponent,
     ArticleDisplayComponent,
-    RecipeDisplayComponent
+    RecipeDisplayComponent,
+    RecipeEditComponent
   ],
   imports: [
     FormsModule,

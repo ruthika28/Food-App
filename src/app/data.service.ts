@@ -16,6 +16,8 @@ constructor(private hc:HttpClient){}
 
   articleData = this.bsArticle.asObservable();
 
+  private bsRecipe = new BehaviorSubject<any>(null);
+  recipeData = this.bsRecipe.asObservable();
   getData():Observable<object[]>  //data is present in observable
   {
    return  this.hc.get<object[]>('https://jsonplaceholder.typicode.com/posts');
@@ -29,4 +31,9 @@ constructor(private hc:HttpClient){}
   public sendArticle(article: ArticleData) {
     this.bsArticle.next(article);
   }
+  sendRecipe(recipe: any) {
+    //console.log("inside data service",recipe);
+    this.bsRecipe.next(recipe);
+  }
+
 }

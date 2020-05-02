@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-recipe-display',
@@ -9,21 +10,25 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RecipeDisplayComponent implements OnInit {
 
-  constructor(private ar:ActivatedRoute,private hc:HttpClient) { }
+  recipeDataEvent:any;
+  isDataLoaded:boolean=false;
+  constructor(private ar:ActivatedRoute,private hc:HttpClient,private ds:DataService) { }
   id:string;
   recipeObj:object;
   ngOnInit() {
-    this.ar.paramMap.subscribe(param=>{
+    this.recipeDataEvent = this.ds.recipeData.subscribe(data => {
+      if (data != null) {
+        //console.log("data is ",data);
+        this.recipeObj = data;
+        this.isDataLoaded=true;
+      } 
+    })
+  }
 
-      this.id=param.get("id");
-      //console.log("id is ",this.id);
-
-        this.hc.get(`/recipe/display/${this.id}`).subscribe((objOfres:object)=>{
-             
-         this.recipeObj=objOfres["data"];
-        // console.log("recipe is ",this.recipeObj); 
-       })
-    });
+  ngOnDestroy(): void {
+    this.recipeDataEvent.unsubscribe();
   }
 
 }
+
+
