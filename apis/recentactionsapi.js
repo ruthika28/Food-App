@@ -7,7 +7,7 @@ dbo.initDb();
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt")
 recentActionsApp.post('/add-action',(req,res)=>{
-    console.log("recent action obj is",req.body);
+   // console.log("recent action obj is",req.body);
     var recent_actions_collectionObj = dbo.getDb().recent_actions_collectionObj;
     recent_actions_collectionObj.insertOne(req.body, (err, success) => {
         if (err) {

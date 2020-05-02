@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EditableTableModule } from 'ng-editable-table/editable-table/editable-table.module';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
@@ -7,10 +7,10 @@ import { EditableTableModule } from 'ng-editable-table/editable-table/editable-t
 })
 export class RecipeEditComponent implements OnInit {
 
-  
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
   
+
 }

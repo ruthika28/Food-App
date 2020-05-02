@@ -25,6 +25,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 
+
+import { MatInputModule } from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +55,12 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
     RecipeEditComponent
   ],
   imports: [
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSelectModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
