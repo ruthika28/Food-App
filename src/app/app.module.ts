@@ -53,6 +53,7 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
     NgbModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    NgbModule,
     QuillModule.forRoot({
       modules: {
         syntax: false,
