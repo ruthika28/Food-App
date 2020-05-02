@@ -26,6 +26,15 @@ import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 import { AuthorizationService } from './authorization.service';
 
+
+import { MatInputModule } from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +56,12 @@ import { AuthorizationService } from './authorization.service';
     MyrecipesComponent
   ],
   imports: [
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSelectModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,

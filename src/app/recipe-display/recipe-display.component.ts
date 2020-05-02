@@ -17,10 +17,11 @@ export class RecipeDisplayComponent implements OnInit {
   recipeObj:object;
   ngOnInit() {
     this.recipeDataEvent = this.ds.recipeData.subscribe(data => {
-      if (data != null) {
-        //console.log("data is ",data);
+      if (data != null) {  
         this.recipeObj = data;
         this.isDataLoaded=true;
+        //console.log("recipeObj is ",this.recipeObj);
+        //console.log("category is ",this.recipeObj['category']);   
       } 
     })
   }

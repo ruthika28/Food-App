@@ -29,7 +29,7 @@ export class AdmindashboardComponent implements OnInit {
   {
     this.ra.getActions().subscribe((res)=>{
       this.actions=res.recentObj
-      console.log("recent actions are",this.actions);
+      //console.log("recent actions are",this.actions);
     })
   }
 
