@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,5 @@ export class AppComponent {
   // {
   //   this.status=!this.status;
   // }
-  isCollapsed = true;
-     
+  // isCollapsed = true;
 }

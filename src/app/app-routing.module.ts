@@ -15,6 +15,8 @@ import { ArticleDisplayComponent } from './article-display/article-display.compo
 import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
+import { MyarticlesComponent } from './myarticles/myarticles.component';
+import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
@@ -28,10 +30,12 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'article-operation',component:ArticleOperationComponent,canActivate:[SecurerouteGuard]},
 {path:'article-display/:articletitle',component:ArticleDisplayComponent},
 {path:'category-operation',component:CategoryOperationComponent},
-{path:'recipe-operation',component:RecipeOperationComponent},
+{path:'recipe-operation',component:RecipeOperationComponent,canActivate:[SecurerouteGuard]},
 {path:'recipe-display/:recipetitle',component:RecipeDisplayComponent},
 {path:'recipe-edit',component:RecipeEditComponent},
-{path:'articles',component:ArticlesComponent}];
+{path:'articles',component:ArticlesComponent},
+{path:'myarticles',component:MyarticlesComponent,canActivate:[SecurerouteGuard]},
+{path:'myrecipes',component:MyrecipesComponent,canActivate:[SecurerouteGuard]}];
 
 
 @NgModule({

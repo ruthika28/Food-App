@@ -11,20 +11,20 @@ export class SecurerouteGuard implements CanActivate {
   //   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
   //   return true;
   // }
-  private route: Router;
+  constructor(private router: Router){} 
   canActivate():boolean {
    
     //read token from local storage
     let token=localStorage.getItem("token");
 
-    if(token!=undefined)
+    if(token!=undefined && token!=null)
     {
       return true;
     }
     else
     {
       alert("plz login to continue");
-      this.route.navigate(["/login"])
+      this.router.navigate(['/login']);
       return false;
     }
   }

@@ -67,7 +67,11 @@ export class ArticleOperationComponent implements OnInit {
         if (res["message"] === "sucessfully added") {
           console.log(res["message"]);
           alert("sucessfully added an article");
-          this.router.navigate(['/admindashboard']);
+          if(this.ls.role === "admin"){
+            this.router.navigate(['/admindashboard']);
+          } else {
+            this.router.navigate(['/userdashboard']);
+          }
         }
       });
       let action ={};
@@ -81,7 +85,11 @@ export class ArticleOperationComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/admindashboard']);
+    if(this.ls.role === "admin"){
+      this.router.navigate(['/admindashboard']);
+    } else {
+      this.router.navigate(['/userdashboard']);
+    }
   }
 
   isFormPopulated() {

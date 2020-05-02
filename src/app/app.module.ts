@@ -22,6 +22,8 @@ import { ArticleDisplayComponent } from './article-display/article-display.compo
 import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
+import { MyarticlesComponent } from './myarticles/myarticles.component';
+import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
     ArticleDisplayComponent,
     RecipeDisplayComponent,
     RecipeEditComponent,
-    AdminprofileComponent
+    AdminprofileComponent,
+    MyarticlesComponent,
+    MyrecipesComponent
   ],
   imports: [
     FormsModule,

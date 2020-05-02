@@ -104,30 +104,30 @@
                     <li>
                         <a routerLink="articles"><span class="icon"><i class="fas fa-mobile-alt"></i></span>Articles</a>
                     </li>
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" (click)="isCollapsed = !isCollapsed"
+                    <!-- <li> -->
+                        <!-- <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" (click)="isCollapsed = !isCollapsed"
                             class="dropdown-toggle collapsed">
                             <span class="icon"><i class="fas fa-file"></i></span>More</a>
 
-                        <ul class="collapse list-unstyled" id="pageSubmenu" [ngbCollapse]="isCollapsed">
+                        <ul class="collapse list-unstyled" id="pageSubmenu" [ngbCollapse]="isCollapsed"> -->
                             <li>
                                 <a routerLink="article-operation"><span class="icon"><i
-                                            class="fas fa-mobile-alt"></i></span>Add Articles</a>
+                                     class="fas fa-mobile-alt"></i></span>Add Articles</a>
                             </li>
                             <li>
                                 <a routerLink="recipe-operation"><span class="icon"><i
-                                            class="fas fa-mobile-alt"></i></span>Add Recipe</a>
+                                     class="fas fa-mobile-alt"></i></span>Add Recipe</a>
                             </li>
                             <li>
-                                <a href="#"><span class="icon"><i
-                                            class="fas fa-mobile-alt"></i></span>My Articles</a>
+                                <a routerLink="myarticles"><span class="icon"><i
+                                    class="fas fa-mobile-alt"></i></span>My Articles</a>
                             </li>
                             <li>
-                                <a href="#"><span class="icon"><i
+                                <a routerLink="myrecipes"><span class="icon"><i
                                             class="fas fa-mobile-alt"></i></span>My Recipes</a>
                             </li>
-                        </ul>
-                    </li>
+                        <!-- </ul> -->
+                    <!-- </li> -->
                     <li *ngIf="ls.adminLoginStatus">
                         <a routerLink="admindashboard"><span class="icon"></span><button
                                 class="btn btn-success center">Admin Dashboard</button></a>

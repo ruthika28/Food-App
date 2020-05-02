@@ -36,11 +36,15 @@ export class LoginComponent implements OnInit {
         if(result["role"] == "admin")
         {
           this.ls.adminLoginStatus = true;
+          this.ls.role="admin";
           this.router.navigate(['/admindashboard']);
         }
          //redirect to userdashboard component
         else
-        this.router.navigate(['/userdashboard']);
+        {
+          this.ls.role="user";
+          this.router.navigate(['/userdashboard']); 
+        }
       }
     })
   }
