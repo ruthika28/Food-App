@@ -39,7 +39,11 @@ userApp.post('/login', (req, res) => {
                             console.log("err", err);
                         }
                         else {
-                            res.send({ message: signedToken, username: userObj.username, role:userObj.role});
+                            res.send({ 
+                                message:"success",
+                                token:signedToken,
+                                username: userObj.username, 
+                                role:userObj.role});
                         }
                     })
                 }
