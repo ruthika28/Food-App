@@ -79,8 +79,9 @@ recipeOperationApp.get('/display/:id',(req,res,next)=>{
     
     var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
     var x=req.params.id;
+    const {ObjectId} = require('mongodb');
     //console.log("id is ",x);
-    recipeCollectionObj.find({}).toArray(function(err, recipeObj) {
+    recipeCollectionObj.findOne({_id:ObjectId(x)},(err,recipeObj)=> {
         if(err)
         {
             console.log("error is ", err);
@@ -89,7 +90,7 @@ recipeOperationApp.get('/display/:id',(req,res,next)=>{
         {
             //console.log("recipe obj is",recipeObj);
             //console.log("recipe obj is",recipeObj[x]);   
-            res.send({data:recipeObj[x]});
+            res.send({data:recipeObj});
         }
     })   
 }
