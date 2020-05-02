@@ -108,9 +108,12 @@ export class RecipeOperationComponent implements OnInit {
         //console.log("above user object in recipe", fd);
         this.rs.addRecipe(fd).subscribe((res) => {
           if(res["message"]=="recipe added successfully")
-          alert("recipe added successfully")        
-          this.success=true;  
-          this.router.navigate(['/admindashboard'])
+          alert("recipe added successfully")          
+          if(this.ls.role === "admin"){
+            this.router.navigate(['/admindashboard']);
+          } else {
+            this.router.navigate(['/userdashboard']);
+          }
         })
         if(this.success){
           action['createdBy']=this.username
@@ -122,7 +125,11 @@ export class RecipeOperationComponent implements OnInit {
         }
       }
       cancel() {
-        this.router.navigate(['/admindashboard']);
+        if(this.ls.role === "admin"){
+          this.router.navigate(['/admindashboard']);
+        } else {
+          this.router.navigate(['/userdashboard']);
+        }
       }
       isFormPopulated() {
         return this.model.recipe.length &&this.model.brief.length &&this.model.time.length &&

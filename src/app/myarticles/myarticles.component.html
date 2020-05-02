@@ -1,0 +1,27 @@
+<div *ngIf="!model.isDataLoaded">
+    <div class="loader"></div>
+</div>
+<div class="container">
+    <img src="../../assets/foodarticlebg.jpg" alt="articlebg image">
+    <div class="banner">
+        <h1 class="heading">FOOD ARTICLES</h1>
+        <p class="heading1">There is no love sincerer than the love of food</p>
+    </div>
+    <div class="heading">
+        <h1>ARTICLES</h1>
+    </div>
+    <div class="row card-group" *ngIf="model.isDataLoaded">
+        <div class="col-4" *ngFor="let article of model.articleDataList">
+            <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
+                src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+                height="100" alt="Card image cap">
+            <div *ngIf="article.imageToDisplay !== undefined" class="card-img-top" [innerHTML]="article.imageToDisplay"
+                style="height: 100;width: 100;"></div>
+            <div class="card-desc">
+                <h3>{{article.title}}</h3>
+                <p>{{article.description}}</p>
+                <a class="btn-card" (click)="articleDisplay(article,article.title)">Read</a>
+            </div>
+        </div>
+    </div>
+</div>

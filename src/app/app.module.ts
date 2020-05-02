@@ -6,10 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { QuillModule } from 'ngx-quill';
-import { HealthyComponent } from './tags/healthy/healthy.component';
-import { ChickenComponent } from './tags/chicken/chicken.component';
-import { VegetarianComponent } from './tags/vegetarian/vegetarian.component';
-import { DesertsComponent } from './tags/deserts/deserts.component';
 import { BrowseComponent } from './browse/browse.component';
 import { LoginComponent } from './login/login.component';
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
@@ -22,8 +18,12 @@ import { NgbModule, NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-boot
 import { CategoryOperationComponent } from './category-operation/category-operation.component';
 import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ArticleDisplayComponent } from './article-display/article-display.component';
 import { RecipeDisplayComponent } from './recipe-display/recipe-display.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
+import { MyarticlesComponent } from './myarticles/myarticles.component';
+import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 
 
 import { MatInputModule } from '@angular/material/input';
@@ -39,10 +39,6 @@ import { MatSelectModule } from '@angular/material/select';
     AppComponent,
     HomeComponent,
     ArticlesComponent,
-    HealthyComponent,
-    ChickenComponent,
-    VegetarianComponent,
-    DesertsComponent,
     BrowseComponent,
     LoginComponent,
     AdmindashboardComponent,
@@ -51,8 +47,12 @@ import { MatSelectModule } from '@angular/material/select';
     ArticleOperationComponent,
     CategoryOperationComponent,
     RecipeOperationComponent,
+    ArticleDisplayComponent,
     RecipeDisplayComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AdminprofileComponent,
+    MyarticlesComponent,
+    MyrecipesComponent
   ],
   imports: [
     MatInputModule,
@@ -72,6 +72,7 @@ import { MatSelectModule } from '@angular/material/select';
     NgbModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    NgbModule,
     QuillModule.forRoot({
       modules: {
         syntax: false,

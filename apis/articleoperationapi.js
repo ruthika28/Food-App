@@ -29,10 +29,22 @@ articleOperationApp.get('/get', (req, res) => {
         }
         return res.status(200).send(data);
     });
-    var bcrypt = require("bcrypt")
-    articleOperationApp.post('/article-operation/add', (req, res) => {
-        var articleCollectionObj = dbo.getDb().articleCollectionObj;
-
-    });
 });
+
+articleOperationApp.get('/getArticleByUsername/:username', (req, res) => {
+    var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    let username = req.params.username;
+    articleCollectionObj.find(
+        {
+            createBy: username
+        }).sort({ "createdOn": -1 }).toArray(function (err, data) {
+            if (err) {
+                console.log(err);
+                return res.status(404).end();
+            }
+            return res.status(200).send(data);
+        });
+
+});
+
 module.exports = articleOperationApp;

@@ -74,28 +74,19 @@ recipeOperationApp.get('/get-recipe',(req,res)=>{
     })
 });
 
-
-recipeOperationApp.get('/display/:id',(req,res,next)=>{
-    
+recipeOperationApp.get('/getRecipeByUsername/:username',(req,res)=>{
     var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
-    var x=req.params.id;
-    //console.log("id is ",x);
-    recipeCollectionObj.find({}).toArray(function(err, recipeObj) {
-        if(err)
+    let username=req.params.username;
+    recipeCollectionObj.find(
         {
-            console.log("error is ", err);
-        }
-        else
-        {
-            //console.log("recipe obj is",recipeObj);
-            //console.log("recipe obj is",recipeObj[x]);   
-            res.send({data:recipeObj[x]});
-        }
-    })   
-}
-);
-
-
-
+            createdBy:username
+        }).sort({"createdOn":-1}).toArray(function(err,data){
+            if (err) {
+                console.log(err);
+                return res.status(404).end();
+            }
+            return res.status(200).send({recipeObj:data});
+        })
+});
 
 module.exports = recipeOperationApp;
