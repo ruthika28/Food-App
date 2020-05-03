@@ -26,26 +26,8 @@ export class MyarticlesComponent implements OnInit {
     const parent =this;
     parent.articleOperationService.getArticleDataListByUserName().then(data=>{
       parent.model.articleDataList=data as ArticleData[];
-      parent.getImagesFromArticle();
+      parent.model.isDataLoaded=true;
     });
-  }
-
-  private getImagesFromArticle() {
-    this.model.articleDataList.forEach(article => {
-      const content: string = article.content;
-      if (content.indexOf('<img') !== -1) {
-        const imageRegex = new RegExp("<img [^>]*src=\"[^\"]*\"[^>]*>", "gm");
-        const sources = Array.from(content.match(imageRegex));
-        if (sources.length > 0) {
-          article['imageToDisplay'] = this.byPassInnerHTML(sources[0]);
-        }
-      }
-    });
-    this.model.isDataLoaded = true;
-  }
-
-  private byPassInnerHTML(content) {
-    return this.sanitizer.bypassSecurityTrustHtml(content);
   }
    
   articleDisplay(article,articletitle) {

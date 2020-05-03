@@ -105,27 +105,27 @@ export class RecipeOperationComponent implements OnInit {
         //convert pbject into string
         
         fd.append("userObj",JSON.stringify(user));
-        //console.log("above user object in recipe", fd);
+        console.log("above user object in recipe", fd);
         this.rs.addRecipe(fd).subscribe((res) => {
           if(res["message"]=="recipe added successfully")
           {
-            alert("recipe added successfully")     
-            this.success=true;     
+            this.success=true; 
+            alert("recipe added successfully");
           }
+          if(this.success){
+            action['createdBy']=this.username
+            action['createdOn']=dateTime
+            action['ActionDone']="Recipe Added"    
+            this.ra.addAction(action).subscribe((res)=>{
+              console.log("added recent action",res)
+            })
+          }                
           if(this.ls.role === "admin"){
             this.router.navigate(['/admindashboard']);
           } else {
             this.router.navigate(['/userdashboard']);
           }
-        })
-        if(this.success){
-          action['createdBy']=this.username
-          action['createdOn']=dateTime
-          action['ActionDone']="Recipe Added"    
-          this.ra.addAction(action).subscribe((res)=>{
-            console.log("added recent action",res)
-          })
-        }
+        })        
       }
       cancel() {
         if(this.ls.role === "admin"){
