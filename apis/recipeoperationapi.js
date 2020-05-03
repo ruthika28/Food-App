@@ -62,7 +62,7 @@ recipeOperationApp.post('/add',upload.single('photo'),(req,res)=>{
 
 recipeOperationApp.get('/get-recipe',(req,res)=>{
     var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
-    recipeCollectionObj.find({}).toArray(function(err, recipeObj) {
+    recipeCollectionObj.find({}).sort({ "createdOn": -1 }).toArray(function(err, recipeObj) {
         if(err)
         {
             console.log("error is ", err);
