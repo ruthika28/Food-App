@@ -16,47 +16,56 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <style>
         .carousel-inner img {
-    width: 100%;
-    height: 100%;
-}
-.rounded-pill-left {
-border-top-left-radius: 50rem !important;
-border-bottom-left-radius: 50rem !important;
-}
-.rounded-pill-right {
-border-top-right-radius: 50rem !important;
-border-bottom-right-radius: 50rem !important;
-}
+            width: 100%;
+            height: 100%;
+        }
 
-/* Another classes to use */
-.rounded-t-l-0 {
-border-top-left-radius: 0 !important;
-}
-.rounded-t-r-0 {
-border-top-right-radius: 0 !important;
-}
-.rounded-b-l-0 {
-border-bottom-left-radius: 0 !important;
-}
-.rounded-b-r-0 {
-border-bottom-right-radius: 0 !important;
-}
-.rounded-x-l-0 {
-border-top-left-radius: 0 !important;
-border-bottom-left-radius: 0 !important;
-}
-.rounded-x-r-0 {
-border-top-right-radius: 0 !important;
-border-bottom-right-radius: 0 !important;
-}
-.checked {
-    color: orange;
-  }
-.card-img-top {
-      width: 100%;
-      height: 15vw;
-      object-fit: cover;
-  }
+        .rounded-pill-left {
+            border-top-left-radius: 50rem !important;
+            border-bottom-left-radius: 50rem !important;
+        }
+
+        .rounded-pill-right {
+            border-top-right-radius: 50rem !important;
+            border-bottom-right-radius: 50rem !important;
+        }
+
+        /* Another classes to use */
+        .rounded-t-l-0 {
+            border-top-left-radius: 0 !important;
+        }
+
+        .rounded-t-r-0 {
+            border-top-right-radius: 0 !important;
+        }
+
+        .rounded-b-l-0 {
+            border-bottom-left-radius: 0 !important;
+        }
+
+        .rounded-b-r-0 {
+            border-bottom-right-radius: 0 !important;
+        }
+
+        .rounded-x-l-0 {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+        }
+
+        .rounded-x-r-0 {
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 15vw;
+            object-fit: cover;
+        }
     </style>
 </head>
 
@@ -79,7 +88,7 @@ border-bottom-right-radius: 0 !important;
             </div>
             <div class="col-md-4 mt-5"></div>
         </div>
-        <br><br> <br><br>  <br>
+        <br><br> <br><br> <br>
     </div>
 
     <div class="container bg-light">
@@ -90,7 +99,7 @@ border-bottom-right-radius: 0 !important;
             </div>
             <div class="col-1"></div>
         </div><br>
-        <div id="demo" class="carousel slide" data-ride="carousel">
+        <div id="demo" *ngIf="model.isDataLoaded" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row">
@@ -98,14 +107,13 @@ border-bottom-right-radius: 0 !important;
                             <div class="onboarding-bubble">
                                 <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-american"
                                     role="button" aria-label="American">
-                                    <img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/american.png"
-                                        class="bubble-image" data-pin-nopin="true">
+                                    <img alt="" 
+                                    src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/american.png" class="bubble-image" data-pin-nopin="true">
                                     <span class="carousel-caption text micro-caps font-bold bubble-text">American</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2"> 
                             <div class="onboarding-bubble">
                                 <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-asian"
                                     role="button" aria-label="Asian">
@@ -157,10 +165,10 @@ border-bottom-right-radius: 0 !important;
                                         class="carousel-caption text micro-caps font-bold bubble-text">Cuban</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
-                <div class="carousel-item ">
+                 <div class="carousel-item "> 
                     <div class="row">
                         <div class="col-2">
                             <div class="onboarding-bubble">
@@ -351,21 +359,115 @@ border-bottom-right-radius: 0 !important;
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                </div> 
+            </div> 
+            <!--Left and right controls-->
+            
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </a>
             <a class="carousel-control-next" href="#demo" data-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </a>
         </div>
-    </div>
+    </div> 
+
+    <!-- <div class="container bg-light"> 
+        <ngb-carousel *ngIf="isDataLoaded">
+            <div class="col-md-12 col-sm-12" *ngFor="let category of categoryList; let i = index">
+                    <ng-template ngbSlide class="col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngIf=" i % 3 === 0 ">
+                        <div class="col-md-4" *ngFor="let category of categoryList.slice(i,i+3)">
+                            <div class="onboarding-bubble">
+                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-american"
+                                    role="button" aria-label="American">
+                                    <img alt="" 
+                                    [src]="category.imageUrl"class="bubble-image" data-pin-nopin="true">
+                                    <span class="carousel-caption text micro-caps font-bold bubble-text">{{category.name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+        </ngb-carousel>
+    </div>  -->
+    <!-- <div class="container">
+        <div class="carousel-inner carousel slide" data-ride="carousel" >
+            <div class="col-md-12 col-sm-12" *ngFor="let category of categoryList; let i = index">
+                <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngIf=" i % 3 === 0 ">
+                    <div class="col-md-4" *ngFor="let category of categoryList.slice(i,i+3)">
+                        <div class="onboarding-bubble">
+                            <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-american"
+                                role="button" aria-label="American">
+                                <img alt="" [src]="category.imageUrl" class="bubble-image" data-pin-nopin="true">
+                                <span
+                                    class="carousel-caption text micro-caps font-bold bubble-text">{{category.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <mdb-carousel [isControls]="true" [keyboard]="true"
+        class="carousel-multi-item multi-animation col-xl-12 col-lg-12 col-md-12 col-sm-12"
+        [type]="'carousel-multi-item'" [animation]="'slide'" [interval]="10000">
+        <div class="col-md-12 col-sm-12" *ngFor="let category of categoryList; let i = index">
+            <mdb-slide class="col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngIf=" i % 3 === 0 ">
+                <div class="col-md-4" *ngFor="let category of categoryList.slice(i,i+3)">
+                    <div class="onboarding-bubble">
+                        <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-american"
+                            role="button" aria-label="American">
+                            <img alt="" [src]="category.imageUrl" class="bubble-image" data-pin-nopin="true">
+                            <span
+                                class="carousel-caption text micro-caps font-bold bubble-text">{{category.name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </mdb-slide>
+        </div>
+    </mdb-carousel> -->
     <br><br>
-    <div class="container">
-        <h2>Recipes</h2>
-        <div class="card-deck">
+
+    <div class="container" *ngIf="model.isDataLoaded">
+        <div>
+            <h2>Recipes</h2>
+            <a routerLink="/browse" class="float-md-right mr-5">See all</a>
+        </div>
+        <div class="row card-group">
+            <div class="col-4  mb-3 mt-3" *ngFor="let rec of model.recipeList;">
+                <div class="card text-center mb-3 mt-3" style="width: 20rem;">
+                    <img class="card-img-top" src={{rec.profileImage}} alt="Card image cap">
+                    <div class="card-desc">
+                        <h5 class="card-title">{{rec.recipe}}</h5>
+                        <p class="card-text">{{rec.brief}}</p>
+                    </div>
+                    <a (click)="gotoR(rec,rec.recipe)" class="btn btn-success mb-2">
+                        Check Recipe
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Articles</h2>
+            <a routerLink="/articles" class="float-md-right mr-5">See all</a>
+        </div>
+        <div class="row card-group">
+            <div class="col-4 mb-3 mt-3" *ngFor="let article of model.articleDataList">
+                <div class="card text-center mb-3 mt-3" style="width: 20rem;">
+                    <!-- <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
+                    src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100" height="100"
+                    alt="Card image cap"> -->
+                    <img class="card-img-top" [src]="article.imageUrl" alt="article image">
+                    <div class="card-desc">
+                        <h3>{{article.title}}</h3>
+                        <p>{{article.description}}</p>
+                    </div>
+                    <a (click)="articleDisplay(article,article.title)" class="btn btn-success mb-2">Read</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="card-deck">
           <div class="card">
         <img class="card-img-top" src="https://i.ytimg.com/vi/CH7rQBGRr9s/maxresdefault.jpg" alt="Card image" style="width:100%">
         <div class="card-body display-5"><a href="#">Cajun Potato</a></div>
@@ -399,8 +501,8 @@ border-bottom-right-radius: 0 !important;
         <span class="fa fa-star"></span>
         </div>
         </div>
-        </div>
-      </div>
+        </div> -->
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Latest compiled and minified CSS -->

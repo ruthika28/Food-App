@@ -4,6 +4,7 @@ import { CategoryData } from '../data/category-data';
 import { FileUploadService } from '../file-upload.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { RecentActionsService } from '../recent-actions.service';
 
 @Component({
   selector: 'app-category-operation',
@@ -13,7 +14,7 @@ import { LoginService } from '../login.service';
 export class CategoryOperationComponent implements OnInit {
 
   constructor(private categoryOperationService: CategoryOperationService, private fileUploadService: FileUploadService,
-    private router: Router, private loginService: LoginService) { }
+    private router: Router, private loginService: LoginService,private recentActionsService:RecentActionsService) { }
 
   ngOnInit() {
   }
@@ -96,7 +97,14 @@ export class CategoryOperationComponent implements OnInit {
         };
         this.categoryOperationService.addCategory(request).subscribe(res => {
           if (res["message"] === "sucessfully added") {
-            console.log(res["message"]);
+            // console.log(res["message"]);
+            let action = {};
+              action['createdBy'] = this.loginService.username;
+              action['createdOn'] = new Date();
+              action['ActionDone'] = "category " +this.model.categoryName+" Added";
+              this.recentActionsService.addAction(action).subscribe((res) => {
+                console.log("added recent action", res)
+              });
             alert("sucessfully added the category");
             this.router.navigate(['/admindashboard']);
           }

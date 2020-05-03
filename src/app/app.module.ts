@@ -33,7 +33,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 @NgModule({
   declarations: [
@@ -56,6 +56,7 @@ import { MatSelectModule } from '@angular/material/select';
     MyrecipesComponent
   ],
   imports: [
+    MatCarouselModule.forRoot(),
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
