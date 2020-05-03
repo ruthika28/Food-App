@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
 import { UserdashboardComponent } from './user/userdashboard/userdashboard.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArticleOperationComponent } from './article-operation/article-operation.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule, NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +24,7 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
+import { AuthorizationService } from './authorization.service';
 
 
 import { MatInputModule } from '@angular/material/input';
@@ -70,9 +71,6 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgbModule,
-    ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot(),
-    NgbModule,
     QuillModule.forRoot({
       modules: {
         syntax: false,
@@ -100,7 +98,10 @@ import { MatSelectModule } from '@angular/material/select';
       }
     })
   ],
-  providers: [NgbCarousel, NgbCarouselConfig],
+  providers: [NgbCarousel, NgbCarouselConfig,
+    {provide:HTTP_INTERCEPTORS,
+		useClass:AuthorizationService,
+		multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private ls:LoginService){}
+  constructor(private ls:LoginService,private router:Router){}
   title = 'food-app';
   // status:boolean=true;
   // changeStatus()
@@ -16,4 +16,11 @@ export class AppComponent {
   //   this.status=!this.status;
   // }
   // isCollapsed = true;
+  myRecipes() {
+    this.router.navigate([`/myrecipes/${this.ls.username}`]);
+  }
+
+  myArticles() {
+    this.router.navigate([`/myarticles/${this.ls.username}`]);
+  }
 }

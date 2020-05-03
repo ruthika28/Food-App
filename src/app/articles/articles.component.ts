@@ -40,32 +40,33 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     const parent = this;
     parent.articleOperationService.getArticleDataList().then(data => {
       parent.model.articleDataList = data as ArticleData[];
+      this.model.isDataLoaded = true;
       // for (let i = 0; (i+2) < parent.model.articleDataList.length; i+=3) {
       //   parent.model.articleChunkList.push(parent.model.articleDataList.slice(i, i + 3));
       // }
       // parent.model.articleChunkList.push(parent.model.articleDataList.slice(3 * parent.model.articleChunkList.length, parent.model.articleDataList.length))
       // console.log(parent.model.articleDataList);
-      parent.getImagesFromArticle();
+      // parent.getImagesFromArticle();
     });
   }
 
-  private getImagesFromArticle() {
-    this.model.articleDataList.forEach(article => {
-      const content: string = article.content;
-      if (content.indexOf('<img') !== -1) {
-        const imageRegex = new RegExp("<img [^>]*src=\"[^\"]*\"[^>]*>", "gm");
-        const sources = Array.from(content.match(imageRegex));
-        if (sources.length > 0) {
-          article['imageToDisplay'] = this.byPassInnerHTML(sources[0]);
-        }
-      }
-    });
-    this.model.isDataLoaded = true;
-  }
+  // private getImagesFromArticle() {
+  //   this.model.articleDataList.forEach(article => {
+  //     const content: string = article.content;
+  //     if (content.indexOf('<img') !== -1) {
+  //       const imageRegex = new RegExp("<img [^>]*src=\"[^\"]*\"[^>]*>", "gm");
+  //       const sources = Array.from(content.match(imageRegex));
+  //       if (sources.length > 0) {
+  //         article['imageToDisplay'] = this.byPassInnerHTML(sources[0]);
+  //       }
+  //     }
+  //   });
+  //   this.model.isDataLoaded = true;
+  // }
 
-  private byPassInnerHTML(content) {
-    return this.sanitizer.bypassSecurityTrustHtml(content);
-  }
+  // private byPassInnerHTML(content) {
+  //   return this.sanitizer.bypassSecurityTrustHtml(content);
+  // }
    
   articleDisplay(article,articletitle) {
     this.router.navigate(['./article-display',articletitle]);

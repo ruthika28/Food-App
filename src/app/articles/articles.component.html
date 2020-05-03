@@ -1,29 +1,43 @@
-<div *ngIf="!model.isDataLoaded">
+<div *ngIf="!model.isDataLoaded" style="height: 500px; margin-left: 45%;">
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
   <div class="loader"></div>
+
 </div>
-<div class="container">
-  <img src="../../assets/foodarticlebg.jpg" alt="articlebg image">
-  <div class="banner">
-    <h1 class="heading">FOOD ARTICLES</h1>
-    <p class="heading1">There is no love sincerer than the love of food</p>
-  </div>
+<div class="container" *ngIf=model.isDataLoaded>
+  <img src="https://respectfoodroles.com/wp-content/uploads/2018/11/Respect-Food-Roles-2810-x-1304-Rev-2.jpg"
+    alt="articlebg image" style="width: 100%;height:350px;
+      overflow: hidden;">
+  <!-- <div class="banner">
+      <h1 class="heading">FOOD ARTICLES</h1>
+      <p class="heading1">There is no love sincerer than the love of food</p>
+    </div> -->
   <div class="heading">
     <h1>ARTICLES</h1>
   </div>
   <div class="row card-group" *ngIf="model.isDataLoaded">
-    <div class="col-4" *ngFor="let article of model.articleDataList;let i=index">
-      <img *ngIf="article.imageToDisplay === undefined" class="card-img-top" src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" 
-      width="100" height="100" alt="Card image cap">
-      <div *ngIf="article.imageToDisplay !== undefined" class="card-img-top" [innerHTML]="article.imageToDisplay" style="height: 100;width: 100;"></div>
-      <div class="card-desc">
-        <h3>{{article.title}}</h3>
-        <p>{{article.description}}</p>
-        <a class="btn-card" (click)="articleDisplay(article,article.title)">Read</a>
+    <div class="col-4 mb-3 mt-3" *ngFor="let article of model.articleDataList;let i=index">
+      <div class="card text-center mb-3 mt-3" style="width: 20rem;">
+        <!-- <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
+            src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100" height="100"
+            alt="Card image cap"> -->
+        <img class="card-img-top" [src]="article.imageUrl" alt="article image">
+        <div class="card-desc">
+          <h3>{{article.title}}</h3>
+          <p>{{article.description}}</p>
+        </div>
+        <a (click)="articleDisplay(article,article.title)" class="btn btn-success mb-2">Read</a>
       </div>
     </div>
   </div>
 </div>
-  <!-- <div class="card-deck " *ngIf="model.isDataLoaded">
+<!-- <div class="card-deck " *ngIf="model.isDataLoaded">
     <div class="card-item" *ngFor="let articles of model.articleChunkList">
       <div class="row">
         <div class="item col-md-3" *ngFor="let article of articles">
@@ -45,9 +59,9 @@
       </div>
     </div>
   </div> -->
-  <!-- </div>-->
-  <!-- <h2 class="font-bold h4-text mt-5 ml-5">Tags</h2> -->
-  <!-- <div id="demo" class="carousel slide mt-5 ml-5 mr-5" data-ride="carousel">
+<!-- </div>-->
+<!-- <h2 class="font-bold h4-text mt-5 ml-5">Tags</h2> -->
+<!-- <div id="demo" class="carousel slide mt-5 ml-5 mr-5" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="row">
@@ -108,8 +122,8 @@
         </div>
       </div>
     </div></div> -->
-  <!-- <br> -->
-  <!-- <div class="container mt-5 mb-2">
+<!-- <br> -->
+<!-- <div class="container mt-5 mb-2">
     <img src="http://www.indobase.com/recipes/rec-images/fish-fry.jpg" style="width:100%;">
     <div class="text-block">
       <p class="font-bold micro-caps">Recipe Roundup</p>
@@ -119,8 +133,8 @@
         to help you eat your way to good fortune in the new year.</p>
     </div>
   </div> -->
-  <!-- <h2 class="font-bold h4-text mt-5 mb-2 ml-2">Featured Articles</h2> -->
-  <!-- <div class=row>
+<!-- <h2 class="font-bold h4-text mt-5 mb-2 ml-2">Featured Articles</h2> -->
+<!-- <div class=row>
     <div class="col-sm-6 ">
       <ul class="list-unstyled ml-3">
         <li class="media">
@@ -164,7 +178,7 @@
     </div>
   </div> -->
 
-  <!-- <div class="container mt-5">
+<!-- <div class="container mt-5">
     <img src="http://www.shopempire.co.in/wp-content/uploads/2019/08/masala-omlette.jpg" alt="Nature"
       style="width:100%;">
     <div class="featured-again">
@@ -173,7 +187,7 @@
     </div>
   </div> -->
 
-  <!-- <div class="card-deck mt-5 ml-5 mr-5 mb-5">
+<!-- <div class="card-deck mt-5 ml-5 mr-5 mb-5">
     <div class="card">
       <a class="card-block stretched-link text-decoration-none" href="/"></a>
       <img class="card-img-top" src="https://images.herzindagi.info/image/2019/Sep/easy-kitchen-hacks-main.jpg"
@@ -217,7 +231,7 @@
     </div>
   </div> -->
 
-  <!-- <div id="dataInfo">
+<!-- <div id="dataInfo">
 		<h2>Information</h2>
 		<div id="myCarousel" class="carousel slide" >
 			<div class="carousel-inner">
@@ -330,7 +344,7 @@
 
 	</div>
   -->
-  <!-- <div class="row">
+<!-- <div class="row">
     <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
       <div class="MultiCarousel-inner">
         <div class="item">
@@ -406,9 +420,9 @@
       <button class="btn btn-primary rightLst"></button>
     </div>
   </div> -->
-  <!-- <div [innerHTML]="model.articleDataList[2].content[h1]"></div>  -->
+<!-- <div [innerHTML]="model.articleDataList[2].content[h1]"></div>  -->
 
-  <!-- <ngb-carousel *ngIf="model.isDataLoaded">
+<!-- <ngb-carousel *ngIf="model.isDataLoaded">
     <div class="row" style="margin-left: 10%;">
       <div class="col-md-4">
         <ng-template ngbSlide *ngFor="let articles of model.articleChunkList;index as i">

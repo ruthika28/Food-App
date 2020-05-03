@@ -21,7 +21,7 @@ recentActionsApp.post('/add-action',(req,res)=>{
 
 recentActionsApp.get('/get-action',(req,res)=>{
     var recentActionsObj=dbo.getDb().recent_actions_collectionObj
-    recentActionsObj.find({}).sort({ "createdOn": -1 }).toArray(function(err, recentObj) {
+    recentActionsObj.find({}).sort({"createdOn":-1}).toArray(function(err, recentObj) {
         if(err)
         {
             console.log("error is ", err);
