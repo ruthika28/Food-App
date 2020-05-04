@@ -1,54 +1,70 @@
-<div class="jumbotron">
-<h1>{{recipeObj.recipe}}</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Font Awesome Icons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<!--Get your own code at fontawesome.com-->
+</head>
+<body>
 
-<img [src]=recipeObj.profileImage style="width:500px;height:350px" alt="No Image">
-<h1 style="color: red;">Author</h1>
-<h1>{{recipeObj.author}}</h1>
-<h1 style="color: red;">Time Required</h1>
-<h1>{{recipeObj.time}}</h1>
-<h1 style="color: red;">Description</h1>
-<h1>{{recipeObj.brief}}</h1>
-<h1 style="color: red;">Created By</h1>
-<h1>{{recipeObj.createdBy}}</h1>
-<h1 style="color: red;">Created At</h1>
-<h1>{{recipeObj.createdOn}}</h1>
-<h1>Category</h1>
-<div *ngFor="let cat of recipeObj.category; let i = index">
-    <tr>{{cat}}</tr>
-    </div>
-
-
-    
-<h1 style="color: red;">Ingreidents</h1>
-    <table class="table table-bordered">
-        <thead>
-            <th>Name</th>
-            <th>Value</th>
-            <th>Units</th>
-            <th>Note</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let m of recipeObj.ingrlist; let i = index">
-                    <td>{{m.name}}</td>
-                    <td>{{m.value}}</td>
-                    <td>{{m.units}}</td>
-                    <td>{{m.notes}}</td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <h1 style="color: red;">Instructions</h1>
-    <table class="table table-bordered">
-        <thead>
-            <th>S.No</th>
-            <th>Name</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let in of recipeObj.instrlist; let i = index">
-                <td>{{i+1}}</td>
-                    <td>{{in.instr}}</td>
-            </tr>
-        </tbody>
-    </table>
-
+<div *ngIf="!isDataLoaded">
+    <div class="loader"></div>
 </div>
+
+<div class="jumbotron text-center hoverable p-4" *ngIf="isDataLoaded">
+    <div class="row">
+        <div class="col-4">
+            <div class="container">
+              <img [src]=recipeObj.profileImage alt="" style="height: 300px;" class="img-responsive">
+            </div>
+          </div>
+          <div class="col-8">
+              <div class="row">
+                <h3 class="display-3 font-weight-bold  mb-4">{{recipeObj.recipe}}</h3>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                <i class="fas fa-pen ">By {{recipeObj.author}} | {{recipeObj.createdOn}}</i>
+                </div>
+                <div class="col-6">
+                <i class="fas fa-clock ">Time Required : {{recipeObj.time}}</i>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <h5 class="text-muted font-italic">{{recipeObj.brief}}</h5>
+              </div>
+          </div>
+    </div>
+</div>
+<div class="container my-4">
+    <div class="display-4 font-italic">Ingredients :</div><br>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let m of recipeObj.ingrlist; let i = index">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="check{{i}}" >
+            <label class="custom-control-label" for="check{{i}}">{{m.name}} - {{m.value}} {{m.units}}</label>
+            <hr>
+          </div>
+        </li>
+        
+      </ul>
+    </div>
+      <br>
+<div class="container my-4">
+
+      <div class="display-4 font-italic">Instructions :</div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let in of recipeObj.instrlist; let i = index">
+          <div class="custom-control">
+            <div class="display-5 font-weight-bold">Step {{i+1}}:</div>
+            <div class="display-5">{{in.instr}}</div><hr>
+          </div>
+        </li>
+        
+      </ul>
+  </div>
+        
+</body>
+</html>
