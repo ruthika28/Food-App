@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
 })
 export class MyarticlesComponent implements OnInit {
 
-  constructor(private sanitizer: DomSanitizer,private dataService:DataService,private router:Router,private loginService: LoginService, private articleOperationService: ArticleOperationService) { }
+  constructor(private sanitizer: DomSanitizer, private dataService: DataService, private router: Router, private loginService: LoginService, private articleOperationService: ArticleOperationService) { }
 
-  model={
+  model = {
     articleDataList: [],
     isDataLoaded: false
   }
@@ -23,17 +23,27 @@ export class MyarticlesComponent implements OnInit {
     this.getArticles();
   }
   private getArticles() {
-    const parent =this;
-    parent.articleOperationService.getArticleDataListByUserName().then(data=>{
-      parent.model.articleDataList=data as ArticleData[];
-      parent.model.isDataLoaded=true;
+    const parent = this;
+    parent.articleOperationService.getArticleDataListByUserName().then(data => {
+      parent.model.articleDataList = data as ArticleData[];
+      parent.model.isDataLoaded = true;
     });
   }
-   
-  articleDisplay(article,articletitle) {
-    this.router.navigate(['./article-display',articletitle]);
+
+  articleDisplay(article, articletitle) {
+    this.router.navigate(['./article-display', articletitle]);
     this.dataService.sendArticle(article);
   }
 
-
+  deleteArticle(article_id) {
+    if (confirm("Are you sure you want to delete the article?")) {
+      this.articleOperationService.removeAticle(article_id).subscribe((result) => {
+        if (result["message"] === "successfully deleted") {
+          alert("successfully deleted the article");
+        }
+        this.router.navigate([`myarticles/${this.loginService.username}`]);
+      });
+    }
+  }
+  
 }

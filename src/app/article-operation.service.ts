@@ -13,8 +13,8 @@ export class ArticleOperationService {
   addArticle(dataObj): Observable<any> {
     return this.hc.post('/article/add', dataObj);
   }
-  removeAticle() {
-
+  removeAticle(id):Observable<any> {
+    return this.hc.delete(`/article/remove/${id}`);
   }
   getArticleDataList() {
     const parent = this;

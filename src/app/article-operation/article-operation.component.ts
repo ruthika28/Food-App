@@ -105,7 +105,7 @@ export class ArticleOperationComponent implements OnInit {
               let action = {};
               action['createdBy'] = this.ls.username;
               action['createdOn'] = new Date();
-              action['ActionDone'] = "Article Added";
+              action['ActionDone'] = "Article "+this.model.title +" Added";
               this.recentActionsService.addAction(action).subscribe((res) => {
                 console.log("added recent action", res)
               });
