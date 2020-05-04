@@ -88,6 +88,20 @@ recipeOperationApp.get('/getRecipeByUsername/:username',(req,res)=>{
             return res.status(200).send({recipeObj:data});
         })
 });
+recipeOperationApp.delete('/remove/:id',(req,res)=>{
+    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    let id=req.params.id;
+    const {ObjectId}=require("mongodb");
+    recipeCollectionObj.deleteOne({_id:ObjectId(id)},(err,success)=>{
+        if(err){
+            console.log(err);
+            return res.status(404).end(); 
+        } else{
+            return res.status(200).send({message:"successfully deleted"});
+        }
+    })
+})
+
 
 recipeOperationApp.get('/noOfRecipes/:username',(req,res)=>{
     var recipeCollectionObj=dbo.getDb().recipeCollectionObj;

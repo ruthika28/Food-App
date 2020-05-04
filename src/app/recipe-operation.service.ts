@@ -24,4 +24,8 @@ export class RecipeOperationService {
   getTotalRecipes() {
     return this.hc.get(`/recipe/noOfRecipes/${this.ls.username}`);
   }
+  removeRecipe(id):Observable<any> {
+    return this.hc.delete(`/recipe/remove/${id}`);
+  }
+
 }

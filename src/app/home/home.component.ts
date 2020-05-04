@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
     config.interval = 100000;
     config.showNavigationIndicators = false;
     config.keyboard = true;
+   
     config.pauseOnHover = true;
     config.showNavigationArrows = true;
     config.wrap = true;

@@ -15,6 +15,9 @@
                 <a (click)="gotoR(rec,rec.recipe)" class="btn btn-success mb-2">
                     Check Recipe
                 </a>
+                <div class="card-footer">
+                    <mat-icon class="delete my-cursor" (click)="deleteRecipe(rec,rec._id)">delete_forever</mat-icon>
+                </div>          
             </div>        
         </div>
     </div>
