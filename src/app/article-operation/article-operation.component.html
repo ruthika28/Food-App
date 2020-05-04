@@ -28,7 +28,12 @@
         <div>
             <label>Upload Article Image</label> <br>
             <input type="file" name="image" id="pc" ngModel (input)="getImageFile($event.target.files[0])">
-            <span *ngIf="!model.isImageUploaded" style="color: red;padding-left: 1.75rem;">{{model.message}}</span>
+            <!-- <span *ngIf="!model.isImageUploaded" style="color: red;padding-left: 1.75rem;">{{model.message}}</span> -->
+        </div>
+        <div class="image-preview mb-3">
+            <img *ngIf="model.isImageUploaded" [src]="imageObj.imageUrl" alt="Preview Image"
+                class="image-preview__image" style="width:500px;height:350px"/>
+            <span *ngIf="!model.isImageUploaded" style="color: blue;" class="image-preview__default-text" >{{model.message}}</span>
         </div>
         <div>
             <label>Content</label>

@@ -39,4 +39,8 @@ export class ArticleOperationService {
         });
     });
   }
+
+  getTotalArticles() {
+    return this.hc.get(`/article/noOfArticles/${this.loginService.username}`);
+  }
 }

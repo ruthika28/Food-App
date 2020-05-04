@@ -21,4 +21,7 @@ export class RecipeOperationService {
   getRecipeObjByUserName() {
     return this.hc.get(`/recipe/getRecipeByUsername/${this.ls.username}`);
   }
+  getTotalRecipes() {
+    return this.hc.get(`/recipe/noOfRecipes/${this.ls.username}`);
+  }
 }

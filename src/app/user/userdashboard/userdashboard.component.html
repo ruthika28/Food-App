@@ -1,3 +1,52 @@
-<div class="text-center">
-    <h1>welcome {{username}}</h1>
+<div class="jumbotron">
+    <div class="text-center">
+        <h1>welcome {{username}}</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-xl-4">
+            <div class="card mb-3"
+                style=" background: linear-gradient(to bottom, #33cccc 0%, #99ff66 100%);height:50px">
+                <div>
+                    <div class="float-md-left mt-2 ml-2 text-white">Total Recipes</div>
+                    <div class="mt-2 mr-2 text-white float-md-right"><span>{{model.noOfRecipes}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-4 float-md-right">
+            <div class="card mb-3" style=" background: linear-gradient(to top, #ffcccc 0%, #9999ff 100%);height:50px">
+                <div>
+                    <div class="float-md-left mt-2 ml-2 text-white">Total Articles</div>
+                    <div class="mt-2 mr-2 text-white float-md-right"><span>{{model.noOfArticles}}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Recipes</h4>
+                    <img class="card-img-top" 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ8w8QR9wH5ew-KSUstPhT_vzSv6Kx77ZBysE0J4cBk5BgM-pJC&usqp=CAU">
+                </div>
+                <div class="card-footer">
+                    <mat-icon class="add my-cursor" (click)="addRecipes()">add</mat-icon>
+                    <mat-icon class="visibility my-cursor" (click)="myRecipes()">remove_red_eye</mat-icon>
+                  </div>
+            </div>
+        </div>
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Articles</h4>
+                    <img class="card-img-top" 
+                    src="https://www.geisinger.org/health-and-wellness/wellness-articles/2018/01/19/14/09/-/media/OneGeisinger/Images/ghs/health-and-wellness/Wellness-Articles/2018/January/2018-1-wellness-6-food-to-boost-web.jpg">
+                </div>
+                <div class="card-footer">
+                    <mat-icon class="add my-cursor" (click)="addArticles()">add</mat-icon>
+                    <mat-icon class="visibility my-cursor" (click)="myArticles()">remove_red_eye</mat-icon>
+                  </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -34,7 +34,7 @@
         </div>
         <a (click)="articleDisplay(article,article.title)" class="btn btn-success mb-2">Read</a>
         <div class="card-footer">
-          <mat-icon class="delete my-cursor" (click)="deleteArticle(article._id)">delete_forever</mat-icon>
+          <mat-icon class="delete my-cursor" (click)="deleteArticle(article._id,article.title)">delete_forever</mat-icon>
         </div>
       </div>
     </div>
