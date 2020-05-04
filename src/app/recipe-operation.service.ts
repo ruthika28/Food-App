@@ -21,4 +21,8 @@ export class RecipeOperationService {
   getRecipeObjByUserName() {
     return this.hc.get(`/recipe/getRecipeByUsername/${this.ls.username}`);
   }
+  removeRecipe(id):Observable<any> {
+    return this.hc.delete(`/recipe/remove/${id}`);
+  }
+
 }

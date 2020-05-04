@@ -17,6 +17,7 @@ constructor(private hc:HttpClient){}
   articleData = this.bsArticle.asObservable();
 
   private bsRecipe = new BehaviorSubject<any>(null);
+  
   recipeData = this.bsRecipe.asObservable();
   getData():Observable<object[]>  //data is present in observable
   {
@@ -35,5 +36,4 @@ constructor(private hc:HttpClient){}
     //console.log("inside data service",recipe);
     this.bsRecipe.next(recipe);
   }
-
 }
