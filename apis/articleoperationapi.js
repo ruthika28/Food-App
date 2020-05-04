@@ -47,4 +47,18 @@ articleOperationApp.get('/getArticleByUsername/:username', (req, res) => {
 
 });
 
+articleOperationApp.delete('/remove/:id',(req,res)=>{
+    var articleCollectionObj=dbo.getDb().articleCollectionObj;
+    let id=req.params.id;
+    const {ObjectId}=require("mongodb");
+    articleCollectionObj.deleteOne({_id:ObjectId(id)},(err,success)=>{
+        if(err){
+            console.log(err);
+            return res.status(404).end(); 
+        } else{
+            return res.status(200).send({message:"successfully deleted"});
+        }
+    })
+})
+
 module.exports = articleOperationApp;
