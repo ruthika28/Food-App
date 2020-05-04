@@ -1,0 +1,10 @@
+<div *ngIf="!isDataLoaded">
+    <div class="loader"></div>
+</div>
+<div class="container ml-5" *ngIf="isDataLoaded">
+    <h3>{{articleObj.title}}</h3>
+    <p>{{articleObj.description}}</p>
+    <p>{{articleObj.author}}</p>
+    <img src={{articleObj.imageUrl}} style="width:500px;height:350px" alt="image">
+    <p>{{articleObj.content}}</p>
+</div>

@@ -1,0 +1,54 @@
+<div class="jumbotron">
+<h1>{{recipeObj.recipe}}</h1>
+
+<img [src]=recipeObj.profileImage style="width:500px;height:350px" alt="No Image">
+<h1 style="color: red;">Author</h1>
+<h1>{{recipeObj.author}}</h1>
+<h1 style="color: red;">Time Required</h1>
+<h1>{{recipeObj.time}}</h1>
+<h1 style="color: red;">Description</h1>
+<h1>{{recipeObj.brief}}</h1>
+<h1 style="color: red;">Created By</h1>
+<h1>{{recipeObj.createdBy}}</h1>
+<h1 style="color: red;">Created At</h1>
+<h1>{{recipeObj.createdOn}}</h1>
+<h1>Category</h1>
+<div *ngFor="let cat of recipeObj.category; let i = index">
+    <tr>{{cat}}</tr>
+    </div>
+
+
+    
+<h1 style="color: red;">Ingreidents</h1>
+    <table class="table table-bordered">
+        <thead>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Units</th>
+            <th>Note</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let m of recipeObj.ingrlist; let i = index">
+                    <td>{{m.name}}</td>
+                    <td>{{m.value}}</td>
+                    <td>{{m.units}}</td>
+                    <td>{{m.notes}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h1 style="color: red;">Instructions</h1>
+    <table class="table table-bordered">
+        <thead>
+            <th>S.No</th>
+            <th>Name</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let in of recipeObj.instrlist; let i = index">
+                <td>{{i+1}}</td>
+                    <td>{{in.instr}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

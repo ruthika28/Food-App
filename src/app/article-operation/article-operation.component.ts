@@ -6,6 +6,8 @@ import { ArticleOperationService } from '../article-operation.service';
 import { Router } from '@angular/router';
 import { CategoryOperationService } from '../category-operation.service';
 import { CategoryData } from '../data/category-data';
+import { RecentActionsService } from '../recent-actions.service';
+import { FileUploadService } from '../file-upload.service';
 
 @Component({
   selector: 'app-article-operation',
@@ -15,7 +17,8 @@ import { CategoryData } from '../data/category-data';
 export class ArticleOperationComponent implements OnInit {
 
   constructor(private articleOperationService: ArticleOperationService, private ls: LoginService, private router: Router
-    , private categoryOperationService: CategoryOperationService) { }
+    , private categoryOperationService: CategoryOperationService, private recentActionsService: RecentActionsService
+    , private fileUploadService: FileUploadService) { }
   placeholder = "enter details..";
   model = {
     content: '',
@@ -27,8 +30,18 @@ export class ArticleOperationComponent implements OnInit {
     categoryNameList: [],
     selectedItems: [],
     dropdownSettings: {},
-    isDataLoaded: false
+    isDataLoaded: false,
+    isImageUploaded: false,
+    message: "upload a photo"
   };
+  private imgFile: File = undefined;
+  private success:boolean=false;
+  private filetype = ['image/jpeg', 'image/png', 'image/jpg'];
+  private imageObj: {
+    imageUrl: string | ArrayBuffer ,
+    publicId: ''
+  } = { imageUrl: "", publicId: "" };
+
   ngOnInit() {
     this.categoryOperationService.getCategoryDataList().then(data => {
       const categoryList = data as CategoryData[];
@@ -51,34 +64,95 @@ export class ArticleOperationComponent implements OnInit {
     };
   }
 
+  getImageFile(imageInfo: File) {
+    this.imgFile = imageInfo;
+    if (this.imgFile !== undefined && this.filetype.includes(this.imgFile.type)) {
+      if (this.imgFile !== undefined) {
+        let reader = new FileReader();//to read file content
+        reader.readAsDataURL(this.imgFile);//read data of file(image);we need to wait until data is read
+        reader.onload = () => {
+          this.imageObj.imageUrl = reader.result;//contains blob data
+        }
+        this.model.isImageUploaded = true;
+      }
+    } else {
+      this.model.message = "upload a valid photo of type jpg or jpeg or png";
+      this.model.isImageUploaded = false;
+    }
+  }
+
   postArticle() {
     if (this.isFormPopulated()) {
-      const request = {
-        'title': this.model.title,
-        'category': this.model.selectedItems,
-        'description': this.model.description,
-        'content': this.model.content,
-        'author': this.model.author,
-        'createBy': this.ls.username,
-        'createdOn': new Date()
-      };
-      this.articleOperationService.addArticle(request).subscribe(res => {
-        if (res["message"] === "sucessfully added") {
-          console.log(res["message"]);
-          alert("sucessfully added an article");
-          this.router.navigate(['/admindashboard']);
-        }
+      const parent = this;
+      parent.getImageUrlForFile().then(data => {
+        const request = {
+          'title': parent.model.title,
+          'category': parent.model.selectedItems,
+          'description': parent.model.description,
+          'imageUrl': parent.imageObj.imageUrl,
+          'imageId': parent.imageObj.publicId,
+          'content': parent.model.content,
+          'author': parent.model.author,
+          'createBy': parent.ls.username,
+          'createdOn': new Date()
+        };
+        this.articleOperationService.addArticle(request).subscribe(res => {
+          if (res["message"] === "sucessfully added") {
+            // console.log(res["message"]);
+            alert("sucessfully added an article");
+            this.success = true;
+            if (this.success) {
+              let action = {};
+              action['createdBy'] = this.ls.username;
+              action['createdOn'] = new Date();
+              action['ActionDone'] = "Article "+this.model.title +" Added";
+              this.recentActionsService.addAction(action).subscribe((res) => {
+                console.log("added recent action", res)
+              });
+            }
+            if (this.ls.role === "admin") {
+              this.router.navigate(['/admindashboard']);
+            } else {
+              this.router.navigate(['/userdashboard']);
+            }
+          }
+        });
       });
     }
   }
 
   cancel() {
-    this.router.navigate(['/admindashboard']);
+    if (this.ls.role === "admin") {
+      this.router.navigate(['/admindashboard']);
+    } else {
+      this.router.navigate(['/userdashboard']);
+    }
   }
 
   isFormPopulated() {
     return this.model.title.length && this.model.selectedItems.length && this.model.author.length && this.model.description.length
-      && this.model.content.length;
+      && this.model.content.length && this.model.isImageUploaded;
+  }
+  private getImageUrlForFile() {
+    const parent = this;
+    return new Promise(function (fulfilled, rejected) {
+      const files: File[] = [];
+      files.push(parent.imgFile);
+      parent.fileUploadService.getImageUrlForFile(files).then(response => {
+        if (parent.isListHasValue(response["data"])) {
+          const imageObjs = response["data"];
+          imageObjs.forEach(image => {
+            if (image) {
+              parent.imageObj.imageUrl = image.url;
+              parent.imageObj.publicId = image.id;
+            }
+          });
+          fulfilled();
+        } else {
+          rejected();
+        }
+      });
+    });
   }
 
   private isListHasValue(list) {
