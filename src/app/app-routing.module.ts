@@ -15,7 +15,6 @@ import { ArticleOperationComponent } from './article-operation/article-operation
 import { CategoryOperationComponent } from './category-operation/category-operation.component';
 import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
 
-
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'browse', component:BrowseComponent},
 {path:'home',component:HomeComponent},

@@ -23,6 +23,7 @@ import { CategoryOperationComponent } from './category-operation/category-operat
 import { RecipeOperationComponent } from './recipe-operation/recipe-operation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
     AppComponent,
