@@ -26,7 +26,7 @@ import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 import { AuthorizationService } from './authorization.service';
 
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -36,7 +36,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { RemoveArticleComponent } from './remove-article/remove-article.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import{ MatCheckboxModule, MatCardModule} from '@angular/material';
 
@@ -66,13 +65,14 @@ import{ MatCheckboxModule, MatCardModule} from '@angular/material';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatIconModule,
-    MatSelectModule,
     MatTableModule,
+    MatFormFieldModule,
     MatPaginatorModule,
+    MatIconModule,
+    MatCheckboxModule,
+    MatSelectModule,
     MatSortModule,
     MatFormFieldModule,
-    MatCheckboxModule,
     MatCardModule,
     FormsModule,
     BrowserModule,
