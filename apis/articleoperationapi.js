@@ -50,7 +50,7 @@ articleOperationApp.get('/getArticleByUsername/:username', (req, res) => {
 articleOperationApp.get('/noOfArticles/:username', (req, res) => {
     var articleCollectionObj = dbo.getDb().articleCollectionObj;
     let username = req.params.username;
-    articleCollectionObj.count({ createBy: username }, (err, data) => {
+    articleCollectionObj.countDocuments({ createBy: username }, (err, data) => {
         if (err) {
             console.log(err);
             return res.status(404).end();
