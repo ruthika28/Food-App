@@ -11,6 +11,7 @@ export class LoginService {
   userLoginStatus:boolean;
   adminLoginStatus:boolean;
   role:String;
+  userid:String;
   //inject HttpClient
   constructor(private hc:HttpClient) {}
   //a method to make http post  

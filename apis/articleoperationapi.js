@@ -31,12 +31,12 @@ articleOperationApp.get('/get', (req, res) => {
     });
 });
 
-articleOperationApp.get('/getArticleByUsername/:username', (req, res) => {
+articleOperationApp.get('/getArticleByUsername/:id', (req, res) => {
     var articleCollectionObj = dbo.getDb().articleCollectionObj;
-    let username = req.params.username;
+    let userid = req.params.id;
     articleCollectionObj.find(
         {
-            createBy: username
+            createdById: userid
         }).sort({ "createdOn": -1 }).toArray(function (err, data) {
             if (err) {
                 console.log(err);
@@ -47,10 +47,10 @@ articleOperationApp.get('/getArticleByUsername/:username', (req, res) => {
 
 });
 
-articleOperationApp.get('/noOfArticles/:username', (req, res) => {
+articleOperationApp.get('/noOfArticles/:id', (req, res) => {
     var articleCollectionObj = dbo.getDb().articleCollectionObj;
-    let username = req.params.username;
-    articleCollectionObj.countDocuments({ createBy: username }, (err, data) => {
+    let userid = req.params.id;
+    articleCollectionObj.countDocuments({ createdById: userid }, (err, data) => {
         if (err) {
             console.log(err);
             return res.status(404).end();

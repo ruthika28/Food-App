@@ -92,13 +92,15 @@ export class CategoryOperationComponent implements OnInit {
           'name': parent.model.categoryName.toLowerCase(),
           'imageUrl': parent.imageObj.imageUrl,
           'imageId': parent.imageObj.publicId,
-          'createBy': this.loginService.username,
+          'createdBy': this.loginService.username,
+          'createdById':this.loginService.userid,
           'createdOn': new Date()
         };
         this.categoryOperationService.addCategory(request).subscribe(res => {
           if (res["message"] === "sucessfully added") {
             // console.log(res["message"]);
             let action = {};
+              action['createdById']=this.loginService.userid;
               action['createdBy'] = this.loginService.username;
               action['createdOn'] = new Date();
               action['ActionDone'] = "category " +this.model.categoryName+" Added";

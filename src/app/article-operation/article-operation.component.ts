@@ -93,7 +93,8 @@ export class ArticleOperationComponent implements OnInit {
           'imageId': parent.imageObj.publicId,
           'content': parent.model.content,
           'author': parent.model.author,
-          'createBy': parent.ls.username,
+          'createdBy': parent.ls.username,
+          'createdById':parent.ls.userid,
           'createdOn': new Date()
         };
         this.articleOperationService.addArticle(request).subscribe(res => {
@@ -103,6 +104,7 @@ export class ArticleOperationComponent implements OnInit {
             this.success = true;
             if (this.success) {
               let action = {};
+              action['createdById'] =this.ls.userid;
               action['createdBy'] = this.ls.username;
               action['createdOn'] = new Date();
               action['ActionDone'] = "Article "+this.model.title +" Added";

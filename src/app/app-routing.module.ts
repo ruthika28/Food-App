@@ -19,7 +19,6 @@ import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 import { RemoveArticleComponent } from './remove-article/remove-article.component';
 
-
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'browse', component:BrowseComponent},
 {path:'home',component:HomeComponent},
