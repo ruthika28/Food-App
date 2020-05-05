@@ -27,6 +27,7 @@ const recipeOperationApp=require("./apis/recipeoperationapi")
 const recentActionsApp=require("./apis/recentactionsapi")
 
 //forwarding req object to apis
+
 app.use("/admin", adminApp);
 app.use("/user", userApp);
 app.use("/article", articleOperationApp);

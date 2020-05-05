@@ -105,32 +105,36 @@
                         <a routerLink="articles"><span class="icon"><i class="fas fa-mobile-alt"></i></span>Articles</a>
                     </li>
                     <!-- <li> -->
-                        <!-- <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" (click)="isCollapsed = !isCollapsed"
+                    <!-- <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" (click)="isCollapsed = !isCollapsed"
                             class="dropdown-toggle collapsed">
                             <span class="icon"><i class="fas fa-file"></i></span>More</a>
 
                         <ul class="collapse list-unstyled" id="pageSubmenu" [ngbCollapse]="isCollapsed"> -->
-                            <li>
-                                <a routerLink="article-operation"><span class="icon"><i
-                                     class="fas fa-mobile-alt"></i></span>Add Articles</a>
-                            </li>
-                            <li>
-                                <a routerLink="recipe-operation"><span class="icon"><i
-                                     class="fas fa-mobile-alt"></i></span>Add Recipe</a>
-                            </li>
-                            <li>
-                                <a (click)="myArticles()"><span class="icon"><i
+
+                    <li *ngIf="ls.userLoginStatus && !ls.adminLoginStatus">
+                        <a routerLink="userdashboard"><span class="icon"><i class="fas fa-mobile-alt"></i></span>My Dashboard</a>
+                    </li>
+
+                    <!-- <li *ngIf=!ls.adminLoginStatus >
+                        <a routerLink="article-operation"><span class="icon"><i class="fas fa-mobile-alt"></i></span>Add
+                            Articles</a>
+                    </li>
+                    <li *ngIf=!ls.adminLoginStatus>
+                        <a routerLink="recipe-operation"><span class="icon"><i class="fas fa-mobile-alt"></i></span>Add
+                            Recipe</a>
+                    </li> -->
+                    <li *ngIf="ls.adminLoginStatus">
+                        <a class="my-cursor" (click)="myArticles()"><span class="icon"><i
                                     class="fas fa-mobile-alt"></i></span>My Articles</a>
-                            </li>
-                            <li>
-                                <a (click)="myRecipes()"><span class="icon"><i
-                                     class="fas fa-mobile-alt"></i></span>My Recipes</a>
-                            </li>
-                        <!-- </ul> -->
+                    </li>
+                    <li *ngIf="ls.adminLoginStatus">
+                        <a class="my-cursor" (click)="myRecipes()"><span class="icon"><i
+                                    class="fas fa-mobile-alt"></i></span>My Recipes</a>
+                    </li>
+                    <!-- </ul> -->
                     <!-- </li> -->
                     <li *ngIf="ls.adminLoginStatus">
-                        <a routerLink="admindashboard"><span class="icon"></span><button
-                                class="btn btn-success center">Admin Dashboard</button></a>
+                        <a routerLink="admindashboard"><span class="icon"><i class="fas fa-mobile-alt"></i></span>My Dashboard</a>
                     </li>
                     <li *ngIf="!ls.userLoginStatus">
                         <a routerLink="login"><span class="icon"></span><button

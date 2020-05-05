@@ -18,7 +18,6 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 
-
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'browse', component:BrowseComponent},
 {path:'home',component:HomeComponent},

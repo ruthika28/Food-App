@@ -123,4 +123,18 @@ recipeOperationApp.put('/delete-many',(req,res)=>{
 })
 
 
+recipeOperationApp.get('/noOfRecipes/:username',(req,res)=>{
+    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    let username=req.params.username;
+    recipeCollectionObj.count({createdBy:username},(err,data)=>{
+        if(err) {
+            console.log(err);
+                return res.status(404).end();
+        }
+        return res.status(200).send({count:data});
+
+
+    })
+})
+
 module.exports = recipeOperationApp;

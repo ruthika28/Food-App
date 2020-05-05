@@ -29,4 +29,7 @@ export class RecipeOperationService {
     return this.hc.put('/recipe/delete-many',obj);
   }
 
+  getTotalRecipes() {
+    return this.hc.get(`/recipe/noOfRecipes/${this.ls.username}`);
+  }
 }
