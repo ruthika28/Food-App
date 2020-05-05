@@ -17,6 +17,7 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
+import { RemoveArticleComponent } from './remove-article/remove-article.component';
 
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
@@ -35,7 +36,8 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'recipe-edit',component:RecipeEditComponent},
 {path:'articles',component:ArticlesComponent},
 {path:'myarticles/:username',component:MyarticlesComponent,canActivate:[SecurerouteGuard]},
-{path:'myrecipes/:username',component:MyrecipesComponent,canActivate:[SecurerouteGuard]}];
+{path:'myrecipes/:username',component:MyrecipesComponent,canActivate:[SecurerouteGuard]},
+{path:'remove-articles',component:RemoveArticleComponent}];
 
 
 @NgModule({

@@ -28,12 +28,17 @@ import { AuthorizationService } from './authorization.service';
 
 
 import { MatInputModule } from '@angular/material/input';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-
+import { RemoveArticleComponent } from './remove-article/remove-article.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import{ MatCheckboxModule, MatCardModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -53,7 +58,8 @@ import { MatSelectModule } from '@angular/material/select';
     RecipeEditComponent,
     AdminprofileComponent,
     MyarticlesComponent,
-    MyrecipesComponent
+    MyrecipesComponent,
+    RemoveArticleComponent,
   ],
   imports: [
     MatInputModule,
@@ -62,6 +68,12 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatIconModule,
     MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatCardModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -99,9 +111,11 @@ import { MatSelectModule } from '@angular/material/select';
     })
   ],
   providers: [NgbCarousel, NgbCarouselConfig,
-    {provide:HTTP_INTERCEPTORS,
-		useClass:AuthorizationService,
-		multi:true}],
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthorizationService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

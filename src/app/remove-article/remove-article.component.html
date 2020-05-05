@@ -1,0 +1,42 @@
+<div class="jumbotron">
+    <h2>Remove Articles</h2>
+    <mat-card>
+    <mat-form-field style="width:100%" class="example-full-width">
+      <mat-label>Search Here</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search Here">
+    </mat-form-field>
+    <table mat-table [dataSource]="model.articleDataList" matSort matSortDirection="asc">
+    
+      <ng-container *ngFor="let column of columns;let i=index;" matColumnDef="{{column.name}}">
+        <th mat-cell class="text-center" *matHeaderCellDef mat-sort-header>{{column.label}}</th> 
+        <th> <input type="checkbox"><th>
+        <ng-container *matCellDef="let element">                 
+          <td class="text-center" mat-cell *ngIf="column.name=='imageUrl'"> 
+            <img src={{element[column.name]}} style="height:200px;width:200px;">
+          </td>
+          <td class="text-center" mat-cell *ngIf="column.name=='title'"> 
+            {{element[column.name]}}
+          </td>
+          <td  class="text-center" mat-cell *ngIf="column.name=='author'"> 
+            {{element[column.name]}}
+          </td>
+          <td  class="text-center" mat-cell *ngIf="column.name=='createdOn'"> 
+            {{element[column.name]}}
+          </td>
+          <td  class="text-center" mat-cell *ngIf="column.name=='createBy'"> 
+            {{element[column.name]}}
+          </td>
+          <td class="text-center" mat-cell *ngIf="column.name=='action'">
+            <input type="checkbox">
+          </td>          
+        </ng-container>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+  </div>
+  
