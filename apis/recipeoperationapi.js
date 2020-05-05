@@ -92,11 +92,31 @@ recipeOperationApp.delete('/remove/:id',(req,res)=>{
     var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
     let id=req.params.id;
     const {ObjectId}=require("mongodb");
+    //console.log("ibj id is ",ObjectId(id));
     recipeCollectionObj.deleteOne({_id:ObjectId(id)},(err,success)=>{
         if(err){
             console.log(err);
             return res.status(404).end(); 
         } else{
+            return res.status(200).send({message:"successfully deleted"});
+        }
+    })
+})
+recipeOperationApp.put('/delete-many',(req,res)=>{
+    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    let a=[];
+    const {ObjectId}=require("mongodb");
+    for(let i=0;i<req.body.length;i++)
+    a[i]=ObjectId(req.body[i]);
+
+    var myquery = { _id: { $in: a } };
+    recipeCollectionObj.deleteMany(myquery,(err,success)=>{
+        if(err)
+        {
+            console.log(err);
+            return res.status(404).end(); }
+        else
+        {
             return res.status(200).send({message:"successfully deleted"});
         }
     })

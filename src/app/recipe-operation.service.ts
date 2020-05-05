@@ -24,5 +24,9 @@ export class RecipeOperationService {
   removeRecipe(id):Observable<any> {
     return this.hc.delete(`/recipe/remove/${id}`);
   }
+  deleteRecipes(obj):Observable<any>{
+    console.log("body is ",obj);
+    return this.hc.put('/recipe/delete-many',obj);
+  }
 
 }

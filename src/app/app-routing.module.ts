@@ -32,7 +32,7 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'category-operation',component:CategoryOperationComponent},
 {path:'recipe-operation',component:RecipeOperationComponent,canActivate:[SecurerouteGuard]},
 {path:'recipe-display/:recipetitle',component:RecipeDisplayComponent},
-{path:'recipe-edit',component:RecipeEditComponent},
+{path:'recipe-edit',component:RecipeEditComponent,canActivate:[SecurerouteGuard]},
 {path:'articles',component:ArticlesComponent},
 {path:'myarticles/:username',component:MyarticlesComponent,canActivate:[SecurerouteGuard]},
 {path:'myrecipes/:username',component:MyrecipesComponent,canActivate:[SecurerouteGuard]}];
