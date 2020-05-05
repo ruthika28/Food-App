@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ArticleData } from './data/article-data';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -31,7 +30,7 @@ export class ArticleOperationService {
   getArticleDataListByUserName() {
     const parent = this;
     return new Promise(function (fulfilled, rejected) {
-      parent.hc.get(`/article/getArticleByUsername/${parent.loginService.username}`).subscribe(data => {
+      parent.hc.get(`/article/getArticleByUsername/${parent.loginService.userid}`).subscribe(data => {
         fulfilled(data);
       },
         error => {
@@ -41,7 +40,7 @@ export class ArticleOperationService {
   }
 
   getTotalArticles() {
-    return this.hc.get(`/article/noOfArticles/${this.loginService.username}`);
+    return this.hc.get(`/article/noOfArticles/${this.loginService.userid}`);
   }
 
   removeSelectedArticles(obj):Observable<any> {

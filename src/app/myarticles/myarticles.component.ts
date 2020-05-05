@@ -49,6 +49,7 @@ export class MyarticlesComponent implements OnInit {
         }
         if (this.success) {
           let action = {};
+          action['createdById']=this.loginService.userid;
           action['createdBy'] = this.loginService.username;
           action['createdOn'] = new Date();
           action['ActionDone'] = "Article " + this.model.title + " deleted";

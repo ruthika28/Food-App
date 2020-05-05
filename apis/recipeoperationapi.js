@@ -74,12 +74,12 @@ recipeOperationApp.get('/get-recipe',(req,res)=>{
     })
 });
 
-recipeOperationApp.get('/getRecipeByUsername/:username',(req,res)=>{
+recipeOperationApp.get('/getRecipeByUsername/:id',(req,res)=>{
     var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
-    let username=req.params.username;
+    let userid=req.params.id;
     recipeCollectionObj.find(
         {
-            createdBy:username
+            createdById:userid
         }).sort({"createdOn":-1}).toArray(function(err,data){
             if (err) {
                 console.log(err);
@@ -123,10 +123,10 @@ recipeOperationApp.put('/delete-many',(req,res)=>{
 })
 
 
-recipeOperationApp.get('/noOfRecipes/:username',(req,res)=>{
+recipeOperationApp.get('/noOfRecipes/:id',(req,res)=>{
     var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
-    let username=req.params.username;
-    recipeCollectionObj.count({createdBy:username},(err,data)=>{
+    let userid=req.params.id;
+    recipeCollectionObj.countDocuments({createdById:userid},(err,data)=>{
         if(err) {
             console.log(err);
                 return res.status(404).end();

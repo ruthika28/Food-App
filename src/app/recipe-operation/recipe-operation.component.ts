@@ -189,6 +189,7 @@ export class RecipeOperationComponent implements OnInit {
         user['ingrlist']=this.model.touchedRows
         user['instrlist']=this.model.touchedRows1
         user['createdBy']=this.username
+        user['createdById']=this.ls.userid
         user['createdOn']=dateTime
         let fd=new FormData();
 
@@ -208,6 +209,7 @@ export class RecipeOperationComponent implements OnInit {
             alert(`Recipe ${user['recipe']} Added`);
           }
           if(this.success){
+            action['createdById']=this.ls.userid
             action['createdBy']=this.username
             action['createdOn']=dateTime
             action['ActionDone']=`Recipe ${user['recipe']} Added`  

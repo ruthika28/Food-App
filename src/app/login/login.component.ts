@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token", result["message"]);
         this.ls.userLoginStatus = true;
         this.ls.username = result["username"];
+        this.ls.userid=result["userid"];
         //redirect to admindashboard component
         if(result["role"] == "admin")
         {

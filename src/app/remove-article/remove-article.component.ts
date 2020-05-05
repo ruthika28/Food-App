@@ -32,7 +32,7 @@ export class RemoveArticleComponent implements OnInit {
     { name: 'category', label: 'Category' },
     { name: 'author', label: 'Author' },
     { name: 'createdOn', label: 'Created On' },
-    { name: 'createBy', label: 'Created By' },
+    { name: 'createdBy', label: 'Created By' },
   ];
   ngOnInit() {
     if (this.loginService.role === "admin") {
@@ -112,6 +112,7 @@ export class RemoveArticleComponent implements OnInit {
         }
         if (this.model.success) {
           let action = {}
+          action['createdById']=this.loginService.userid;
           action['createdBy'] = this.loginService.username;
           action['createdOn'] = new Date();
           action['ActionDone'] = `${this.selection.selected.length} Articles Deleted`;

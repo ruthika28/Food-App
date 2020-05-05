@@ -19,10 +19,10 @@ export class RecipeOperationService {
     return this.hc.get('/recipe/get-recipe');
   }
   getRecipeObjByUserName() {
-    return this.hc.get(`/recipe/getRecipeByUsername/${this.ls.username}`);
+    return this.hc.get(`/recipe/getRecipeByUsername/${this.ls.userid}`);
   }
   getTotalRecipes() {
-    return this.hc.get(`/recipe/noOfRecipes/${this.ls.username}`);
+    return this.hc.get(`/recipe/noOfRecipes/${this.ls.userid}`);
   }
   removeRecipe(id):Observable<any> {
     return this.hc.delete(`/recipe/remove/${id}`);
