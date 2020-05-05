@@ -17,13 +17,14 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { AdminprofileComponent } from './admin/adminprofile/adminprofile.component';
 import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
+import { RemoveArticleComponent } from './remove-article/remove-article.component';
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'browse', component:BrowseComponent},
 {path:'home',component:HomeComponent},
 {path:'login',component:LoginComponent},
 {path:'admindashboard',component:AdmindashboardComponent},
-{path:'admin/adminprofile',component:AdminprofileComponent},
+{path:'admin/addadmin',component:AdminprofileComponent},
 {path:'userdashboard',component:UserdashboardComponent},
 {path:'user/register',component:RegisterComponent},
 {path:'article-operation',component:ArticleOperationComponent,canActivate:[SecurerouteGuard]},
@@ -31,10 +32,11 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'category-operation',component:CategoryOperationComponent},
 {path:'recipe-operation',component:RecipeOperationComponent,canActivate:[SecurerouteGuard]},
 {path:'recipe-display/:recipetitle',component:RecipeDisplayComponent},
-{path:'recipe-edit',component:RecipeEditComponent},
+{path:'recipe-edit',component:RecipeEditComponent,canActivate:[SecurerouteGuard]},
 {path:'articles',component:ArticlesComponent},
 {path:'myarticles/:username',component:MyarticlesComponent,canActivate:[SecurerouteGuard]},
-{path:'myrecipes/:username',component:MyrecipesComponent,canActivate:[SecurerouteGuard]}];
+{path:'myrecipes/:username',component:MyrecipesComponent,canActivate:[SecurerouteGuard]},
+{path:'remove-articles',component:RemoveArticleComponent}];
 
 
 @NgModule({

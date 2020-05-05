@@ -42,6 +42,10 @@ export class AdmindashboardComponent implements OnInit {
   }
 
   addAdmin() {
-    this.router.navigate(['/admin/adminprofile']);
+    this.router.navigate(['/admin/addadmin']);
+  }
+
+  removeArticles() {
+    this.router.navigate(['/remove-articles']);
   }
 }

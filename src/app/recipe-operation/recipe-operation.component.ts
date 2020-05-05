@@ -19,6 +19,10 @@ import { CategoryOperationService } from '../category-operation.service';
   styleUrls: ['./recipe-operation.component.css']
 })
 export class RecipeOperationComponent implements OnInit {
+  constructor(private router:Router,private ls:LoginService,private hc:HttpClient,private rs:RecipeOperationService,
+    private ra:RecentActionsService, private fb: FormBuilder,private categoryOperationService: CategoryOperationService) { }
+
+  //model declaration
   model = {
     recipe: '',
     brief: '',
@@ -28,45 +32,55 @@ export class RecipeOperationComponent implements OnInit {
     notes:'',
     value:'',
     categoryList: [],
-    categoryNameList: []
+    categoryNameList: [],
+    touchedRows: [],
+    touchedRows1: []
+
   };
+  //variables declaration
+  
+  userTable:FormGroup;
+  userTable1:FormGroup;
+  control: FormArray;  
+  control1: FormArray;  
   file:File;
   success:boolean=false;
   categoryList1:string[];
   category = new FormControl();
   imgUrl:string|ArrayBuffer="";
-  constructor(private router:Router,private ls:LoginService,private hc:HttpClient,private rs:RecipeOperationService,
-    private ra:RecentActionsService, private fb: FormBuilder,private categoryOperationService: CategoryOperationService) { }
   username:String;
-  ngOnInit(){
-    this.username=this.ls.username;
-    this.touchedRows = [];
-    this.userTable = this.fb.group({
-      tableRows: this.fb.array([])
-    });
-    this.addRow();
-    this.touchedRows1 = [];
-    this.userTable1 = this.fb.group({
-      tableRows1: this.fb.array([])
-    });
-    this.addRow1();
 
-    this.categoryOperationService.getCategoryDataList().then(data => {
-      const categoryList = data as CategoryData[];
-      this.model.categoryList = this.isListHasValue(categoryList) ? categoryList : [];
-      for (let i = 0; i < this.model.categoryList.length; i++) {
-        this.model.categoryNameList.push(this.model.categoryList[i].name);
-      }
-    });   
   
-    this.categoryList1 =this.model.categoryNameList;  
+  ngOnInit(){
+      this.username=this.ls.username;
+      this.model.touchedRows = [];
+      this.userTable = this.fb.group({
+        tableRows: this.fb.array([])
+      });
+      this.addRow();
+      this.model.touchedRows1 = [];
+      this.userTable1 = this.fb.group({
+        tableRows1: this.fb.array([])
+      });
+      this.addRow1();
+
+      this.categoryOperationService.getCategoryDataList().then(data => {
+        const categoryList = data as CategoryData[];
+        this.model.categoryList = this.isListHasValue(categoryList) ? categoryList : [];
+        for (let i = 0; i < this.model.categoryList.length; i++) {
+          this.model.categoryNameList.push(this.model.categoryList[i].name);
+        }
+      });   
+    
+      this.categoryList1 =this.model.categoryNameList;  
     
   }
-      
-  private isListHasValue(list) {
-    return list !== null && list !== undefined && list.length > 0;
+  ngAfterOnInit() {
+    this.control = this.userTable.get('tableRows') as FormArray;
+    this.control1 = this.userTable1.get('tableRows1') as FormArray;        
   }
-      getImageFile(imageInfo:File)
+  //to get image
+  getImageFile(imageInfo:File)
     {
       this.file=imageInfo;
       //create FileReader object to read file content
@@ -82,17 +96,98 @@ export class RecipeOperationComponent implements OnInit {
         //this gives blob data
       }
       //console.log("image url",this.imgUrl);
-
       
     }
+    initiateForm(): FormGroup {
+      return this.fb.group({
+        name: [''],
+        value: [''],
+        units: [''],
+        notes: [''],
+        isEditable: [true]
+      });
+    } 
+    initiateForm1(): FormGroup {
+      return this.fb.group({
+        instr: [''],
+        isEditable: [true]
+      });
+    }
+    addRow() {
+      const control =  this.userTable.get('tableRows') as FormArray;
+      control.push(this.initiateForm());
+    }
 
-      submitRecipe(user)
+    deleteRow(index: number) {
+      const control =  this.userTable.get('tableRows') as FormArray;
+      control.removeAt(index);
+    }
+
+    editRow(group: FormGroup) {
+      group.get('isEditable').setValue(true);
+    }
+
+    doneRow(group: FormGroup) {
+      group.get('isEditable').setValue(false);
+    }
+
+    saveUserDetails() {
+      console.log(this.userTable.value);
+    }
+    get getFormControls() {
+      const control = this.userTable.get('tableRows') as FormArray;
+      return control;
+    }
+
+    submitForm() {
+      const control = this.userTable.get('tableRows') as FormArray;
+      this.model.touchedRows = control.controls.filter(row => row.touched).map(row => row.value);
+     // console.log(this.touchedRows);
+    }
+    
+  
+    addRow1() {
+      const control1 =  this.userTable1.get('tableRows1') as FormArray;
+      control1.push(this.initiateForm1());
+    }
+  
+    deleteRow1(index: number) {
+      const control1 =  this.userTable1.get('tableRows1') as FormArray;
+      control1.removeAt(index);
+    }
+  
+    editRow1(group: FormGroup) {
+      group.get('isEditable').setValue(true);
+    }
+  
+    doneRow1(group: FormGroup) {
+      group.get('isEditable').setValue(false);
+    }
+  
+    saveUserDetails1() {
+      console.log(this.userTable1.value);
+    }
+  
+    get getFormControls1() {
+      const control1 = this.userTable1.get('tableRows1') as FormArray;
+      return control1;
+    }
+  
+    submitForm1() {
+      const control1 = this.userTable1.get('tableRows1') as FormArray;
+      this.model.touchedRows1 = control1.controls.filter(row => row.touched).map(row => row.value);
+      //console.log("control is ",this.control1);
+      //console.log(this.touchedRows1);
+    }
+    
+    //to submit recipe
+    submitRecipe(user)
       {
         let action={};
         let dateTime = new Date()
         user['category']=this.category.value;
-        user['ingrlist']=this.touchedRows
-        user['instrlist']=this.touchedRows1
+        user['ingrlist']=this.model.touchedRows
+        user['instrlist']=this.model.touchedRows1
         user['createdBy']=this.username
         user['createdOn']=dateTime
         let fd=new FormData();
@@ -110,12 +205,12 @@ export class RecipeOperationComponent implements OnInit {
           if(res["message"]=="recipe added successfully")
           {
             this.success=true; 
-            alert("recipe added successfully");
+            alert(`Recipe ${user['recipe']} Added`);
           }
           if(this.success){
             action['createdBy']=this.username
             action['createdOn']=dateTime
-            action['ActionDone']="Recipe Added"    
+            action['ActionDone']=`Recipe ${user['recipe']} Added`  
             this.ra.addAction(action).subscribe((res)=>{
               console.log("added recent action",res)
             })
@@ -127,6 +222,8 @@ export class RecipeOperationComponent implements OnInit {
           }
         })        
       }
+
+      //cancel posting recipe
       cancel() {
         if(this.ls.role === "admin"){
           this.router.navigate(['/admindashboard']);
@@ -137,100 +234,9 @@ export class RecipeOperationComponent implements OnInit {
       isFormPopulated() {
         return this.model.recipe.length &&this.model.brief.length &&this.model.time.length &&
         this.model.author.length;
-      }
-      userTable: FormGroup;
-      control: FormArray;
-      mode: boolean;
-      touchedRows: any;
-      userTable1: FormGroup;
-      control1: FormArray;
-      mode1: boolean;
-      touchedRows1: any;
-      ngAfterOnInit() {
-        this.control = this.userTable.get('tableRows') as FormArray;
-        this.control1 = this.userTable1.get('tableRows1') as FormArray;        
-      }
-
-      initiateForm(): FormGroup {
-        return this.fb.group({
-          name: [''],
-          value: [''],
-          units: [''],
-          notes: [''],
-          isEditable: [true]
-        });
-      } 
-
-      addRow() {
-        const control =  this.userTable.get('tableRows') as FormArray;
-        control.push(this.initiateForm());
-      }
-
-      deleteRow(index: number) {
-        const control =  this.userTable.get('tableRows') as FormArray;
-        control.removeAt(index);
-      }
-
-      editRow(group: FormGroup) {
-        group.get('isEditable').setValue(true);
-      }
-
-      doneRow(group: FormGroup) {
-        group.get('isEditable').setValue(false);
-      }
-
-      saveUserDetails() {
-        console.log(this.userTable.value);
-      }
-      get getFormControls() {
-        const control = this.userTable.get('tableRows') as FormArray;
-        return control;
-      }
-
-      submitForm() {
-        const control = this.userTable.get('tableRows') as FormArray;
-        this.touchedRows = control.controls.filter(row => row.touched).map(row => row.value);
-       // console.log(this.touchedRows);
-      }
-      initiateForm1(): FormGroup {
-        return this.fb.group({
-          instr: [''],
-          isEditable: [true]
-        });
-      }
-    
-      addRow1() {
-        const control1 =  this.userTable1.get('tableRows1') as FormArray;
-        control1.push(this.initiateForm1());
-      }
-    
-      deleteRow1(index: number) {
-        const control1 =  this.userTable1.get('tableRows1') as FormArray;
-        control1.removeAt(index);
-      }
-    
-      editRow1(group: FormGroup) {
-        group.get('isEditable').setValue(true);
-      }
-    
-      doneRow1(group: FormGroup) {
-        group.get('isEditable').setValue(false);
-      }
-    
-      saveUserDetails1() {
-        console.log(this.userTable1.value);
-      }
-    
-      get getFormControls1() {
-        const control1 = this.userTable1.get('tableRows1') as FormArray;
-        return control1;
-      }
-    
-      submitForm1() {
-        const control1 = this.userTable1.get('tableRows1') as FormArray;
-        this.touchedRows1 = control1.controls.filter(row => row.touched).map(row => row.value);
-        //console.log("control is ",this.control1);
-        //console.log(this.touchedRows1);
+      }  
+      private isListHasValue(list) {
+        return list !== null && list !== undefined && list.length > 0;
       }
       
 }

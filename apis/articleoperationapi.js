@@ -47,30 +47,48 @@ articleOperationApp.get('/getArticleByUsername/:username', (req, res) => {
 
 });
 
-articleOperationApp.get('/noOfArticles/:username',(req,res)=>{
-    var articleCollectionObj=dbo.getDb().articleCollectionObj;
-    let username=req.params.username;
-    articleCollectionObj.count({createBy: username},(err,data)=>{
-        if(err) {
+articleOperationApp.get('/noOfArticles/:username', (req, res) => {
+    var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    let username = req.params.username;
+    articleCollectionObj.count({ createBy: username }, (err, data) => {
+        if (err) {
             console.log(err);
-            return res.status(404).end();   
-        } else{
-            return res.status(200).send({count:data});
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ count: data });
         }
     })
 })
 
-articleOperationApp.delete('/remove/:id',(req,res)=>{
-    var articleCollectionObj=dbo.getDb().articleCollectionObj;
-    let id=req.params.id;
-    const {ObjectId}=require("mongodb");
-    articleCollectionObj.deleteOne({_id:ObjectId(id)},(err,success)=>{
-        if(err){
+articleOperationApp.delete('/remove/:id', (req, res) => {
+    var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    let id = req.params.id;
+    const { ObjectId } = require("mongodb");
+    articleCollectionObj.deleteOne({ _id: ObjectId(id) }, (err, success) => {
+        if (err) {
             console.log(err);
-            return res.status(404).end(); 
-        } else{
-            return res.status(200).send({message:"successfully deleted"});
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ message: "successfully deleted" });
         }
+    })
+});
+
+articleOperationApp.put('/removeSelectedArticles', (req, res) => {
+    var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    let idArray = [];
+    const { ObjectId } = require("mongodb");
+    for (let i = 0; i < req.body.length; i++)
+        idArray[i] = ObjectId(req.body[i]);
+    var filter = { _id: { $in: idArray } };
+    articleCollectionObj.deleteMany(filter, (err, success) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ message: "successfully deleted" });
+        }
+
     })
 })
 
