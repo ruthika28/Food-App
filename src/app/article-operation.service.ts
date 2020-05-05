@@ -43,4 +43,8 @@ export class ArticleOperationService {
   getTotalArticles() {
     return this.hc.get(`/article/noOfArticles/${this.loginService.username}`);
   }
+
+  removeSelectedArticles(obj):Observable<any> {
+    return this.hc.put('/article/removeSelectedArticles',obj);
+  }
 }

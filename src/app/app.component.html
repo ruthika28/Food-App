@@ -95,14 +95,14 @@
                 <ul class="list-unstyled">
 
                     <li>
-                        <a routerLink="home"><span class="icon"><i class="fas fa-info-circle"></i></span>Feed</a>
+                        <a class="my-cursor" routerLink="home"><span class="icon"><i class="fas fa-info-circle"></i></span>Feed</a>
                     </li>
 
                     <li>
-                        <a routerLink="browse"><span class="icon"><i class="fas fa-camera"></i></span>Browse</a>
+                        <a class="my-cursor" routerLink="browse"><span class="icon"><i class="fas fa-camera"></i></span>Browse</a>
                     </li>
                     <li>
-                        <a routerLink="articles"><span class="icon"><i class="fas fa-mobile-alt"></i></span>Articles</a>
+                        <a class="my-cursor" routerLink="articles"><span class="icon"><i class="fas fa-mobile-alt"></i></span>Articles</a>
                     </li>
                     <!-- <li> -->
                     <!-- <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" (click)="isCollapsed = !isCollapsed"
@@ -112,7 +112,8 @@
                         <ul class="collapse list-unstyled" id="pageSubmenu" [ngbCollapse]="isCollapsed"> -->
 
                     <li *ngIf="ls.userLoginStatus && !ls.adminLoginStatus">
-                        <a routerLink="userdashboard"><span class="icon"><i class="fas fa-mobile-alt"></i></span>My Dashboard</a>
+                        <a class="my-cursor" routerLink="userdashboard"><span class="icon"><mat-icon>person</mat-icon></span>My
+                            Dashboard</a>
                     </li>
 
                     <!-- <li *ngIf=!ls.adminLoginStatus >
@@ -124,29 +125,26 @@
                             Recipe</a>
                     </li> -->
                     <li *ngIf="ls.adminLoginStatus">
-                        <a class="my-cursor" (click)="myArticles()"><span class="icon"><i
-                                    class="fas fa-mobile-alt"></i></span>My Articles</a>
+                        <a class="my-cursor" (click)="myArticles()"><span class="icon"><mat-icon>folder</mat-icon></span>My Articles</a>
                     </li>
                     <li *ngIf="ls.adminLoginStatus">
-                        <a class="my-cursor" (click)="myRecipes()"><span class="icon"><i
-                                    class="fas fa-mobile-alt"></i></span>My Recipes</a>
+                        <a class="my-cursor" (click)="myRecipes()"><span class="icon"><mat-icon>folder</mat-icon></span>My Recipes</a>
                     </li>
                     <!-- </ul> -->
                     <!-- </li> -->
                     <li *ngIf="ls.adminLoginStatus">
-                        <a routerLink="admindashboard"><span class="icon"><i class="fas fa-mobile-alt"></i></span>My Dashboard</a>
+                        <a routerLink="admindashboard"><span class="icon"><mat-icon>person</mat-icon></span>My
+                            Dashboard</a>
                     </li>
                     <li *ngIf="!ls.userLoginStatus">
-                        <a routerLink="login"><span class="icon"></span><button
-                                class="btn btn-success center">Login</button></a>
+                        <a class="my-cursor" routerLink="login"><span class="icon"><mat-icon>person_outline</mat-icon></span>Login</a>
                     </li>
                     <li *ngIf="ls.userLoginStatus">
-                        <a routerLink="login"><span class="icon"></span><button
-                                class="btn btn-success center">Logout</button></a>
+                        <a class="my-cursor" routerLink="login"><span class="icon"><mat-icon class="power_settings_new my-cursor">power_settings_new
+                            </mat-icon></span>Logout</a>
                     </li>
                     <li *ngIf="!ls.userLoginStatus">
-                        <a routerLink="user/register"><span class="icon"></span><button
-                                class="btn btn-success center">Register</button></a>
+                        <a class="my-cursor" routerLink="user/register"><span class="icon"><mat-icon>group</mat-icon></span>Register</a>
                     </li>
                 </ul>
 

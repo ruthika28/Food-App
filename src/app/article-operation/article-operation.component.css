@@ -4,3 +4,16 @@
 .shadow-textarea textarea.form-control {
     padding-left: 0.8rem;
 }
+
+input[type=text] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid blue;
+    border-radius: 1px;
+}
+label {
+    color:rgb(131, 97, 151);
+}
+h1{
+    color:rosybrown
+}
