@@ -51,4 +51,12 @@ export class UserdashboardComponent implements OnInit {
     this.router.navigate([`/myarticles/${this.ls.username}`]);
   }
 
+  removeSelectedArticles() {
+    this.router.navigate(['/remove-articles']);
+  }
+  
+  removeSelectedRecipes() {
+    this.router.navigate(['/recipe-edit']);
+  }
+
 }
