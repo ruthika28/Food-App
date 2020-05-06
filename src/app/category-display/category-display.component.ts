@@ -19,7 +19,7 @@ export class CategoryDisplayComponent implements OnInit {
   ngOnInit() {
     this.ar.paramMap.subscribe(param=>{
       this.category=param.get("category");
-      console.log("category is ",this.category);
+      //console.log("category is ",this.category);
     })
     this.getAllRecipe();
   }
@@ -27,7 +27,7 @@ export class CategoryDisplayComponent implements OnInit {
   {
     this.recipeService.getRequiredCategories(this.category).subscribe((res)=>{      
       this.recipes=res['recipeObj'];
-      console.log("Object received is ",this.recipes);
+      //console.log("Object received is ",this.recipes);
     })
   }
   gotoR(recipe,recipetitle)
