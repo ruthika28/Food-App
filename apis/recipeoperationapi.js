@@ -137,4 +137,20 @@ recipeOperationApp.get('/noOfRecipes/:id',(req,res)=>{
     })
 })
 
+recipeOperationApp.get('/getCategories/:name',(req,res)=>{
+    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    let categoryName=req.params.name;
+    recipeCollectionObj.find({category:categoryName}).sort({"createdOn":-1}).toArray(function(err,data){
+        if(err)
+        {
+            console.log(err);
+            return res.status(404).end(); 
+        }
+        else{
+            return res.status(200).send({recipeObj:data});
+        }
+    })
+    
+})
+
 module.exports = recipeOperationApp;

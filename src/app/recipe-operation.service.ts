@@ -32,4 +32,9 @@ export class RecipeOperationService {
   getTotalRecipes() {
     return this.hc.get(`/recipe/noOfRecipes/${this.ls.username}`);
   }
+  
+  getRequiredCategories(name)
+  {
+    return this.hc.get(`/recipe/getCategories/${name}`);
+  }
 }

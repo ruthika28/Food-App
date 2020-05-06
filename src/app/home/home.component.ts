@@ -102,4 +102,9 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['./article-display', articletitle]);
     this.dataService.sendArticle(article);
   }
+  gotoC(obj)
+  {
+    //console.log("cat obj is ",obj.name);
+    this.router.navigate(['./category-display', obj.name]);
+  }
 }

@@ -1,0 +1,22 @@
+<div class="jumbotron">
+    <p>category-display works!</p>
+    <h3>Browse / Category</h3>
+    <h1> {{category}}</h1>
+    <div *ngIf="recipes.length>0" class="row card-group">
+        <div class="col-4  mb-3 mt-3" *ngFor="let rec of recipes; let i = index">
+            <div class="card text-center mb-3 mt-3" style="width: 20rem;">
+                <img class="card-img-top" src={{rec.profileImage}} alt="Card image cap">
+                <div class="card-desc">
+                    <h5 class="card-title">{{rec.recipe}}</h5>
+                    <p class="card-text">{{rec.brief}}</p>
+                </div>
+                <a (click)="gotoR(rec,rec.recipe)" class="btn btn-success mb-2">
+                    Check Recipe
+                </a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="recipes.length==0">
+        <p>Sorry..!! No recipes in this category</p>
+    </div>
+</div>

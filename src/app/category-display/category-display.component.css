@@ -1,0 +1,59 @@
+.trimtext {
+    display: block;
+    display: -webkit-box;
+    max-width: 200px;
+    height: 40px;
+    margin: 0 auto;
+    line-height: 1.2;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rounded-pill-left {
+    border-top-left-radius: 50rem !important;
+    border-bottom-left-radius: 50rem !important;
+}
+
+.rounded-pill-right {
+    border-top-right-radius: 50rem !important;
+    border-bottom-right-radius: 50rem !important;
+}
+
+/* Another classes to use */
+.rounded-t-l-0 {
+    border-top-left-radius: 0 !important;
+}
+
+.rounded-t-r-0 {
+    border-top-right-radius: 0 !important;
+}
+
+.rounded-b-l-0 {
+    border-bottom-left-radius: 0 !important;
+}
+
+.rounded-b-r-0 {
+    border-bottom-right-radius: 0 !important;
+}
+
+.rounded-x-l-0 {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.rounded-x-r-0 {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.checked {
+    color: orange;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
