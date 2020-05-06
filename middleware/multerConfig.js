@@ -1,28 +1,23 @@
 var multer = require('multer');
-
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'do8ujullm',
+    api_key: '276121795183361',
+    api_secret: 'p5tF0tDi8R-RYXXQFjM4zBcU3gk'
+});
+const cloudinaryStorage=require("multer-storage-cloudinary");
 //multer.diskStorage() creates a storage space for storing files. 
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        // cb(null, '../src/assets/uploads')
-        cb(null, 'C:/images')
-    },
+var storageForCloudinary = cloudinaryStorage({
+    cloudinary:cloudinary,
+    folder:'Images',
+    allowedFormats:['jpg','jpeg','png'],
     filename: function (req, file, cb) {
-        cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname)
+        cb(null,file.fieldname +'-'+Date.now())
     }
-})
+});
 
-const fileFilter = (req, file, cb) => {
-    var filetype = ['image/jpeg', 'image/png', 'image/jpg'];
-    if (filetype.includes(file.mimetype)) {
-        cb(null, true)
-    } else {
-        //reject file
-        cb({ message: 'Unsupported file format' }, false)
-    }
-}
 const upload = multer({
-    storage: storage,
-    fileFilter: fileFilter
+    storage: storageForCloudinary,
 })
 
 module.exports = upload;

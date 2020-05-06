@@ -8,6 +8,11 @@ import { ArticleOperationService } from '../article-operation.service';
 import { ArticleData } from '../data/article-data';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
+
+declare var $: any;
+declare var require: any;
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -37,15 +42,31 @@ export class HomeComponent implements OnInit {
   }
   recipes: object;
   numberofitems: number = 3;
+  nums=[];
   ngOnInit() {
     this.getCategoryList();
     this.getRecipes();
-    this.getArticles();
+    this.getArticles(); 
   }
+  car()
+  {
+    let x=this.model.categoryList.length;
+    for(let i=0;i<x;i+=1)
+    {
+      if(x-i<6)
+      break;
+      this.nums[i]=(i);
+    }
+    
+    //console.log(this.nums);
+  }
+  
   getCategoryList() {
     this.categoryOperationService.getCategoryDataList().then(data => {
       this.model.categoryList = data as CategoryData[];
       this.model.isDataLoaded = true;
+      //console.log("cat list is ",this.model.categoryList);
+      this.car()
     });
   }
   getRecipes() {
