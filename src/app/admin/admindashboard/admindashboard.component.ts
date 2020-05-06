@@ -48,4 +48,9 @@ export class AdmindashboardComponent implements OnInit {
   removeArticles() {
     this.router.navigate(['/remove-articles']);
   }
+    
+  removeCategories() {
+    this.router.navigate(['/remove-category']);
+  }
+
 }

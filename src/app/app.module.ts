@@ -38,6 +38,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import{ MatCheckboxModule, MatCardModule} from '@angular/material';
+import { RemoveCategoryComponent } from './remove-category/remove-category.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import{ MatCheckboxModule, MatCardModule} from '@angular/material';
     MyarticlesComponent,
     MyrecipesComponent,
     RemoveArticleComponent,
+    RemoveCategoryComponent,
   ],
   imports: [
     MatInputModule,

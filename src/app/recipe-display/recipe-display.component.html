@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Font Awesome Icons</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <!--Get your own code at fontawesome.com-->
@@ -20,11 +19,11 @@
             </div>
           </div>
           <div class="col-8">
-            <a href="#!" class="green-text">
-              <i class="fa fa-list-alt"></i>
-              <span class="font-italic green-text" *ngFor="let m of articleObj.category"> {{m}}</span>
-            </a>
               <div class="row">
+                <a href="#!" class="green-text">
+                  <i class="fa fa-list-alt"></i>
+                  <span class="font-italic green-text" *ngFor="let m of recipeObj.category"> {{m}}</span>
+                </a>
                 <h3 class="display-3 font-weight-bold  mb-4">{{recipeObj.recipe}}</h3>
               </div>
               <div class="row">

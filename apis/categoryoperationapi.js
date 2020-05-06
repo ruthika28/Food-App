@@ -27,4 +27,54 @@ categoryOperationApp.get('/get', (req,res) => {
         return res.status(200).send(data);
     });
 });
+
+
+categoryOperationApp.get('/getCategoryByUsername/:id', (req, res) => {
+    var categoryCollectionObj = dbo.getDb().categoryCollectionObj;
+    let userid = req.params.id;
+    categoryCollectionObj.find(
+        {
+            createdById: userid
+        }).sort({ "createdOn": -1 }).toArray(function (err, data) {
+            if (err) {
+                console.log(err);
+                return res.status(404).end();
+            }
+            return res.status(200).send(data);
+        });
+
+});
+
+categoryOperationApp.delete('/remove/:id', (req, res) => {
+    var categoryCollectionObj = dbo.getDb().categoryCollectionObj;
+    let id = req.params.id;
+    const { ObjectId } = require("mongodb");
+    categoryCollectionObj.deleteOne({ _id: ObjectId(id) }, (err, success) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ message: "successfully deleted" });
+        }
+    })
+});
+
+categoryOperationApp.put('/removeSelectedCategories', (req, res) => {
+    var categoryCollectionObj = dbo.getDb().categoryCollectionObj;
+    let idArray = [];
+    const { ObjectId } = require("mongodb");
+    for (let i = 0; i < req.body.length; i++)
+        idArray[i] = ObjectId(req.body[i]);
+    var filter = { _id: { $in: idArray } };
+    categoryCollectionObj.deleteMany(filter, (err, success) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ message: "successfully deleted" });
+        }
+
+    })
+});
+
 module.exports = categoryOperationApp;
