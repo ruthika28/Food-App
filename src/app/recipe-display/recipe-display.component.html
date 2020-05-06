@@ -13,24 +13,24 @@
 
 <div class="jumbotron text-center hoverable p-4" *ngIf="isDataLoaded">
     <div class="row">
-        <div class="col-4">
+        <div class="col-md-4">
             <div class="container">
               <img [src]=recipeObj.profileImage alt="" style="height: 300px;" class="img-responsive">
             </div>
           </div>
-          <div class="col-8">
+          <div class="col-md-8">
               <div class="row">
-                <a href="#!" class="green-text">
-                  <i class="fa fa-list-alt"></i>
-                  <span class="font-italic green-text" *ngFor="let m of recipeObj.category"> {{m}}</span>
+                <a href="#!" style="color:black">
+                  <i class="fas fa-list-alt"></i>
+                  <span class="font-italic" *ngFor="let m of recipeObj.category"> {{m}}</span>
                 </a>
                 <h3 class="display-3 font-weight-bold  mb-4">{{recipeObj.recipe}}</h3>
               </div>
               <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                 <i class="fas fa-pen ">By {{recipeObj.author}} | {{recipeObj.createdOn}}</i>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
                 <i class="fas fa-clock ">Time Required : {{recipeObj.time}}</i>
                 </div>
               </div>
@@ -41,6 +41,7 @@
           </div>
     </div>
 </div>
+<div class="jumbotron hoverable p-4" style="background-color: white;" *ngIf="isDataLoaded">
 <div class="container my-4">
     <div class="display-4 font-italic">Ingredients :</div><br>
     <ul class="list-group list-group-flush">
@@ -57,7 +58,7 @@
       <br>
 <div class="container my-4">
 
-      <div class="display-4 font-italic">Instructions :</div>
+      <div class="display-4 font-italic">Instructions :</div> <br>
       <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let in of recipeObj.instrlist; let i = index">
           <div class="custom-control">
@@ -68,6 +69,6 @@
         
       </ul>
   </div>
-        
+</div>      
 </body>
 </html>
