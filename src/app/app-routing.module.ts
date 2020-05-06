@@ -19,6 +19,7 @@ import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 import { RemoveArticleComponent } from './remove-article/remove-article.component';
 import { RemoveCategoryComponent } from './remove-category/remove-category.component';
+import { CategoryDisplayComponent } from './category-display/category-display.component';
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'browse', component:BrowseComponent},
@@ -38,7 +39,8 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'myarticles/:username',component:MyarticlesComponent,canActivate:[SecurerouteGuard]},
 {path:'myrecipes/:username',component:MyrecipesComponent,canActivate:[SecurerouteGuard]},
 {path:'remove-articles',component:RemoveArticleComponent},
-{path:'remove-category' ,component:RemoveCategoryComponent}];
+{path:'remove-category' ,component:RemoveCategoryComponent},
+{path:'category-display/:category',component:CategoryDisplayComponent}];
 
 
 @NgModule({
