@@ -20,9 +20,9 @@
           </div>
           <div class="col-md-8">
               <div class="row">
-                <a href="#!" style="color:black">
+                <a href="#!" style="color:black" *ngFor="let m of recipeObj.category">
                   <i class="fas fa-list-alt"></i>
-                  <span class="font-italic" *ngFor="let m of recipeObj.category"> {{m}}</span>
+                  <span class="font-italic" > {{m}} &nbsp;</span>
                 </a>
                 <h3 class="display-3 font-weight-bold  mb-4">{{recipeObj.recipe}}</h3>
               </div>

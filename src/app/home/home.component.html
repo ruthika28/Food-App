@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    
+
 </head>
+
 <body>
 
     <div class="container"
@@ -30,7 +31,7 @@
         </div>
         <br><br> <br><br> <br>
     </div>
-    
+
     <div class="container" *ngIf="model.isDataLoaded">
         <br>
         <div class="row">
@@ -40,68 +41,30 @@
             </div>
             <div class="col-1"></div>
         </div>
-    <mat-carousel
-  timings="250ms ease-in"
-  [autoplay]="true"
-  interval="5000"
-  maxWidth="auto"
-  proportion="25"
-  slides="2"
-  [loop]="true"
-  [hideArrows]="false"
-  [hideIndicators]="true"
-  [useKeyboard]="true"
-  [useMouseWheel]="false"
-  orientation="ltr"
-   >
+        <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" maxWidth="auto" proportion="25"
+            slides="2" [loop]="true" [hideArrows]="false" [hideIndicators]="true" [useKeyboard]="true"
+            [useMouseWheel]="false" orientation="ltr">
 
-  <mat-carousel-slide 
-    #matCarouselSlide
-    *ngFor="let slide of nums; let i = index;let l = count;"
-    overlayColor="#00000000"
-  >
-    <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center">
-        <div class="row">
-            <div *ngFor="let category of  model.categoryList.slice(i,i+6);let j=index">
-                <div class="col-2"><img style=" width: 150px;
+            <mat-carousel-slide #matCarouselSlide *ngFor="let slide of nums; let i = index;let l = count;"
+                overlayColor="#00000000">
+                <div
+                    style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center">
+                    <div class="row">
+                        <div *ngFor="let category of  model.categoryList.slice(i,i+6);let j=index">
+                            <div class="col-2"><img style=" width: 150px;
                     height: 150px;
                     -webkit-clip-path: circle(50.0% at 50% 50%);
                     clip-path: circle(50.0% at 50% 50%);" src={{category.imageUrl}}>
-                    <span class="carousel-caption ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{category.name}}</span>
+                                <span
+                                    class="carousel-caption ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{category.name}}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>        
-    </div>
-   </mat-carousel-slide>
-</mat-carousel>
-    
+            </mat-carousel-slide>
+        </mat-carousel>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
         <div>
             <h2>Recipes</h2>
             <a routerLink="/browse" class="float-md-right mr-5">See all</a>
