@@ -6,11 +6,11 @@
     <h1>Browse For Recipes</h1>
     <div class="row card-group">
         <div class="col-4  mb-3 mt-3"  *ngFor="let rec of recipes; let i = index">
-            <div class="card text-center mb-3 mt-3" style="width: 20rem;">
+            <div class="card border-success text-center mb-3 mt-3" style="width: 20rem;">
                 <img class="card-img-top" src={{rec.profileImage}} alt="Card image cap">
                 <div class="card-desc">
-                    <h5 class="card-title">{{rec.recipe}}</h5>
-                    <p class="card-text">{{rec.brief}}</p>
+                    <h5 class="trimtext card-title">{{rec.recipe}}</h5>
+                    <p class="trimtext card-text">{{rec.brief}}</p>
                 </div>
                 <a (click)="gotoR(rec,rec.recipe)" class="btn btn-success mb-2">
                     Check Recipe

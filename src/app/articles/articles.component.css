@@ -3,7 +3,18 @@
     height: 15vw;
     object-fit: cover;
 }
-
+.trimtext {
+    display: block;
+    display: -webkit-box;
+    max-width: 200px;
+    height: 40px;
+    margin: 0 auto;
+    line-height: 1.2;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /* .container img {
     width: 100%;
     height: 350px;

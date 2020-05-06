@@ -23,16 +23,16 @@
   </div>
   <div class="row card-group" *ngIf="model.isDataLoaded">
     <div class="col-4 mb-3 mt-3" *ngFor="let article of model.articleDataList;let i=index">
-      <div class="card text-center mb-3 mt-3" style="width: 20rem;">
+      <div class="card border-info text-center mb-3 mt-3" style="width: 20rem;">
         <!-- <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
             src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100" height="100"
             alt="Card image cap"> -->
         <img class="card-img-top" [src]="article.imageUrl" alt="article image">
         <div class="card-desc">
-          <h3>{{article.title}}</h3>
-          <p>{{article.description}}</p>
+          <h3 class="trimtext card-title">{{article.title}}</h3>
+          <p class="trimtext card-text">{{article.description}}</p>
         </div>
-        <a (click)="articleDisplay(article,article.title)" class="btn btn-success mb-2">Read</a>
+        <a (click)="articleDisplay(article,article.title)" class="btn btn-info mb-2">Read</a>
       </div>
     </div>
   </div>
