@@ -25,7 +25,7 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 import { AuthorizationService } from './authorization.service';
-
+import { MatCarouselModule, MatCarouselSlideComponent } from '@ngmodule/material-carousel';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -39,7 +39,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import{ MatCheckboxModule, MatCardModule} from '@angular/material';
 import { RemoveCategoryComponent } from './remove-category/remove-category.component';
-
 
 @NgModule({
   declarations: [
@@ -84,6 +83,7 @@ import { RemoveCategoryComponent } from './remove-category/remove-category.compo
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCarouselModule.forRoot(),    
     NgMultiSelectDropDownModule.forRoot(),
     NgbModule,
     QuillModule.forRoot({

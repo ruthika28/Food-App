@@ -21,9 +21,6 @@ export class RecipeOperationService {
   getRecipeObjByUserName() {
     return this.hc.get(`/recipe/getRecipeByUsername/${this.ls.userid}`);
   }
-  getTotalRecipes() {
-    return this.hc.get(`/recipe/noOfRecipes/${this.ls.userid}`);
-  }
   removeRecipe(id):Observable<any> {
     return this.hc.delete(`/recipe/remove/${id}`);
   }
@@ -32,4 +29,7 @@ export class RecipeOperationService {
     return this.hc.put('/recipe/delete-many',obj);
   }
 
+  getTotalRecipes() {
+    return this.hc.get(`/recipe/noOfRecipes/${this.ls.username}`);
+  }
 }
