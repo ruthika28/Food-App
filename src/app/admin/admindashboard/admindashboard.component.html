@@ -79,24 +79,27 @@
       </div>
     </div>
   </div>
-  <div class="form-group">
-    <table class="table">
-      <thead>
-        <th>User</th>
-        <th>Action Performed</th>
-        <th>Performed At</th>
-        <th>Status</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let x of actions; let i = index;">
-          <td>{{x.createdBy}}</td>
-          <td>{{x.ActionDone}}</td>
-          <td>{{x.createdOn}}</td>
-          <td>
-            <div class="badge badge-success p-2">Success</div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+
+  <h2>Recent Actions</h2>
+  <mat-form-field style="width:100%" class="example-full-width">
+    <mat-label>Search Here</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search Here">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <ng-container *ngFor="let column of columns" matColumnDef="{{column.name}}">
+      <th mat-cell *matHeaderCellDef mat-sort-header>{{column.label}}</th>
+      <ng-container *matCellDef="let element">
+        <td mat-cell>
+          {{element[column.name]}}
+        </td>
+      </ng-container>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+  </table>
+
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
 </div>
