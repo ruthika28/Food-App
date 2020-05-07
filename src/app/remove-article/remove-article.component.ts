@@ -25,7 +25,7 @@ export class RemoveArticleComponent implements OnInit {
     success: false
   }
   dataSource: any;
-  displayedColumns: string[] = ['select', 'imageUrl', 'title', 'category', 'author', 'createdOn', 'createBy'];
+  displayedColumns: string[] = ['select', 'imageUrl', 'title', 'category', 'author', 'createdOn', 'createdBy'];
   columns: Array<any> = [
     { name: 'imageUrl', label: 'Article Image' },
     { name: 'title', label: 'Title' },
