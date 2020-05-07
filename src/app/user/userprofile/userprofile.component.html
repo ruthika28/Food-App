@@ -2,6 +2,7 @@
     <form class="card">
         <img [src]="imageUrl" class="avatar">
         <input type="file" name="photo" id="pc" #fileUploader ngModel (input)="getImageFile($event.target.files[0])">
+        <span *ngIf="!model.isImageUploaded" style="color: blue;">{{model.message}}</span>
         <label>Change Photo</label>
         <button (click)="removePhoto()">Remove Photo</button>
         <div class="card-body">

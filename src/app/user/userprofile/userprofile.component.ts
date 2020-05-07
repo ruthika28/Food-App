@@ -14,8 +14,8 @@ export class UserprofileComponent implements OnInit {
 
   constructor(private dataService: DataService, private loginService: LoginService, private recentActionsService: RecentActionsService,
     private router: Router) { }
-    @ViewChild('fileUploader',{static: false}) 
-    fileUploader:ElementRef;
+  @ViewChild('fileUploader', { static: false })
+  fileUploader: ElementRef;
   model: any = {
     username: '',
     password: '',
@@ -26,12 +26,15 @@ export class UserprofileComponent implements OnInit {
     isUsernameValid: true,
     isSaveEnabled: false,
     isEmailIdValid: true,
-    usernameErrMsg: ''
+    usernameErrMsg: '',
+    isImageUploaded: true,
+    message: ''
   }
 
   private usernameLength = 6;
   private passwordPattern = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
   private emailIdPattern = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+  private filetype = ['image/jpeg', 'image/png', 'image/jpg'];
 
   getDataEvent: any;
   userdata: object;
@@ -43,17 +46,35 @@ export class UserprofileComponent implements OnInit {
   isUsernameExists: boolean = false;
 
   ngOnInit() {
-    this.dataService.userData.subscribe((data) => {
-      if (data != null) {
-        this.userdata = data;
-        this.isDataLoaded = true;
-        this.model.username = data["username"];
-        this.model.emailid = data["email"];
-        this.imageUrl = data["imageUrl"];
-        this.password = data["password"];
-        this.email = data["email"];
-      }
-    })
+    if (this.loginService.role == "admin") {
+      this.dataService.adminData.subscribe((data) => {
+        if (data != null) {
+          this.userdata = data;
+          this.isDataLoaded = true;
+          this.model.username = data["username"];
+          this.model.emailid = data["email"];
+          if (data["imageUrl"] == null) {
+            this.imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSNq-Mk-bEDdB90ZkoVmH-zFf-RoLenjYfUHps5qzp3d25Dt1TJ&usqp=CAU"
+          } else {
+            this.imageUrl = data["imageUrl"];
+          }
+          this.password = data["password"];
+          this.email = data["email"];
+        }
+      });
+    } else {
+      this.dataService.userData.subscribe((data) => {
+        if (data != null) {
+          this.userdata = data;
+          this.isDataLoaded = true;
+          this.model.username = data["username"];
+          this.model.emailid = data["email"];
+          this.imageUrl = data["imageUrl"];
+          this.password = data["password"];
+          this.email = data["email"];
+        }
+      });
+    }
   }
 
   // ngOnDestroy(): void {
@@ -134,15 +155,25 @@ export class UserprofileComponent implements OnInit {
 
   getImageFile(imageInfo: File) {
     this.file = imageInfo;
-    if (this.file != undefined) {
-      let reader = new FileReader();
-      reader.readAsDataURL(this.file);
-      reader.onload = () => {
-        this.imageUrl = reader.result;
-        this.model.isDataLoaded = true;
+    if (this.file !== undefined && this.filetype.includes(this.file.type)) {
+      if (this.file != undefined) {
+        let reader = new FileReader();
+        reader.readAsDataURL(this.file);
+        reader.onload = () => {
+          this.imageUrl = reader.result;
+          this.model.isDataLoaded = true;
+          this.model.message = "";
+        }
+        this.enableDisabledFields();
       }
+    } else {
+      this.model.message = "upload a valid photo of type jpg or jpeg or png";
+      this.imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSNq-Mk-bEDdB90ZkoVmH-zFf-RoLenjYfUHps5qzp3d25Dt1TJ&usqp=CAU";
+      this.model.isImageUploaded = false;
+      this.fileUploader.nativeElement.value = null;
+      this.file = undefined;
+      this.model.isSaveEnabled = false;
     }
-    this.enableDisabledFields();
   }
 
   removePhoto() {
@@ -192,14 +223,22 @@ export class UserprofileComponent implements OnInit {
           this.recentActionsService.addAction(action).subscribe((res) => {
             console.log("added recent action", res)
           })
-          this.router.navigate(['userdashboard']);
+          if (this.loginService.role === "admin") {
+            this.router.navigate(['/admindashboard']);
+          } else {
+            this.router.navigate(['/userdashboard']);
+          }
         }
       })
     }
   }
 
   cancel() {
-    this.router.navigate(['/userdashboard']);
+    if (this.loginService.role === "admin") {
+      this.router.navigate(['/admindashboard']);
+    } else {
+      this.router.navigate(['/userdashboard']);
+    }
   }
 
 }

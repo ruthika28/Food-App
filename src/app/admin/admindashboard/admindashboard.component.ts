@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/login.service';
 import { Router } from '@angular/router';
 import { RecentActionsService } from 'src/app/recent-actions.service';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-admindashboard',
@@ -10,11 +11,13 @@ import { RecentActionsService } from 'src/app/recent-actions.service';
 })
 export class AdmindashboardComponent implements OnInit {
   username:String;
-  constructor(private ls:LoginService,private router:Router,private ra:RecentActionsService) { }
+  constructor(private ls:LoginService,private router:Router,private dataService:DataService,private ra:RecentActionsService) { }
   actions:object;
+  userobj:object;
   ngOnInit() {
     this.username=this.ls.username;
     this.getAction();
+    this.getDetails();
   }
   
   addRecipe() {
@@ -48,4 +51,23 @@ export class AdmindashboardComponent implements OnInit {
   removeArticles() {
     this.router.navigate(['/remove-articles']);
   }
+    
+  removeCategories() {
+    this.router.navigate(['/remove-category']);
+  }
+
+  editProfile() {
+    this.router.navigate(['/userprofile']);
+    this.dataService.sendAdminData(this.userobj);
+  }
+
+  getDetails() {
+    this.ls.readProfile().subscribe((res)=>{
+      this.userobj=res;
+      // this.model.username=res["username"];
+      // this.model.emailid=res["email"];
+      // this.model.imageUrl=res["imageUrl"];
+    });
+  }
+
 }

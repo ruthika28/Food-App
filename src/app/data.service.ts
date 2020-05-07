@@ -24,6 +24,10 @@ constructor(private hc:HttpClient){}
 
   userData = this.bsUser.asObservable();
 
+  private bsAdmin = new BehaviorSubject<any>(null);
+
+  adminData = this.bsAdmin.asObservable();
+
   getData():Observable<object[]>  //data is present in observable
   {
    return  this.hc.get<object[]>('https://jsonplaceholder.typicode.com/posts');
@@ -36,6 +40,10 @@ constructor(private hc:HttpClient){}
 
   public sendUserData(userdata:any) {
     this.bsUser.next(userdata);
+  }
+
+  public sendAdminData(admindata:any) {
+    this.bsAdmin.next(admindata);
   }
 
   public sendArticle(article: ArticleData) {

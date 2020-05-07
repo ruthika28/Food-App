@@ -177,17 +177,19 @@ label {
   </div> -->
 <div class="form-group">
 <label for="username">Username</label>
-<input class="form-control" type="text" name="username" id="username" required ngModel>
+<input class="form-control" type="text" name="username" id="username" (change)="enableDisabledFields()" required [(ngModel)]="model.username">
 </div>
 <div class="form-group">
 <label for="password">Password</label>
-<input class="form-control" type="password" name="password" id="password" required ngModel>
+<input class="form-control" type="password" name="password" id="password" (change)="enableDisabledFields()" required [(ngModel)]="model.password">
 </div>
 
 <div class="m-t-lg">
 <ul class="list-inline">
 <li>
-<input class="btn btn--form" type="submit" value="Login" />
+<input class="btn btn--form" type="submit" [disabled]="!model.isLoginEnabled" value="Login" />&nbsp;
+<input class="btn btn--form" routerLink="/home" type="submit" value="Cancel" />
+
 </li>
 
 </ul>

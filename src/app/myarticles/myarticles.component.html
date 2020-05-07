@@ -29,8 +29,8 @@
               alt="Card image cap"> -->
         <img class="card-img-top" [src]="article.imageUrl" alt="article image">
         <div class="card-desc">
-          <h3>{{article.title}}</h3>
-          <p>{{article.description}}</p>
+          <h3 class="trimtext card-title">{{article.title}}</h3>
+          <p class="trimtext card-text">{{article.description}}</p>
         </div>
         <a (click)="articleDisplay(article,article.title)" class="btn btn-success mb-2">Read</a>
         <div class="card-footer">

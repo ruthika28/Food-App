@@ -1,7 +1,7 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-6">
-            <h2>Remove Articles</h2>
+            <h2>Remove Categories</h2>
         </div>
         <div class="col-6 text-right">
             <button (click)="cancel()" class="btn btn-outline-danger waves-effect">Cancel</button>&nbsp;
@@ -33,14 +33,8 @@
                 <td class="text-center" mat-cell *ngIf="column.name=='imageUrl'">
                     <img src={{element[column.name]}} style="height:200px;width:200px;">
                 </td>
-                <td class="text-center" mat-cell *ngIf="column.name=='title'">{{element[column.name]}}</td>
-                <td class="text-center" mat-cell *ngIf="column.name=='category'">
-                    <div *ngFor="let c of element[column.name]">
-                        <p>{{c}}</p>
-                    </div>
-                </td>
-                <td class="text-center" mat-cell
-                    *ngIf="column.name!='title' && column.name!='category' && column.name!='imageUrl'">
+                <td class="text-center" mat-cell *ngIf="column.name=='name'">{{element[column.name]}}</td>
+                <td class="text-center" mat-cell *ngIf="column.name!='name' && column.name!='imageUrl'">
                     {{element[column.name]}}
                 </td>
             </ng-container>
@@ -51,5 +45,5 @@
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-    <br>
+
 </div>

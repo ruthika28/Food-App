@@ -21,6 +21,7 @@ export class RecipeEditComponent implements OnInit {
   success: boolean = false;
   title: string;
   username: any;
+  isDataPresent:boolean=false;
   ngOnInit(): void {
     if (this.loginService.role == "admin") {
       this.getRecipes();
@@ -49,6 +50,9 @@ export class RecipeEditComponent implements OnInit {
       this.recipes = res.recipeObj;
       //console.log(this.recipes);
       this.load = true;
+      if(this.recipes.length>0) {
+        this.isDataPresent=true;
+      }
       this.dataSource = new MatTableDataSource(this.recipes);
       this.dataSource.paginator = this.paginator;
     })
@@ -57,6 +61,9 @@ export class RecipeEditComponent implements OnInit {
     this.rs.getRecipeObjByUserName().subscribe((res) => {
       this.recipes = res["recipeObj"];
       this.load = true;
+      if(this.recipes.length>0) {
+        this.isDataPresent=true;
+      }
       this.dataSource = new MatTableDataSource(this.recipes);
       this.dataSource.paginator = this.paginator;
     })
@@ -119,6 +126,12 @@ export class RecipeEditComponent implements OnInit {
     }
   }
 
-
+  cancel() {
+    if (this.loginService.role === "admin") {
+      this.router.navigate(['/admindashboard']);
+    } else {
+      this.router.navigate(['/userdashboard']);
+    }
+  }
 
 }

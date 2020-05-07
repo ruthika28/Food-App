@@ -3,11 +3,11 @@
         <label>CATEGORY</label>
         <input type="text" placeholder="enter category title" (change)="validateCategoryList()"
             [(ngModel)]="model.categoryName" required>
-        <!-- <span *ngIf="model.isCategoryExists"style="color: red;padding-left: 1.75rem;">category already exists.choose another</span> -->
+        <span *ngIf="model.isCategoryExists"style="color: red;padding-left: 1.75rem;">category already exists.choose another</span>
     </div>
     <div>
         <label for="filePicker">Select image</label><br>
-        <input type="file" name="image" id="filePicker" (change)="handleFileSelect($event)">
+        <input type="file" name="image" id="filePicker" #fileUploader (change)="handleFileSelect($event)">
         <!-- <span *ngIf="!model.isImageUploaded" style="color: red;padding-left: 1.75rem;">{{model.message}}</span> -->
         <!-- <label for="img">Select image:</label>
         <input type="file" id="img" name="img" accept="image/*"> -->

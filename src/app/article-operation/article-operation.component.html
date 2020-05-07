@@ -34,7 +34,7 @@
             </div>
             <div>
                 <label>Upload Article Image</label> <br>
-                <input type="file" name="image" id="pc" ngModel (input)="getImageFile($event.target.files[0])">
+                <input type="file" #fileUploader name="image" id="pc" ngModel (input)="getImageFile($event.target.files[0])">
                 <!-- <span *ngIf="!model.isImageUploaded" style="color: red;padding-left: 1.75rem;">{{model.message}}</span> -->
             </div>
             <div class="image-preview mb-3">
