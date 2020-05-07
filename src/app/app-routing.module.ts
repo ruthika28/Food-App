@@ -20,6 +20,7 @@ import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 import { RemoveArticleComponent } from './remove-article/remove-article.component';
 import { RemoveCategoryComponent } from './remove-category/remove-category.component';
 import { CategoryDisplayComponent } from './category-display/category-display.component';
+import { UserprofileComponent } from './user/userprofile/userprofile.component';
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'browse', component:BrowseComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'admindashboard',component:AdmindashboardComponent},
 {path:'admin/addadmin',component:AdminprofileComponent},
 {path:'userdashboard',component:UserdashboardComponent},
+{path:'userprofile',component:UserprofileComponent},
 {path:'user/register',component:RegisterComponent},
 {path:'article-operation',component:ArticleOperationComponent,canActivate:[SecurerouteGuard]},
 {path:'article-display/:articletitle',component:ArticleDisplayComponent},

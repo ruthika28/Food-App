@@ -40,6 +40,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import{ MatCheckboxModule, MatCardModule} from '@angular/material';
 import { RemoveCategoryComponent } from './remove-category/remove-category.component';
 import { CategoryDisplayComponent } from './category-display/category-display.component';
+import { UserprofileComponent } from './user/userprofile/userprofile.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { CategoryDisplayComponent } from './category-display/category-display.co
     RemoveArticleComponent,
     RemoveCategoryComponent,
     CategoryDisplayComponent,
+    UserprofileComponent
   ],
   imports: [
     MatInputModule,
