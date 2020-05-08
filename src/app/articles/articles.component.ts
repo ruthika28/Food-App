@@ -23,6 +23,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     config.showNavigationArrows = true;
     config.wrap = true;
   }
+  searchTerm:string='';
   
   model = {
     articleDataList: [],

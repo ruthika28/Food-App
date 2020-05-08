@@ -12,6 +12,8 @@ export class BrowseComponent implements OnInit {
 
   constructor(private ar:ActivatedRoute,private rs:RecipeOperationService,private router:Router,private ds:DataService) { }
   recipes:object;
+  isloaded:boolean=false;
+  searchTerm:string='';
   ngOnInit() {
     this.getRecipes();
   }
@@ -20,6 +22,7 @@ export class BrowseComponent implements OnInit {
     this.rs.getRecipe().subscribe((res)=>{      
       this.recipes=res.recipeObj;
       //console.log("Inside Browse data is ",this.recipes);
+      this.isloaded=true;
     })
   }
   gotoR(recipe,recipetitle)
