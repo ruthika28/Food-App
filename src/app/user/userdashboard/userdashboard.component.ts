@@ -20,6 +20,8 @@ export class UserdashboardComponent implements OnInit {
     this.totalArticles();
     this.totalRecipes();
     this.getDetails();
+    this.totalLikesForArticles();
+    this.totalLikesForRecipes();
   }
 
   model:any={
@@ -28,6 +30,8 @@ export class UserdashboardComponent implements OnInit {
     username:'',
     emailid:'',
     imageUrl:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSNq-Mk-bEDdB90ZkoVmH-zFf-RoLenjYfUHps5qzp3d25Dt1TJ&usqp=CAU",
+    noOfLikesForArticles:0,
+    noOfLikesForRecipes:0
   }
 
   userobj:object;
@@ -79,6 +83,18 @@ export class UserdashboardComponent implements OnInit {
       this.model.emailid=res["email"];
       this.model.imageUrl=res["imageUrl"];
     });
+  }
+
+  totalLikesForArticles() {
+    this.articleOperationService.getTotalLikesToUserForArticle().subscribe((res)=>{
+      this.model.noOfLikesForArticles=res["count"];
+    })
+  }
+
+  totalLikesForRecipes() {
+    this.recipeOperationService.getTotalLikesToUserForRecipe().subscribe((res)=>{
+      this.model.noOfLikesForRecipes=res["count"];
+    })
   }
 
 }

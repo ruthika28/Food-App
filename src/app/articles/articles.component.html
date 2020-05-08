@@ -33,6 +33,14 @@
           <p class="trimtext card-text">{{article.description}}</p>
         </div>
         <a (click)="articleDisplay(article,article.title)" class="btn btn-info mb-2">Read</a>
+        <div class="card-footer">
+          <span *ngIf="article.articleLikeCount>0">
+            <mat-icon style="color:red">favorite</mat-icon>&nbsp;{{article.articleLikeCount}}
+          </span>
+          <span *ngIf="article.articleLikeCount == 0">
+            <mat-icon>favorite_border</mat-icon>
+          </span>
+        </div>
       </div>
     </div>
   </div>

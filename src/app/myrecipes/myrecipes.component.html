@@ -1,11 +1,11 @@
 <div class="jumbotron">
     <div class="container">
         <img src="https://craftycoin.com/wp-content/uploads/2015/04/Recipes-header.png" style="width: 100%;height:350px;
-        overflow: hidden;"alt="recipe">
+        overflow: hidden;" alt="recipe">
     </div>
     <h1>My Recipes</h1>
     <div class="row card-group">
-        <div class="col-4  mb-3 mt-3"  *ngFor="let rec of recipes; let i = index">
+        <div class="col-4  mb-3 mt-3" *ngFor="let rec of recipes; let i = index">
             <div class="card text-center mb-3 mt-3" style="width: 20rem;">
                 <img class="card-img-top" src={{rec.profileImage}} alt="Card image cap">
                 <div class="card-desc">
@@ -16,9 +16,16 @@
                     Check Recipe
                 </a>
                 <div class="card-footer">
-                    <mat-icon class="delete my-cursor" (click)="deleteRecipe(rec,rec._id)">delete_forever</mat-icon>
-                </div>          
-            </div>        
+                    <mat-icon class="delete my-cursor" (click)="deleteRecipe(rec,rec._id)">delete_forever
+                    </mat-icon>&nbsp;
+                    <span *ngIf="rec.recipeLikeCount>0">
+                        <mat-icon style="color:red">favorite</mat-icon>&nbsp;{{rec.recipeLikeCount}}
+                    </span>
+                    <span *ngIf="rec.recipeLikeCount == 0">
+                        <mat-icon>favorite_border</mat-icon>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
