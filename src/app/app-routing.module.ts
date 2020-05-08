@@ -18,9 +18,9 @@ import { AdminprofileComponent } from './admin/adminprofile/adminprofile.compone
 import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 import { RemoveArticleComponent } from './remove-article/remove-article.component';
-import { UserprofileComponent } from './user/userprofile/userprofile.component';
 import { RemoveCategoryComponent } from './remove-category/remove-category.component';
 import { CategoryDisplayComponent } from './category-display/category-display.component';
+import { UserprofileComponent } from './user/userprofile/userprofile.component';
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'browse', component:BrowseComponent},

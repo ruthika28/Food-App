@@ -38,7 +38,7 @@
       <br>
       <mat-form-field style="width:60vw" class="example-full-width">
           <mat-label>Time in minutes.</mat-label>
-          <input matInput [(ngModel)]="model.time" type="text" placeholder="Time in minutes." name="time" id="time" ngModel>
+          <input matInput [(ngModel)]="model.time" type="number" placeholder="Time in minutes." name="time" id="time" ngModel>
       </mat-form-field>
 
       <br>
@@ -162,7 +162,7 @@
       
       <!-- <button type="button" (click)="cancel()" class="btn btn-outline-danger waves-effect">Cancel</button>-->
       
-        <button [disabled]="!isFormPopulated()" class="btn btn-outline-success float-md-right waves-effect"  type="submit">Add Recipe</button> 
+        <button class="btn btn-outline-success float-md-right waves-effect" [disabled]="!isFormPopulated()"  type="submit">Add Recipe</button> 
       
   </form>
 </div>

@@ -128,7 +128,11 @@ export class RecipeOperationComponent implements OnInit {
     }
 
     doneRow(group: FormGroup) {
+      if(group.value.name.length<1||group.value.value.length<1)
+      alert("Name or Value cannot be empty");
+      else
       group.get('isEditable').setValue(false);
+      
     }
 
     saveUserDetails() {
@@ -234,7 +238,7 @@ export class RecipeOperationComponent implements OnInit {
         }
       }
       isFormPopulated() {
-        return this.model.recipe.length &&this.model.brief.length &&this.model.time.length &&
+        return this.model.recipe.length &&this.model.brief.length &&
         this.model.author.length;
       }  
       private isListHasValue(list) {

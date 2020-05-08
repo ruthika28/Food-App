@@ -12,7 +12,6 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 declare var $: any;
 declare var require: any;
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -43,11 +42,13 @@ export class HomeComponent implements OnInit {
   recipes: object;
   numberofitems: number = 3;
   nums=[];
+  searchTerm:string;
   ngOnInit() {
     this.getCategoryList();
     this.getRecipes();
     this.getArticles(); 
   }
+  
   car()
   {
     let x=this.model.categoryList.length;

@@ -9,30 +9,14 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 </head>
-
 <body>
 
     <div class="container"
         style="background-image: url('https://images.megapixl.com/6827/68279520.jpg');background-size: cover;">
-        <div class="row">
-            <div class="col-md-4 mt-5"></div>
-            <div class="col-md-4 mt-5">
-                <div class="input-group">
-                    <input class="form-control border rounded-pill-left border-right-0" type="search" value="search"
-                        id="example-search-input">
-                    <span class="input-group-append">
-                        <button class="btn btn-outline-secondary border rounded-pill-right border-left-0" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-4 mt-5"></div>
-        </div>
         <br><br> <br><br> <br>
     </div>
 
-    <div class="container" *ngIf="model.isDataLoaded">
+    
         <br>
         <div class="row">
             <div class="col-2"></div>
@@ -70,8 +54,10 @@
             <h2>Recipes</h2>
             <a routerLink="/browse" class="float-md-right mr-5">See all</a>
         </div>
+
+
         <div class="row card-group">
-            <div class="col-4  mb-3 mt-3" *ngFor="let rec of model.recipeList;">
+            <div class="col-4  mb-3 mt-3" *ngFor="let rec of model.recipeList">
                 <div class="card border-success text-center mb-3 mt-3" style="width: 20rem;">
                     <img class="card-img-top" src={{rec.profileImage}} alt="Card image cap">
                     <div class="card-desc">
@@ -91,7 +77,26 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div>
             <h2>Articles</h2>
             <a routerLink="/articles" class="float-md-right mr-5">See all</a>
@@ -119,7 +124,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Latest compiled and minified CSS -->

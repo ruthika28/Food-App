@@ -37,11 +37,12 @@ import { RemoveArticleComponent } from './remove-article/remove-article.componen
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import{ MatCheckboxModule, MatCardModule} from '@angular/material';
-import { UserprofileComponent } from './user/userprofile/userprofile.component';
-
+import{ MatCheckboxModule, MatCardModule, MatToolbarModule} from '@angular/material';
 import { RemoveCategoryComponent } from './remove-category/remove-category.component';
 import { CategoryDisplayComponent } from './category-display/category-display.component';
+import { UserprofileComponent } from './user/userprofile/userprofile.component';
+import { RecipefilterPipe } from './recipe-filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -63,9 +64,10 @@ import { CategoryDisplayComponent } from './category-display/category-display.co
     MyarticlesComponent,
     MyrecipesComponent,
     RemoveArticleComponent,
-    UserprofileComponent,
     RemoveCategoryComponent,
     CategoryDisplayComponent,
+    UserprofileComponent,
+    RecipefilterPipe
   ],
   imports: [
     MatInputModule,
@@ -75,7 +77,8 @@ import { CategoryDisplayComponent } from './category-display/category-display.co
     MatTableModule,
     MatFormFieldModule,
     MatPaginatorModule,
-    MatIconModule,
+    MatIconModule,  
+    MatToolbarModule,
     MatCheckboxModule,
     MatSelectModule,
     MatSortModule,
