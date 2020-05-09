@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { LoginService } from '../login.service';
@@ -19,6 +19,8 @@ export class ArticleOperationComponent implements OnInit {
   constructor(private articleOperationService: ArticleOperationService, private ls: LoginService, private router: Router
     , private categoryOperationService: CategoryOperationService, private recentActionsService: RecentActionsService
     , private fileUploadService: FileUploadService) { }
+    @ViewChild('fileUploader',{static: false}) 
+    fileUploader:ElementRef;
   placeholder = "enter details..";
   model = {
     content: '',
@@ -72,12 +74,13 @@ export class ArticleOperationComponent implements OnInit {
         reader.readAsDataURL(this.imgFile);//read data of file(image);we need to wait until data is read
         reader.onload = () => {
           this.imageObj.imageUrl = reader.result;//contains blob data
+          this.model.isImageUploaded = true;
         }
-        this.model.isImageUploaded = true;
       }
     } else {
       this.model.message = "upload a valid photo of type jpg or jpeg or png";
       this.model.isImageUploaded = false;
+      this.fileUploader.nativeElement.value = null;
     }
   }
 

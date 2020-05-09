@@ -30,11 +30,31 @@ export class RecipeOperationService {
   }
 
   getTotalRecipes() {
-    return this.hc.get(`/recipe/noOfRecipes/${this.ls.username}`);
+    return this.hc.get(`/recipe/noOfRecipes/${this.ls.userid}`);
   }
   
   getRequiredCategories(name)
   {
     return this.hc.get(`/recipe/getCategories/${name}`);
   }
+
+  LikeRecipe(dataObj): Observable<any>  {
+    return this.hc.post('/recipe/likeRecipe',dataObj);
+  }
+
+  removeLike(dataObj): Observable<any> {
+    return this.hc.post('/recipe/dislikeRecipe',dataObj);
+  }
+
+  getTotalLikesToParticularRecipe(recipeid):Observable<any> {
+    return this.hc.get(`/recipe/noOfLikesToRecipe/${recipeid}`);
+  }
+
+  getTotalLikesToUserForRecipe() :Observable<any> {
+    return this.hc.get(`/recipe/totalLikesToUserForRecipe/${this.ls.userid}`);
+  }
+
+  checkIfUserAlreadyLiked(dataObj):Observable<any> {
+    return this.hc.post('/recipe/userLikedRecipe',dataObj);
+  } 
 }

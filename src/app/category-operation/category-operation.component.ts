@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CategoryOperationService } from '../category-operation.service';
 import { CategoryData } from '../data/category-data';
 import { FileUploadService } from '../file-upload.service';
@@ -15,18 +15,29 @@ export class CategoryOperationComponent implements OnInit {
 
   constructor(private categoryOperationService: CategoryOperationService, private fileUploadService: FileUploadService,
     private router: Router, private loginService: LoginService,private recentActionsService:RecentActionsService) { }
+    @ViewChild('fileUploader',{static: false}) 
+    fileUploader:ElementRef;
+    model: any = {
+      categoryName: '',
+      categoryList: [],
+      categoryNameList: [],
+      isCategoryExists: false,
+      base64textString: "",
+      isImageUploaded: false,
+      message: "upload a photo"
+    }
 
   ngOnInit() {
+    const parent = this;
+    parent.categoryOperationService.getCategoryDataList().then(data => {
+      const categoryList = data as CategoryData[];
+      parent.model.categoryList = parent.isListHasValue(categoryList) ? categoryList : [];
+      for (let i = 0; i < parent.model.categoryList.length; i++) {
+        parent.model.categoryNameList.push(parent.model.categoryList[i].name);
+      }
+    });
   }
-  model: any = {
-    categoryName: '',
-    categoryList: [],
-    categoryNameList: [],
-    isCategoryExists: false,
-    base64textString: "",
-    isImageUploaded: false,
-    message: "upload a photo"
-  }
+  
   private imgFile: File = undefined;
   private filetype = ['image/jpeg', 'image/png', 'image/jpg'];
   private imageObj: {
@@ -52,7 +63,9 @@ export class CategoryOperationComponent implements OnInit {
       this.imgFile = undefined;
       evt.target.files = undefined;
       this.model.base64textString = "";
+      this.fileUploader.nativeElement.value = null;
       this.model.message = "upload a valid photo of type jpg or jpeg or png";
+      
     }
   }
 
@@ -65,19 +78,13 @@ export class CategoryOperationComponent implements OnInit {
 
   validateCategoryList() {
     const parent = this;
-    parent.categoryOperationService.getCategoryDataList().then(data => {
-      const categoryList = data as CategoryData[];
-      parent.model.categoryList = parent.isListHasValue(categoryList) ? categoryList : [];
-      for (let i = 0; i < parent.model.categoryList.length; i++) {
-        parent.model.categoryNameList.push(parent.model.categoryList[i].name);
-      }
       const tempCategoryName = parent.model.categoryName.toLowerCase();
       if (!(parent.isListHasValue(parent.model.categoryList)) || !(parent.model.categoryNameList.includes(tempCategoryName))) {
         parent.model.isCategoryExists = false;
       } else {
         parent.model.isCategoryExists = true;
       }
-    });
+    
   }
 
   isValidDetails() {

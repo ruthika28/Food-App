@@ -62,7 +62,34 @@ recipeOperationApp.post('/add',upload.single('photo'),(req,res)=>{
 
 recipeOperationApp.get('/get-recipe',(req,res)=>{
     var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
-    recipeCollectionObj.find({}).sort({ "createdOn": -1 }).toArray(function(err, recipeObj) {
+    recipeCollectionObj.aggregate(
+        [
+            {
+                '$match': {
+                    'endedOn': null
+                }
+            }, {
+                '$addFields': {
+                    'recipeId': {
+                        '$toString': '$_id'
+                    }
+                }
+            }, {
+                '$lookup': {
+                    'from': 'likerecipescollection',
+                    'localField': 'recipeId',
+                    'foreignField': 'recipeid',
+                    'as': 'recipeLikeCountArray'
+                }
+            }, {
+                '$addFields': {
+                    'recipeLikeCount': {
+                        '$size': '$recipeLikeCountArray'
+                    }
+                }
+            }
+        ]
+    ).sort({ "createdOn": -1 }).toArray(function(err, recipeObj) {
         if(err)
         {
             console.log("error is ", err);
@@ -77,10 +104,34 @@ recipeOperationApp.get('/get-recipe',(req,res)=>{
 recipeOperationApp.get('/getRecipeByUsername/:id',(req,res)=>{
     var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
     let userid=req.params.id;
-    recipeCollectionObj.find(
-        {
-            createdById:userid
-        }).sort({"createdOn":-1}).toArray(function(err,data){
+    recipeCollectionObj.aggregate(
+        [
+            {
+                '$match': {
+                    'createdById': userid
+                }
+            }, {
+                '$addFields': {
+                    'recipeId': {
+                        '$toString': '$_id'
+                    }
+                }
+            }, {
+                '$lookup': {
+                    'from': 'likerecipescollection',
+                    'localField': 'recipeId',
+                    'foreignField': 'recipeid',
+                    'as': 'recipeLikeCountArray'
+                }
+            }, {
+                '$addFields': {
+                    'recipeLikeCount': {
+                        '$size': '$recipeLikeCountArray'
+                    }
+                }
+            }
+        ]
+    ).sort({"createdOn":-1}).toArray(function(err,data){
             if (err) {
                 console.log(err);
                 return res.status(404).end();
@@ -151,6 +202,76 @@ recipeOperationApp.get('/getCategories/:name',(req,res)=>{
         }
     })
     
+})
+
+recipeOperationApp.post('/likeRecipe', (req, res) => {
+    var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    const query = { recipeid: req.body.recipeid, userid: req.body.userid };
+    const update = {
+        "$set": {
+            recipeid: req.body.recipeid,
+            userid: req.body.userid,
+            createdBy: req.body.createdBy
+        }
+    }
+    likeRecipesCollectionObj.updateOne(query, update, { upsert: true }, (err, success) => {
+        if (err) {
+            console.log(err);
+            res.status(404).end();
+        } else {
+            res.status(200).send({ message: "updated like" });
+        }
+    });
+});
+
+recipeOperationApp.post('/dislikeRecipe', (req, res) => {
+    var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    const query = { recipeid: req.body.recipeid, userid: req.body.userid };
+    likeRecipesCollectionObj.deleteOne(query, (err, success) => {
+        if (err) {
+            console.log(err);
+            res.status(404).end();
+        } else {
+            res.status(200).send({ message: "deleted like" });
+        }
+    });
+});
+
+recipeOperationApp.get('/noOfLikesToRecipe/:recipeid', (req, res) => {
+    var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    likeRecipesCollectionObj.countDocuments({ recipeid: req.params.recipeid }, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ count: data });
+        }
+    });
+});
+
+recipeOperationApp.get('/totalLikesToUserForRecipe/:userid', (req, res) => {
+    var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    likeRecipesCollectionObj.countDocuments({ createdBy: req.params.userid }, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ count: data });
+        }
+    });
+});
+
+recipeOperationApp.post('/userLikedRecipe', (req, res) => {
+    var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    const query = { recipeid: req.body.recipeid, userid: req.body.userid };
+    likeRecipesCollectionObj.findOne(query, (err, success) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ message: "user already liked the recipe" });
+        }
+    })
 })
 
 module.exports = recipeOperationApp;

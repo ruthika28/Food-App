@@ -4,7 +4,8 @@
       <h2>Remove Recipes</h2>
     </div>
     <div class="col-6 text-right">
-      <button mat-flat-button color="primary" (click)="get()">Delete Selected</button>
+      <button (click)="cancel()" class="btn btn-outline-danger waves-effect">Cancel</button>&nbsp;
+      <button mat-flat-button color="primary" [disabled]="!isDataPresent" (click)="get()">Delete Selected</button>
     </div>
   </div>
   <mat-form-field style="width:100%" class="example-full-width">

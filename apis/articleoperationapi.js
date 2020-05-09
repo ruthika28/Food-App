@@ -20,9 +20,43 @@ articleOperationApp.post('/add', (req, res) => {
 
 articleOperationApp.get('/get', (req, res) => {
     var articleCollectionObj = dbo.getDb().articleCollectionObj;
-    articleCollectionObj.find({
-        endedOn: null
-    }).sort({ "createdOn": -1 }).toArray(function (err, data) {
+    // articleCollectionObj.find({
+    //     endedOn: null
+    // }).sort({ "createdOn": -1 }).toArray(function (err, data) {
+    //     if (err) {
+    //         console.log(err);
+    //         return res.status(404).end();
+    //     }
+    //     return res.status(200).send(data);
+    // });
+    articleCollectionObj.aggregate(
+        [
+            {
+                '$match': {
+                    'endedOn': null
+                }
+            }, {
+                '$addFields': {
+                    'articleId': {
+                        '$toString': '$_id'
+                    }
+                }
+            }, {
+                '$lookup': {
+                    'from': 'likearticlescollection',
+                    'localField': 'articleId',
+                    'foreignField': 'articleid',
+                    'as': 'articleLikeCountArray'
+                }
+            }, {
+                '$addFields': {
+                    'articleLikeCount': {
+                        '$size': '$articleLikeCountArray'
+                    }
+                }
+            }
+        ]
+    ).sort({ "createdOn": -1 }).toArray(function (err, data) {
         if (err) {
             console.log(err);
             return res.status(404).end();
@@ -34,16 +68,50 @@ articleOperationApp.get('/get', (req, res) => {
 articleOperationApp.get('/getArticleByUsername/:id', (req, res) => {
     var articleCollectionObj = dbo.getDb().articleCollectionObj;
     let userid = req.params.id;
-    articleCollectionObj.find(
-        {
-            createdById: userid
-        }).sort({ "createdOn": -1 }).toArray(function (err, data) {
-            if (err) {
-                console.log(err);
-                return res.status(404).end();
+    articleCollectionObj.aggregate(
+        [
+            {
+                '$match': {
+                    'createdById': userid
+                }
+            }, {
+                '$addFields': {
+                    'articleId': {
+                        '$toString': '$_id'
+                    }
+                }
+            }, {
+                '$lookup': {
+                    'from': 'likearticlescollection',
+                    'localField': 'articleId',
+                    'foreignField': 'articleid',
+                    'as': 'articleLikeCountArray'
+                }
+            }, {
+                '$addFields': {
+                    'articleLikeCount': {
+                        '$size': '$articleLikeCountArray'
+                    }
+                }
             }
-            return res.status(200).send(data);
-        });
+        ]
+    ).sort({ "createdOn": -1 }).toArray(function (err, data) {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        }
+        return res.status(200).send(data);
+    });
+    // articleCollectionObj.find(
+    //     {
+    //         createdById: userid
+    //     }).sort({ "createdOn": -1 }).toArray(function (err, data) {
+    //         if (err) {
+    //             console.log(err);
+    //             return res.status(404).end();
+    //         }
+    //         return res.status(200).send(data);
+    //     });
 
 });
 
@@ -90,6 +158,75 @@ articleOperationApp.put('/removeSelectedArticles', (req, res) => {
         }
 
     })
+});
+
+articleOperationApp.post('/likeArticle', (req, res) => {
+    var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    const query = { articleid: req.body.articleid, userid: req.body.userid };
+    const update = {
+        "$set": {
+            articleid: req.body.articleid,
+            userid: req.body.userid,
+            createdBy: req.body.createdBy
+        }
+    }
+    likeArticlesCollectionObj.updateOne(query, update, { upsert: true }, (err, success) => {
+        if (err) {
+            console.log(err);
+            res.status(404).end();
+        } else {
+            res.status(200).send({ message: "updated like" });
+        }
+    });
 })
 
+articleOperationApp.post('/dislikeArticle', (req, res) => {
+    var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    const query = { articleid: req.body.articleid, userid: req.body.userid };
+    likeArticlesCollectionObj.deleteOne(query, (err, success) => {
+        if (err) {
+            console.log(err);
+            res.status(404).end();
+        } else {
+            res.status(200).send({ message: "deleted like" });
+        }
+    });
+});
+
+articleOperationApp.get('/noOfLikesToArticle/:articleid', (req, res) => {
+    var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    likeArticlesCollectionObj.countDocuments({ articleid: req.params.articleid }, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ count: data });
+        }
+    });
+});
+
+articleOperationApp.get('/totalLikesToUserForArticle/:userid', (req, res) => {
+    var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    likeArticlesCollectionObj.countDocuments({ createdBy: req.params.userid }, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ count: data });
+        }
+    });
+});
+
+articleOperationApp.post('/userLikedArticle', (req, res) => {
+    var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    const query = { articleid: req.body.articleid, userid: req.body.userid };
+    likeArticlesCollectionObj.findOne(query, (err, success) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        } else {
+            return res.status(200).send({ message: "user already liked the article" });
+        }
+    })
+})
 module.exports = articleOperationApp;

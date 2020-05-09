@@ -46,4 +46,25 @@ export class ArticleOperationService {
   removeSelectedArticles(obj):Observable<any> {
     return this.hc.put('/article/removeSelectedArticles',obj);
   }
+
+  LikeArticle(dataObj): Observable<any>  {
+    return this.hc.post('/article/likeArticle',dataObj);
+  }
+
+  removeLike(dataObj): Observable<any> {
+    return this.hc.post('/article/dislikeArticle',dataObj);
+  }
+
+  getTotalLikesToParticularArticle(articleid):Observable<any> {
+    return this.hc.get(`/article/noOfLikesToArticle/${articleid}`);
+  }
+
+  getTotalLikesToUserForArticle() :Observable<any> {
+    return this.hc.get(`/article/totalLikesToUserForArticle/${this.loginService.userid}`);
+  }
+
+  checkIfUserAlreadyLiked(dataObj):Observable<any> {
+    return this.hc.post('/article/userLikedArticle',dataObj);
+  } 
+
 }

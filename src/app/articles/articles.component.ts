@@ -23,10 +23,10 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     config.showNavigationArrows = true;
     config.wrap = true;
   }
+  searchTerm:string='';
   
   model = {
     articleDataList: [],
-    articleChunkList: [],
     isDataLoaded: false
   }
   ngOnInit() {
@@ -41,14 +41,19 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     parent.articleOperationService.getArticleDataList().then(data => {
       parent.model.articleDataList = data as ArticleData[];
       this.model.isDataLoaded = true;
-      // for (let i = 0; (i+2) < parent.model.articleDataList.length; i+=3) {
-      //   parent.model.articleChunkList.push(parent.model.articleDataList.slice(i, i + 3));
-      // }
-      // parent.model.articleChunkList.push(parent.model.articleDataList.slice(3 * parent.model.articleChunkList.length, parent.model.articleDataList.length))
-      // console.log(parent.model.articleDataList);
-      // parent.getImagesFromArticle();
     });
   }
+  
+  // totalLikes(articleId) {
+  //   this.articleOperationService.getTotalLikesToParticularArticle(articleId).subscribe((result) => {
+  //     if(result["count"] == 0) {
+  //       return "";
+  //     } else {
+  //       return result["count"];
+  //     }
+  //   });
+  // }
+
 
   // private getImagesFromArticle() {
   //   this.model.articleDataList.forEach(article => {

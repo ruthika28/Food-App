@@ -19,7 +19,8 @@ export class RemoveCategoryComponent implements OnInit {
     model: any = {
       categoryDataList: [],
       isDataLoaded: false,
-      success: false
+      success: false,
+      isDataPresent:false
     }
     dataSource:any;
     displayedColumns: string[] = ['select', 'imageUrl', 'name', 'createdOn', 'createBy'];
@@ -41,6 +42,9 @@ export class RemoveCategoryComponent implements OnInit {
       this.model.categoryDataList = data as CategoryData[];
       this.dataSource=this.dataSource=new MatTableDataSource(this.model.categoryDataList);
       this.model.isDataLoaded = true;
+      if(this.model.categoryDataList.length>0) {
+        this.model.isDataPresent=true;
+      }
       this.dataSource.paginator = this.paginator;
     })
   }
@@ -50,6 +54,9 @@ export class RemoveCategoryComponent implements OnInit {
       this.model.categoryDataList = data as CategoryData[];
       this.dataSource=new MatTableDataSource(this.model.articleDataList);
       this.model.isDataLoaded = true;
+      if(this.model.categoryDataList.length>0) {
+        this.model.isDataPresent=true;
+      }
       this.dataSource.paginator = this.paginator;
     })
   }
@@ -106,7 +113,8 @@ export class RemoveCategoryComponent implements OnInit {
         }
         if (this.model.success) {
           let action = {}
-          action['createBy'] = this.loginService.username;
+          action['createdById'] = this.loginService.userid;
+          action['createdBy'] = this.loginService.username;
           action['createdOn'] = new Date();
           action['ActionDone'] = `${this.selection.selected.length} Categories Deleted`;
           this.recentActionsService.addAction(action).subscribe((res) => {

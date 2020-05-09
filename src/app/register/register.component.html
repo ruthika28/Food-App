@@ -33,7 +33,7 @@
       <div class="signup__overlay"></div>
     </div>
     <div class="container__child signup__form">
-      <form #ref="ngForm" (ngSubmit)="submitForm(ref.value);">
+      <form #ref="ngForm" (ngSubmit)="submitForm(ref);">
         <div class="form-group">
           <label for="username">Username</label>
           <input class="form-control" type="text" name="username" id="username" autocomplete="off" required
@@ -62,11 +62,17 @@
           <span *ngIf="!model.isPasswordMatched" style="color: red;padding-left: 1.75rem;">Password does not
             match !!!</span>
         </div>
+        <div class="form-group">
+          <input type="file" #fileUploader name="photo" id="pc" style="color: black;" (input)="getImageFile($event.target.files[0])">
+           <img [src]="imageUrl" class="avatar" alt="">
+           <span *ngIf="!model.isImageUploaded" style="color: blue;">{{model.message}}</span>
 
+        </div>
         <div>
           <ul class="list-inline">
             <li>
               <input class="btn btn--form" [disabled]="!model.isRegisterEnabled" type="submit" value="Register" />
+              <input class="btn btn--form" routerLink="/home" type="submit" value="Cancel" />
             </li>
           </ul>
         </div>

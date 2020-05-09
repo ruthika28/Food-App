@@ -18,35 +18,44 @@ export class LoginComponent implements OnInit {
       this.ls.doLogout();
     });
   }
-  submitForm(dataObj) {
+  model: any = {
+    username: '',
+    password: '',
+    isLoginEnabled: false
+  }
 
-    this.ls.doLogin(dataObj).subscribe((result) => {
-      if (result["message"] == "invalid username") {
-        alert("invalid user name");
-      }
-      else if (result["message"] == "invalid password") {
-        alert("Invalid password");
-      }
-      else {
-        alert("login sucess");
-        localStorage.setItem("token", result["message"]);
-        this.ls.userLoginStatus = true;
-        this.ls.username = result["username"];
-        this.ls.userid=result["userid"];
-        //redirect to admindashboard component
-        if(result["role"] == "admin")
-        {
-          this.ls.adminLoginStatus = true;
-          this.ls.role="admin";
-          this.router.navigate(['/admindashboard']);
+  enableDisabledFields() {
+    this.model.isLoginEnabled = this.model.username.length && this.model.password.length;
+  }
+
+  submitForm(dataObj) {
+    if (this.model.isLoginEnabled) {
+      this.ls.doLogin(dataObj).subscribe((result) => {
+        if (result["message"] == "invalid username") {
+          alert("invalid user name");
         }
-         //redirect to userdashboard component
-        else
-        {
-          this.ls.role="user";
-          this.router.navigate(['/userdashboard']); 
+        else if (result["message"] == "invalid password") {
+          alert("Invalid password");
         }
-      }
-    })
+        else {
+          alert("login sucess");
+          localStorage.setItem("token", result["message"]);
+          this.ls.userLoginStatus = true;
+          this.ls.username = result["username"];
+          this.ls.userid = result["userid"];
+          //redirect to admindashboard component
+          if (result["role"] == "admin") {
+            this.ls.adminLoginStatus = true;
+            this.ls.role = "admin";
+            this.router.navigate(['/admindashboard']);
+          }
+          //redirect to userdashboard component
+          else {
+            this.ls.role = "user";
+            this.router.navigate(['/userdashboard']);
+          }
+        }
+      })
+    }
   }
 }

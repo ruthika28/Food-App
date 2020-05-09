@@ -22,7 +22,8 @@ export class RemoveArticleComponent implements OnInit {
   model: any = {
     articleDataList: [],
     isDataLoaded: false,
-    success: false
+    success: false,
+    isDataPresent:false
   }
   dataSource: any;
   displayedColumns: string[] = ['select', 'imageUrl', 'title', 'category', 'author', 'createdOn', 'createdBy'];
@@ -47,6 +48,9 @@ export class RemoveArticleComponent implements OnInit {
       this.model.articleDataList = data as ArticleData[];
       this.dataSource=this.dataSource=new MatTableDataSource(this.model.articleDataList);
       this.model.isDataLoaded = true;
+      if(this.model.articleDataList.length>0) {
+        this.model.isDataPresent=true;
+      }
       this.dataSource.paginator = this.paginator;
     })
   }
@@ -56,6 +60,9 @@ export class RemoveArticleComponent implements OnInit {
       this.model.articleDataList = data as ArticleData[];
       this.dataSource=new MatTableDataSource(this.model.articleDataList);
       this.model.isDataLoaded = true;
+      if(this.model.articleDataList.length>0) {
+        this.model.isDataPresent=true;
+      }
       this.dataSource.paginator = this.paginator;
     })
   }

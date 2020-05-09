@@ -29,12 +29,19 @@
               alt="Card image cap"> -->
         <img class="card-img-top" [src]="article.imageUrl" alt="article image">
         <div class="card-desc">
-          <h3>{{article.title}}</h3>
-          <p>{{article.description}}</p>
+          <h3 class="trimtext card-title">{{article.title}}</h3>
+          <p class="trimtext card-text">{{article.description}}</p>
         </div>
         <a (click)="articleDisplay(article,article.title)" class="btn btn-success mb-2">Read</a>
         <div class="card-footer">
-          <mat-icon class="delete my-cursor" (click)="deleteArticle(article._id,article.title)">delete_forever</mat-icon>
+          <mat-icon class="delete my-cursor" (click)="deleteArticle(article._id,article.title)">delete_forever
+          </mat-icon>&nbsp;
+          <span *ngIf="article.articleLikeCount>0">
+            <mat-icon style="color:red">favorite</mat-icon>&nbsp;{{article.articleLikeCount}}
+          </span>
+          <span *ngIf="article.articleLikeCount == 0">
+            <mat-icon>favorite_border</mat-icon>
+          </span>
         </div>
       </div>
     </div>

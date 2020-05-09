@@ -7,9 +7,44 @@ const dbo = require("../db");
 dbo.initDb();
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt")
-//userApp.get('/readprofile/:username',(req,res)=>{
-//  res.send({message:"user profile works"})
-//});
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
+const multer = require("multer");
+
+//configure cloudinary
+cloudinary.config({
+    cloud_name: 'do8ujullm',
+    api_key: '276121795183361',
+    api_secret: 'p5tF0tDi8R-RYXXQFjM4zBcU3gk'
+});
+
+//configure cloudinary storage details
+
+var storageForCloudinary = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: 'recipefiles',
+    allowedFormats: ['jpg', 'png', 'jpeg'],
+    filename: function (req, file, cb) {
+        //cb=callback fn
+        cb(undefined, file.fieldname + '-' + Date.now());
+    }
+});
+
+//configure multer
+var upload = multer({ storage: storageForCloudinary });
+
+userApp.get('/readprofile/:id', (req, res) => {
+    var userCollectionObj = dbo.getDb().userCollectionObj;
+    var userid = req.params.id;
+    const { ObjectId } = require("mongodb");
+    userCollectionObj.findOne({ _id: ObjectId(userid) }, (err, userObj) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        }
+        return res.status(200).send(userObj);
+    })
+});
 
 userApp.post('/login', (req, res) => {
     // console.log("user obj is",req.body);
@@ -39,12 +74,13 @@ userApp.post('/login', (req, res) => {
                             console.log("err", err);
                         }
                         else {
-                            res.send({ 
-                                message:"success",
-                                token:signedToken,
-                                username: userObj.username, 
-                                userid:userObj._id,
-                                role:userObj.role});
+                            res.send({
+                                message: "success",
+                                token: signedToken,
+                                username: userObj.username,
+                                userid: userObj._id,
+                                role: userObj.role
+                            });
                         }
                     })
                 }
@@ -52,10 +88,15 @@ userApp.post('/login', (req, res) => {
         }
     })
 });
-userApp.post('/register', (req, res) => {
+userApp.post('/register', upload.single('photo'), (req, res) => {
     // console.log(req.body);
     //res.send({message:"user register works"})
     //check for user
+    req.body = JSON.parse(req.body.userObj);
+    if (req.file != undefined) {
+        req.body.imageUrl = req.file.secure_url;
+    }
+    delete req.body.photo;
     var userCollectionObj = dbo.getDb().userCollectionObj;
     userCollectionObj.findOne({ username: req.body.username }, (err, userObjFromDb) => {
         if (err) {
@@ -78,7 +119,52 @@ userApp.post('/register', (req, res) => {
             })
         }
     })
-})
+});
 
+
+
+userApp.put('/updateprofile/:id', upload.single('photo'), (req, res) => {
+    req.body = JSON.parse(req.body.userObj);
+    if (req.file != undefined) {
+        req.body.imageUrl = req.file.secure_url;
+    }
+    delete req.body.photo;
+    var userCollectionObj = dbo.getDb().userCollectionObj;
+    const { ObjectId } = require("mongodb");
+    const query = { _id: ObjectId(req.params.id) };
+    if (req.body.isHashed == false) {
+        var hashedPassword = bcrypt.hashSync(req.body.password, 7)
+        req.body.password = hashedPassword;
+    }
+    const update = {
+        "$set": {
+            "username": req.body.username,
+            "password": req.body.password,
+            "email": req.body.email,
+            "imageUrl": req.body.imageUrl,
+            "createdOn": req.body.createdOn
+        }
+    };
+    userCollectionObj.findOneAndUpdate(query, update, (err, success) => {
+        if (err) {
+            console.log(err);
+            return res.status(404).end();
+        }
+        return res.status(200).send({ message: "updated profile successfully" });
+    });
+});
+
+userApp.get('/search/:username', (req, res) => {
+    var userCollectionObj = dbo.getDb().userCollectionObj;
+    userCollectionObj.findOne({ username: req.params.username }, (err, success) => {
+        if (err) {
+            return res.status(404).end();
+        } if (success) {
+            return res.status(200).send({ message: "username already exists" });
+        } else {
+            return res.status(200).send({ message: "valid username" });
+        }
+    });
+});
 //export userApp
 module.exports = userApp;

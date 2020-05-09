@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/login.service';
 })
 export class AdminprofileComponent implements OnInit {
 
-  constructor(private router: Router, private registerService: RegisterService,private recentActionsService:RecentActionsService,private loginService:LoginService) { }
+  constructor(private router: Router, private registerService: RegisterService, private recentActionsService: RecentActionsService, private loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -22,11 +22,15 @@ export class AdminprofileComponent implements OnInit {
     isValid: false,
     isPasswordValid: true,
     isUsernameValid: true,
-    usernameErrMsg: ''
+    usernameErrMsg: '',
+    emailId: '',
+    isEmailIdValid: true,
+    success: false
   }
 
   private usernameLength = 6;
   private passwordPattern = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
+  private emailIdPattern = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
 
   isUserNamePopulated() {
     const parent = this;
@@ -49,11 +53,21 @@ export class AdminprofileComponent implements OnInit {
     parent.enableDisabledFields();
   }
 
+  validateEmail() {
+    const parent = this;
+    if (parent.emailIdPattern.test(parent.model.emailId) == false) {
+      parent.model.isEmailIdValid = false;
+    } else {
+      parent.model.isEmailIdValid = true;
+    }
+    parent.enableDisabledFields();
+  }
+
   private enableDisabledFields() {
     const parent = this;
-    parent.model.isValid = parent.model.isUsernameValid && parent.model.isPasswordValid
-      && parent.model.username.length && parent.model.password.length;
-      console.log(parent.model.isValid);
+    parent.model.isValid = parent.model.isUsernameValid && parent.model.isPasswordValid && parent.model.isEmailIdValid
+      && parent.model.username.length && parent.model.password.length && parent.model.emailId.length;
+    console.log(parent.model.isValid);
   }
 
   submitForm(dataObj) {
@@ -67,16 +81,20 @@ export class AdminprofileComponent implements OnInit {
         }
         if (res["message"] === "registered successfully") {
           alert("added successfully");
+          this.model.success = true;
           this.router.navigate(['/admindashboard']);
         }
-      })
-      let action ={};
-      action['createdBy']=this.loginService.username;
-        action['createdOn']=new Date();
-        action['ActionDone']="Added Admin";
-      this.recentActionsService.addAction(action).subscribe((res)=>{
-        console.log("added recent action",res)
-      })
+      });
+      if (this.model.success) {
+        let action = {};
+        action['createdById'] = this.loginService.userid;
+        action['createdBy'] = this.loginService.username;
+        action['createdOn'] = new Date();
+        action['ActionDone'] = "Added Admin " +dataObj["username"];
+        this.recentActionsService.addAction(action).subscribe((res) => {
+          console.log("added recent action", res)
+        })
+      }
     }
   }
 

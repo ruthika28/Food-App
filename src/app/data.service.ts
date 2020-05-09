@@ -19,6 +19,15 @@ constructor(private hc:HttpClient){}
   private bsRecipe = new BehaviorSubject<any>(null);
   
   recipeData = this.bsRecipe.asObservable();
+
+  private bsUser = new BehaviorSubject<any>(null);
+
+  userData = this.bsUser.asObservable();
+
+  private bsAdmin = new BehaviorSubject<any>(null);
+
+  adminData = this.bsAdmin.asObservable();
+
   getData():Observable<object[]>  //data is present in observable
   {
    return  this.hc.get<object[]>('https://jsonplaceholder.typicode.com/posts');
@@ -27,6 +36,14 @@ constructor(private hc:HttpClient){}
   getUserData():Observable<object>
   {
     return  this.hc.get('https://reqres.in/api/users');
+  }
+
+  public sendUserData(userdata:any) {
+    this.bsUser.next(userdata);
+  }
+
+  public sendAdminData(admindata:any) {
+    this.bsAdmin.next(admindata);
   }
 
   public sendArticle(article: ArticleData) {

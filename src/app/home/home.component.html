@@ -9,30 +9,14 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 </head>
-
 <body>
 
     <div class="container"
         style="background-image: url('https://images.megapixl.com/6827/68279520.jpg');background-size: cover;">
-        <div class="row">
-            <div class="col-md-4 mt-5"></div>
-            <div class="col-md-4 mt-5">
-                <div class="input-group">
-                    <input class="form-control border rounded-pill-left border-right-0" type="search" value="search"
-                        id="example-search-input">
-                    <span class="input-group-append">
-                        <button class="btn btn-outline-secondary border rounded-pill-right border-left-0" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-4 mt-5"></div>
-        </div>
         <br><br> <br><br> <br>
     </div>
 
-    <div class="container" *ngIf="model.isDataLoaded">
+    
         <br>
         <div class="row">
             <div class="col-2"></div>
@@ -43,7 +27,7 @@
         </div>
         <!--Carousel starts here-->
         <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" maxWidth="auto" proportion="25"
-            slides="2" [loop]="true" [hideArrows]="false" [hideIndicators]="true" [useKeyboard]="true"
+            slides={{nums.length}} [loop]="true" [hideArrows]="false" [hideIndicators]="true" [useKeyboard]="true"
             [useMouseWheel]="false" orientation="ltr">
 
             <mat-carousel-slide #matCarouselSlide *ngFor="let slide of nums; let i = index;let l = count;"
@@ -51,7 +35,8 @@
                 <div
                     style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center">
                     <div class="row">
-                        <div (click)="gotoC(category)" *ngFor="let category of  model.categoryList.slice(i,i+6);let j=index">
+                        <div (click)="gotoC(category)"
+                            *ngFor="let category of  model.categoryList.slice(i,i+6);let j=index">
                             <div class="col-2"><img style=" width: 150px;
                     height: 150px;
                     -webkit-clip-path: circle(50.0% at 50% 50%);
@@ -64,13 +49,15 @@
                 </div>
             </mat-carousel-slide>
         </mat-carousel>
-         <!--Carousel ends here-->
+        <!--Carousel ends here-->
         <div>
             <h2>Recipes</h2>
             <a routerLink="/browse" class="float-md-right mr-5">See all</a>
         </div>
+
+
         <div class="row card-group">
-            <div class="col-4  mb-3 mt-3" *ngFor="let rec of model.recipeList;">
+            <div class="col-4  mb-3 mt-3" *ngFor="let rec of model.recipeList">
                 <div class="card text-center mb-3 mt-3" style="width: 20rem;">
                     <img class="card-img-top" src={{rec.profileImage}} alt="Card image cap">
                     <div class="card-desc">
@@ -80,9 +67,36 @@
                     <a (click)="gotoR(rec,rec.recipe)" class="btn btn-success mb-2">
                         Check Recipe
                     </a>
+                    <div class="card-footer">
+                        <span *ngIf="rec.recipeLikeCount>0">
+                            <mat-icon style="color:red">favorite</mat-icon>&nbsp;{{rec.recipeLikeCount}}
+                        </span>
+                        <span *ngIf="rec.recipeLikeCount == 0">
+                            <mat-icon>favorite_border</mat-icon>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div>
             <h2>Articles</h2>
             <a routerLink="/articles" class="float-md-right mr-5">See all</a>
@@ -99,10 +113,17 @@
                         <p class="trimtext">{{article.description}}</p>
                     </div>
                     <a (click)="articleDisplay(article,article.title)" class="btn btn-success mb-2">Read</a>
+                    <div class="card-footer">
+                        <span *ngIf="article.articleLikeCount>0">
+                            <mat-icon style="color:red">favorite</mat-icon>&nbsp;{{article.articleLikeCount}}
+                        </span>
+                        <span *ngIf="article.articleLikeCount == 0">
+                            <mat-icon>favorite_border</mat-icon>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Latest compiled and minified CSS -->
