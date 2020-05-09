@@ -71,7 +71,7 @@
         </div>
         <div class="row card-group">
             <div class="col-4  mb-3 mt-3" *ngFor="let rec of model.recipeList;">
-                <div class="card border-success text-center mb-3 mt-3" style="width: 20rem;">
+                <div class="card text-center mb-3 mt-3" style="width: 20rem;">
                     <img class="card-img-top" src={{rec.profileImage}} alt="Card image cap">
                     <div class="card-desc">
                         <h5 class="trimtext card-title">{{rec.recipe}}</h5>
@@ -89,7 +89,7 @@
         </div>
         <div class="row card-group">
             <div class="col-4 mb-3 mt-3" *ngFor="let article of model.articleDataList">
-                <div class="card border-info text-center mb-3 mt-3" style="width: 20rem;">
+                <div class="card text-center mb-3 mt-3" style="width: 20rem;">
                     <!-- <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
                     src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100" height="100"
                     alt="Card image cap"> -->
@@ -98,7 +98,7 @@
                         <h3 class="trimtext">{{article.title}}</h3>
                         <p class="trimtext">{{article.description}}</p>
                     </div>
-                    <a (click)="articleDisplay(article,article.title)" class="btn btn-info mb-2">Read</a>
+                    <a (click)="articleDisplay(article,article.title)" class="btn btn-success mb-2">Read</a>
                 </div>
             </div>
         </div>
