@@ -3,8 +3,8 @@ const exp = require("express");
 const adminApp = exp.Router();
 adminApp.use(exp.json());
 //import dbo from db.js
-const dbo = require("../db");
-dbo.initDb();
+// const dbo = require("../db");
+// dbo.initDb();
 var bcrypt = require("bcrypt");
 //localhost:port/admin/login (POST)
 //localhost:port/admin/readprofile/username (GET)
@@ -17,7 +17,8 @@ var bcrypt = require("bcrypt");
 //     res.send({message:"admin login works"})
 // });
 adminApp.post('/addAdmin', (req, res) => {
-  var userCollectionObj = dbo.getDb().userCollectionObj;
+  // var userCollectionObj = dbo.getDb().userCollectionObj;
+  var userCollectionObj=req.app.locals.usercollection;
   userCollectionObj.findOne({ username: req.body.username }, (err, dataObjFromDb) => {
     if (err) {
       console.log("err in register", err);

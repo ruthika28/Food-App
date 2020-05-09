@@ -1,7 +1,11 @@
+
 //install and import express
 const exp = require("express");
 
 const bodyParser = require('body-parser');
+
+//import mongodb driver
+var mc = require("mongodb").MongoClient;
 
 //import adminApp and userApp
 //get express obj
@@ -23,8 +27,8 @@ const userApp = require("./apis/userapi")
 const articleOperationApp = require("./apis/articleoperationapi");
 const categoryOperationApp = require("./apis/categoryoperationapi");
 const fileUploadApp = require("./apis/fileuploadapi");
-const recipeOperationApp=require("./apis/recipeoperationapi")
-const recentActionsApp=require("./apis/recentactionsapi")
+const recipeOperationApp = require("./apis/recipeoperationapi")
+const recentActionsApp = require("./apis/recentactionsapi")
 
 //forwarding req object to apis
 
@@ -32,10 +36,44 @@ app.use("/admin", adminApp);
 app.use("/user", userApp);
 app.use("/article", articleOperationApp);
 app.use("/category", categoryOperationApp);
-app.use("/uploadfile",fileUploadApp);
-app.use('/recipe',recipeOperationApp);
-app.use('/recent-actions',recentActionsApp);
+app.use("/uploadfile", fileUploadApp);
+app.use('/recipe', recipeOperationApp);
+app.use('/recent-actions', recentActionsApp);
 
-//assign port no
-const port = 3000;
-app.listen(port, () => { console.log(`server running on port ${port}`) })
+app.use((req, res, next) => {
+    res.send({ message: `${req.url} and ${req.method} is invalid` });
+});
+
+//to hold db object
+var dbo;
+//database url
+var dbUrl = "mongodb+srv://project:project@cluster0-donss.mongodb.net/test?retryWrites=true&w=majority";
+mc.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
+    if (err) {
+        console.log("error in connecting in db");
+    }
+    console.log("connected to database");
+    dbo = client.db("userdb");
+    app.locals.usercollection = dbo.collection("usercollection");
+    app.locals.articlecollection = dbo.collection("articlecollection");
+    app.locals.categorycollection = dbo.collection("categorycollection");
+    app.locals.recipecollection = dbo.collection("recipecollection");
+    app.locals.recent_actions_collections = dbo.collection("recent_actions_collections")
+    app.locals.likearticlescollection = dbo.collection("likearticlescollection");
+    app.locals.likerecipescollection = dbo.collection("likerecipescollection");
+
+    //assign port no
+    const port = 3000;
+    app.listen(port, () => { console.log(`server running on port ${port}`) })
+
+    // userCollectionObj = dbo.collection("usercollection");
+    // adminCollectionObj = dbo.collection("admincollection");
+    // articleCollectionObj = dbo.collection("articlecollection");
+    // categoryCollectionObj = dbo.collection("categorycollection");
+    // recipeCollectionObj=dbo.collection("recipecollection");
+    // recent_actions_collectionObj=dbo.collection("recent_actions_collections")
+    // likeArticlesCollectionObj=dbo.collection("likearticlescollection");
+    // likeRecipesCollectionObj=dbo.collection("likerecipescollection");
+
+})
+

@@ -2,13 +2,14 @@ const exp = require("express");
 const articleOperationApp = exp.Router();
 articleOperationApp.use(exp.json())
 //import dbo from db.js
-const dbo = require("../db");
-dbo.initDb();
+// const dbo = require("../db");
+// dbo.initDb();
 var jwt = require("jsonwebtoken");
 var articleId;
 articleOperationApp.post('/add', (req, res) => {
     // articleOperationApp.post('/article-operation/add',(req,res)=>{
-    var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    // var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    var articleCollectionObj = req.app.locals.articlecollection;
     articleCollectionObj.insertOne(req.body, (err, success) => {
         if (err) {
             console.log('error');
@@ -19,7 +20,8 @@ articleOperationApp.post('/add', (req, res) => {
 });
 
 articleOperationApp.get('/get', (req, res) => {
-    var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    // var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    var articleCollectionObj = req.app.locals.articlecollection;
     // articleCollectionObj.find({
     //     endedOn: null
     // }).sort({ "createdOn": -1 }).toArray(function (err, data) {
@@ -66,7 +68,8 @@ articleOperationApp.get('/get', (req, res) => {
 });
 
 articleOperationApp.get('/getArticleByUsername/:id', (req, res) => {
-    var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    // var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    var articleCollectionObj = req.app.locals.articlecollection;
     let userid = req.params.id;
     articleCollectionObj.aggregate(
         [
@@ -116,7 +119,8 @@ articleOperationApp.get('/getArticleByUsername/:id', (req, res) => {
 });
 
 articleOperationApp.get('/noOfArticles/:id', (req, res) => {
-    var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    // var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    var articleCollectionObj = req.app.locals.articlecollection;
     let userid = req.params.id;
     articleCollectionObj.countDocuments({ createdById: userid }, (err, data) => {
         if (err) {
@@ -129,7 +133,8 @@ articleOperationApp.get('/noOfArticles/:id', (req, res) => {
 })
 
 articleOperationApp.delete('/remove/:id', (req, res) => {
-    var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    // var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    var articleCollectionObj = req.app.locals.articlecollection;
     let id = req.params.id;
     const { ObjectId } = require("mongodb");
     articleCollectionObj.deleteOne({ _id: ObjectId(id) }, (err, success) => {
@@ -143,7 +148,8 @@ articleOperationApp.delete('/remove/:id', (req, res) => {
 });
 
 articleOperationApp.put('/removeSelectedArticles', (req, res) => {
-    var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    // var articleCollectionObj = dbo.getDb().articleCollectionObj;
+    var articleCollectionObj = req.app.locals.articlecollection;
     let idArray = [];
     const { ObjectId } = require("mongodb");
     for (let i = 0; i < req.body.length; i++)
@@ -161,7 +167,8 @@ articleOperationApp.put('/removeSelectedArticles', (req, res) => {
 });
 
 articleOperationApp.post('/likeArticle', (req, res) => {
-    var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    var likeArticlesCollectionObj = req.app.locals.likearticlescollection;
+    // var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
     const query = { articleid: req.body.articleid, userid: req.body.userid };
     const update = {
         "$set": {
@@ -181,7 +188,8 @@ articleOperationApp.post('/likeArticle', (req, res) => {
 })
 
 articleOperationApp.post('/dislikeArticle', (req, res) => {
-    var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    // var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    var likeArticlesCollectionObj = req.app.locals.likearticlescollection;
     const query = { articleid: req.body.articleid, userid: req.body.userid };
     likeArticlesCollectionObj.deleteOne(query, (err, success) => {
         if (err) {
@@ -194,7 +202,8 @@ articleOperationApp.post('/dislikeArticle', (req, res) => {
 });
 
 articleOperationApp.get('/noOfLikesToArticle/:articleid', (req, res) => {
-    var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    // var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    var likeArticlesCollectionObj = req.app.locals.likearticlescollection;
     likeArticlesCollectionObj.countDocuments({ articleid: req.params.articleid }, (err, data) => {
         if (err) {
             console.log(err);
@@ -206,7 +215,8 @@ articleOperationApp.get('/noOfLikesToArticle/:articleid', (req, res) => {
 });
 
 articleOperationApp.get('/totalLikesToUserForArticle/:userid', (req, res) => {
-    var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    // var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    var likeArticlesCollectionObj = req.app.locals.likearticlescollection;
     likeArticlesCollectionObj.countDocuments({ createdBy: req.params.userid }, (err, data) => {
         if (err) {
             console.log(err);
@@ -218,7 +228,8 @@ articleOperationApp.get('/totalLikesToUserForArticle/:userid', (req, res) => {
 });
 
 articleOperationApp.post('/userLikedArticle', (req, res) => {
-    var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    // var likeArticlesCollectionObj = dbo.getDb().likeArticlesCollectionObj;
+    var likeArticlesCollectionObj = req.app.locals.likearticlescollection;
     const query = { articleid: req.body.articleid, userid: req.body.userid };
     likeArticlesCollectionObj.findOne(query, (err, success) => {
         if (err) {
