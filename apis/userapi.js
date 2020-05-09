@@ -3,8 +3,8 @@ const exp = require("express");
 const userApp = exp.Router();
 userApp.use(exp.json())
 //import dbo from db.js
-const dbo = require("../db");
-dbo.initDb();
+// const dbo = require("../db");
+// dbo.initDb();
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt")
 const cloudinary = require("cloudinary");
@@ -34,7 +34,8 @@ var storageForCloudinary = cloudinaryStorage({
 var upload = multer({ storage: storageForCloudinary });
 
 userApp.get('/readprofile/:id', (req, res) => {
-    var userCollectionObj = dbo.getDb().userCollectionObj;
+    var userCollectionObj=req.app.locals.usercollection;
+    // var userCollectionObj = dbo.getDb().userCollectionObj;
     var userid = req.params.id;
     const { ObjectId } = require("mongodb");
     userCollectionObj.findOne({ _id: ObjectId(userid) }, (err, userObj) => {
@@ -51,7 +52,8 @@ userApp.post('/login', (req, res) => {
     // res.send({message:"user login works"})
 
     //verify username
-    var userCollectionObj = dbo.getDb().userCollectionObj;
+    // var userCollectionObj = dbo.getDb().userCollectionObj;
+    var userCollectionObj=req.app.locals.usercollection;
     userCollectionObj.findOne({ username: req.body.username }, (err, userObj) => {
         if (err) {
             console.log("err in read", err);
@@ -97,7 +99,8 @@ userApp.post('/register', upload.single('photo'), (req, res) => {
         req.body.imageUrl = req.file.secure_url;
     }
     delete req.body.photo;
-    var userCollectionObj = dbo.getDb().userCollectionObj;
+    // var userCollectionObj = dbo.getDb().userCollectionObj;
+    var userCollectionObj=req.app.locals.usercollection;
     userCollectionObj.findOne({ username: req.body.username }, (err, userObjFromDb) => {
         if (err) {
             console.log("err in register", err)
@@ -129,7 +132,8 @@ userApp.put('/updateprofile/:id', upload.single('photo'), (req, res) => {
         req.body.imageUrl = req.file.secure_url;
     }
     delete req.body.photo;
-    var userCollectionObj = dbo.getDb().userCollectionObj;
+    // var userCollectionObj = dbo.getDb().userCollectionObj;
+    var userCollectionObj=req.app.locals.usercollection;
     const { ObjectId } = require("mongodb");
     const query = { _id: ObjectId(req.params.id) };
     if (req.body.isHashed == false) {
@@ -155,7 +159,8 @@ userApp.put('/updateprofile/:id', upload.single('photo'), (req, res) => {
 });
 
 userApp.get('/search/:username', (req, res) => {
-    var userCollectionObj = dbo.getDb().userCollectionObj;
+    // var userCollectionObj = dbo.getDb().userCollectionObj;
+    var userCollectionObj=req.app.locals.usercollection;
     userCollectionObj.findOne({ username: req.params.username }, (err, success) => {
         if (err) {
             return res.status(404).end();

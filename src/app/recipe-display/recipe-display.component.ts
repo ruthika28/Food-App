@@ -106,6 +106,10 @@ export class RecipeDisplayComponent implements OnInit {
     })
   }
 
+  gotoC(categoryname) {
+    this.router.navigate([`/category-display/${categoryname}`]);
+  }
+
 }
 
 

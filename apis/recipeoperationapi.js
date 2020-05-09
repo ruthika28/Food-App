@@ -2,8 +2,8 @@ const exp = require("express");
 const recipeOperationApp = exp.Router();
 recipeOperationApp.use(exp.json())
 //import dbo from db.js
-const dbo = require("../db");
-dbo.initDb();
+// const dbo = require("../db");
+// dbo.initDb();
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt")
 const cloudinary=require("cloudinary");
@@ -49,7 +49,8 @@ recipeOperationApp.post('/add',upload.single('photo'),(req,res)=>{
 
     //console.log("req body is", req.body);
     //console.log("cdn link of uploaded image is ",req.file.secure_url);
-    var recipeCollectionObj = dbo.getDb().recipeCollectionObj;
+    // var recipeCollectionObj = dbo.getDb().recipeCollectionObj;
+    var recipeCollectionObj = req.app.locals.recipecollection;
     recipeCollectionObj.insertOne(req.body, (err, success) => {
         if (err) {
             console.log('error')
@@ -61,7 +62,8 @@ recipeOperationApp.post('/add',upload.single('photo'),(req,res)=>{
 });
 
 recipeOperationApp.get('/get-recipe',(req,res)=>{
-    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    // var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    var recipeCollectionObj = req.app.locals.recipecollection;
     recipeCollectionObj.aggregate(
         [
             {
@@ -102,7 +104,8 @@ recipeOperationApp.get('/get-recipe',(req,res)=>{
 });
 
 recipeOperationApp.get('/getRecipeByUsername/:id',(req,res)=>{
-    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    // var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    var recipeCollectionObj = req.app.locals.recipecollection;
     let userid=req.params.id;
     recipeCollectionObj.aggregate(
         [
@@ -140,7 +143,8 @@ recipeOperationApp.get('/getRecipeByUsername/:id',(req,res)=>{
         })
 });
 recipeOperationApp.delete('/remove/:id',(req,res)=>{
-    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    // var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    var recipeCollectionObj = req.app.locals.recipecollection;
     let id=req.params.id;
     const {ObjectId}=require("mongodb");
     //console.log("ibj id is ",ObjectId(id));
@@ -154,7 +158,8 @@ recipeOperationApp.delete('/remove/:id',(req,res)=>{
     })
 })
 recipeOperationApp.put('/delete-many',(req,res)=>{
-    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    // var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    var recipeCollectionObj = req.app.locals.recipecollection;
     let a=[];
     const {ObjectId}=require("mongodb");
     for(let i=0;i<req.body.length;i++)
@@ -175,7 +180,8 @@ recipeOperationApp.put('/delete-many',(req,res)=>{
 
 
 recipeOperationApp.get('/noOfRecipes/:id',(req,res)=>{
-    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    // var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    var recipeCollectionObj = req.app.locals.recipecollection;
     let userid=req.params.id;
     recipeCollectionObj.countDocuments({createdById:userid},(err,data)=>{
         if(err) {
@@ -189,7 +195,8 @@ recipeOperationApp.get('/noOfRecipes/:id',(req,res)=>{
 })
 
 recipeOperationApp.get('/getCategories/:name',(req,res)=>{
-    var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    // var recipeCollectionObj=dbo.getDb().recipeCollectionObj;
+    var recipeCollectionObj = req.app.locals.recipecollection;
     let categoryName=req.params.name;
     recipeCollectionObj.find({category:categoryName}).sort({"createdOn":-1}).toArray(function(err,data){
         if(err)
@@ -205,7 +212,8 @@ recipeOperationApp.get('/getCategories/:name',(req,res)=>{
 })
 
 recipeOperationApp.post('/likeRecipe', (req, res) => {
-    var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    // var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    var likeRecipesCollectionObj = req.app.locals.likerecipescollection;
     const query = { recipeid: req.body.recipeid, userid: req.body.userid };
     const update = {
         "$set": {
@@ -225,7 +233,8 @@ recipeOperationApp.post('/likeRecipe', (req, res) => {
 });
 
 recipeOperationApp.post('/dislikeRecipe', (req, res) => {
-    var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    // var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    var likeRecipesCollectionObj = req.app.locals.likerecipescollection;
     const query = { recipeid: req.body.recipeid, userid: req.body.userid };
     likeRecipesCollectionObj.deleteOne(query, (err, success) => {
         if (err) {
@@ -238,7 +247,8 @@ recipeOperationApp.post('/dislikeRecipe', (req, res) => {
 });
 
 recipeOperationApp.get('/noOfLikesToRecipe/:recipeid', (req, res) => {
-    var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    // var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    var likeRecipesCollectionObj = req.app.locals.likerecipescollection;
     likeRecipesCollectionObj.countDocuments({ recipeid: req.params.recipeid }, (err, data) => {
         if (err) {
             console.log(err);
@@ -250,7 +260,8 @@ recipeOperationApp.get('/noOfLikesToRecipe/:recipeid', (req, res) => {
 });
 
 recipeOperationApp.get('/totalLikesToUserForRecipe/:userid', (req, res) => {
-    var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    // var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    var likeRecipesCollectionObj = req.app.locals.likerecipescollection;
     likeRecipesCollectionObj.countDocuments({ createdBy: req.params.userid }, (err, data) => {
         if (err) {
             console.log(err);
@@ -262,7 +273,8 @@ recipeOperationApp.get('/totalLikesToUserForRecipe/:userid', (req, res) => {
 });
 
 recipeOperationApp.post('/userLikedRecipe', (req, res) => {
-    var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    // var likeRecipesCollectionObj = dbo.getDb().likeRecipesCollectionObj;
+    var likeRecipesCollectionObj = req.app.locals.likerecipescollection;
     const query = { recipeid: req.body.recipeid, userid: req.body.userid };
     likeRecipesCollectionObj.findOne(query, (err, success) => {
         if (err) {

@@ -5,10 +5,9 @@ import {PipeTransform,Pipe } from '@angular/core';
 export class RecipefilterPipe implements PipeTransform
 {
     transform(recipes:any, searchTerm:string):any{     
-
         if(!recipes || !searchTerm)
         return recipes;
         return recipes.filter(recipe1=>
-            recipe1.recipe.indexOf(searchTerm)!=-1);
+            recipe1["recipe"].toLowerCase().indexOf(searchTerm)!=-1);
     }
 }
