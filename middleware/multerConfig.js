@@ -1,9 +1,9 @@
 var multer = require('multer');
 const cloudinary = require('cloudinary');
 cloudinary.config({
-    cloud_name: 'do8ujullm',
-    api_key: '276121795183361',
-    api_secret: 'p5tF0tDi8R-RYXXQFjM4zBcU3gk'
+    cloud_name:process.env.cloudname,
+    api_key:process.env.apikey,
+    api_secret:process.env.apisecret
 });
 const cloudinaryStorage=require("multer-storage-cloudinary");
 //multer.diskStorage() creates a storage space for storing files. 
