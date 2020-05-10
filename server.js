@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 //import mongodb driver
 var mc = require("mongodb").MongoClient;
 
+require("dotenv").config();
+
 //import adminApp and userApp
 //get express obj
 const app = exp();
@@ -47,7 +49,10 @@ app.use((req, res, next) => {
 //to hold db object
 var dbo;
 //database url
-var dbUrl = "mongodb+srv://project:project@cluster0-donss.mongodb.net/test?retryWrites=true&w=majority";
+// var dbUrl = "mongodb+srv://project:project@cluster0-donss.mongodb.net/test?retryWrites=true&w=majority";
+var dbUrl=process.env.dbUrl;
+// console.log(process.env.dbUrl);
+
 mc.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
     if (err) {
         console.log("error in connecting in db");
@@ -63,7 +68,7 @@ mc.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, (err, cli
     app.locals.likerecipescollection = dbo.collection("likerecipescollection");
 
     //assign port no
-    const port = 3000;
+    const port = process.env.port;
     app.listen(port, () => { console.log(`server running on port ${port}`) })
 
     // userCollectionObj = dbo.collection("usercollection");

@@ -1,4 +1,4 @@
-//import mongodb driver
+ //import mongodb driver
 var mc=require("mongodb").MongoClient;
 //to hold db object
 var dbo;
