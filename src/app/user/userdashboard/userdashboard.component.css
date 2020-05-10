@@ -3,7 +3,16 @@
     height: 15vw;
     object-fit: cover;
 }
+.profile-header {
+    transform: translateY(5rem);
+}
 
+.jumbotron {
+    background: #654ea3;
+    background: -webkit-linear-gradient(to right, #654ea3, #eaafc8);
+    background: linear-gradient(to right, #654ea3, #eaafc8);
+    min-height: 100vh;
+}
 .avatar {
     vertical-align: middle;
     width: 50px;
