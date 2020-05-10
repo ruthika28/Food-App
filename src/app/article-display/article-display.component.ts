@@ -109,4 +109,8 @@ export class ArticleDisplayComponent implements OnInit, OnDestroy {
     })
   }
 
+  gotoC(categoryname) {
+    this.router.navigate([`/category-display/${categoryname}`]);
+  }
+
 }

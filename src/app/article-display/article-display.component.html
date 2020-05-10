@@ -26,9 +26,9 @@
     <!-- Grid column -->
     <div class="col-md-7 text-md-left ml-3 mt-3">
 
-      <a href="#!" class="green-text">
+      <a  class="my-cursor" style="color:black" *ngFor="let m of articleObj.category">
         <i class="fa fa-list-alt"></i>
-        <span class="font-italic green-text" *ngFor="let m of articleObj.category"> {{m}}</span>
+        <span class="font-italic green-text" (click)="gotoC(m)"> {{m}} &nbsp;</span>
       </a>
       <h4 class="display-3 mb-4">{{articleObj.title}}</h4>
 
