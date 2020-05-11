@@ -58,9 +58,8 @@
       <div class="display-4 font-italic">Ingredients :</div><br>
       <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let m of recipeObj.ingrlist; let i = index">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="check{{i}}">
-            <label class="custom-control-label" for="check{{i}}">{{m.name}} - {{m.value}} {{m.units}}</label>
+          <div class="custom-control ">
+            <div class="display-5"><i class="fas fa-utensil-spoon"></i>&nbsp; {{m.name}} - {{m.value}} {{m.units}}</div>
             <hr>
           </div>
         </li>
