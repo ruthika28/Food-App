@@ -14,6 +14,9 @@ export class CategoryDisplayComponent implements OnInit {
 
   constructor(private router: Router,private dataService: DataService,private ar:ActivatedRoute,private hc:HttpClient,private ls:LoginService,private recipeService:RecipeOperationService) { }
 
+  model:any={
+    isDataLoaded:false
+  }
   category:string;
   recipes:any;
   ngOnInit() {
@@ -27,6 +30,7 @@ export class CategoryDisplayComponent implements OnInit {
   {
     this.recipeService.getRequiredCategories(this.category).subscribe((res)=>{      
       this.recipes=res['recipeObj'];
+      this.model.isDataLoaded=true;
       //console.log("Object received is ",this.recipes);
     })
   }
