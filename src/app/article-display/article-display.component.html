@@ -33,14 +33,14 @@
       <h4 class="display-3 mb-4">{{articleObj.title}}</h4>
 
       <h6 class="text-muted font-italic">{{articleObj.description}}</h6>
-
-      <p class="font-weight-normal display-6">{{articleObj.content}}</p>
       <p class="font-weight-normal">By <a><strong>{{articleObj.author}}</strong></a></p>
 
       <mat-icon *ngIf="!isLiked" class="my-cursor" (click)="toggleLike($event)">favorite_border</mat-icon>
       <mat-icon *ngIf="isLiked" style="color:red" class="my-cursor" (click)="toggleLike($event)">favorite</mat-icon>
 
       <p class="font-weight-normal display-6">{{noOfLikes}} likes</p>
+
+      <p class="font-weight-normal display-6">{{articleObj.content}}</p>
     </div>
     <!-- Grid column -->
 

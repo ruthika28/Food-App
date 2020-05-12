@@ -11,7 +11,6 @@
         <br />
         <br />
         <div class="loader"></div>
-
     </div>
     <div *ngIf="model.isDataLoaded">
         <div class="form group">
@@ -45,7 +44,7 @@
             </div>
             <div>
                 <label>Content</label>
-                <textarea class="form-control z-depth-1" style="width:60vw;border: 1px solid blue ;" name="content" rows="20"
+                <textarea class="form-control z-depth-1" style="width:60vw;border: 1px solid gray ;" name="content" rows="20"
                     [(ngModel)]="model.content" placeholder="write your content here..." required></textarea>
             </div>
             <!-- <label>Content</label>
@@ -66,7 +65,7 @@
     </div>
     <button type="button" (click)="cancel()" class="btn btn-outline-danger waves-effect">Cancel</button>
     <button type="button" (click)="postArticle()" [disabled]="!isFormPopulated() || !model.isDataLoaded"
-        class="btn btn-outline-success float-md-right waves-effect mr-5">Post</button>
+        class="btn btn-outline-success" style="margin-left:68%;">Post</button>
 </div>
 <!-- </form> -->
 <!-- </form> -->

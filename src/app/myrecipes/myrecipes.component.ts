@@ -18,6 +18,7 @@ export class MyrecipesComponent implements OnInit {
   success:boolean=false;
   username:any;
   title:String;
+  isloaded:boolean=false;
   ngOnInit() {
     this.getRecipes();
     this.username=this.loginService.username;
@@ -25,6 +26,7 @@ export class MyrecipesComponent implements OnInit {
   getRecipes() {
     this.recipeOperationService.getRecipeObjByUserName().subscribe((res)=>{
       this.recipes=res["recipeObj"];
+      this.isloaded=true;
     });
   }
   gotoR(recipe,recipetitle)

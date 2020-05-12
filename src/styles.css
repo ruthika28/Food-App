@@ -29,7 +29,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: 15px !important;
     font-weight: 400!important;
     line-height:2 !important;
-    border: 1px solid blue !important;
+    border: 1px solid gray !important;
     text-align: left!important;
     vertical-align: middle!important;
     cursor: pointer!important;
