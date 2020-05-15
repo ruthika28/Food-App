@@ -37,7 +37,7 @@ import { RemoveArticleComponent } from './remove-article/remove-article.componen
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import{ MatCheckboxModule, MatCardModule, MatToolbarModule} from '@angular/material';
+import{ MatCheckboxModule, MatCardModule, MatToolbarModule, MatSidenavModule} from '@angular/material';
 import { RemoveCategoryComponent } from './remove-category/remove-category.component';
 import { CategoryDisplayComponent } from './category-display/category-display.component';
 import { UserprofileComponent } from './user/userprofile/userprofile.component';
@@ -70,6 +70,7 @@ import { RecipefilterPipe } from './recipe-filter.pipe';
     RecipefilterPipe
   ],
   imports: [
+    MatSidenavModule,
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,

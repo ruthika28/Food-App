@@ -101,7 +101,7 @@ export class RemoveCategoryComponent implements OnInit {
     for (let i = 0; i < this.selection.selected.length; i++) {
       send.push(this.selection.selected[i]['_id']);
     }
-    if (confirm("Are you sure you want to delete the Recipes?")) {
+    if (confirm("Are you sure you want to delete the Categories?")) {
       this.categoryOperationService.removeSelectedCategories(send).subscribe((res) => {
         if (res["message"] === "successfully deleted") {
           this.model.success = true;
