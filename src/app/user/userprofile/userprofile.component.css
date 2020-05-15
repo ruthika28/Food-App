@@ -14,8 +14,8 @@
   }
 
   .jumbotron {
-    background: #654ea3;
-    background: -webkit-linear-gradient(to right, #654ea3, #eaafc8);
-    background: linear-gradient(to right, #654ea3, #eaafc8);
+    background: #F6F0EA;
+    background: -webkit-linear-gradient(to right, #F6F0EA, #F1DFD1 );
+    background: linear-gradient(to right, #F6F0EA, #F1DFD1 );
     min-height: 100vh;
 }
