@@ -10,7 +10,7 @@ const cloudinaryStorage=require("multer-storage-cloudinary");
 var storageForCloudinary = cloudinaryStorage({
     cloudinary:cloudinary,
     folder:'Images',
-    allowedFormats:['jpg','png','jpeg'],
+    // allowedFormats:['jpg','png','jpeg'],
     filename: function (req, file, cb) {
         cb(null,file.fieldname +'-'+Date.now())
     }
