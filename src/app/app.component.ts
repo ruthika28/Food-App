@@ -19,7 +19,7 @@ export class AppComponent implements OnDestroy {
   // }
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
-  constructor(private ls:LoginService,private router:Router,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(public ls:LoginService,private router:Router,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

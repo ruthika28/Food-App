@@ -67,17 +67,8 @@ mc.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, (err, cli
     app.locals.likerecipescollection = dbo.collection("likerecipescollection");
 
     //assign port no
-    const port = process.env.port;
+    const port = process.env.PORT;
     app.listen(port||8080, () => { console.log(`server running on port ${port}`) })
-
-    // userCollectionObj = dbo.collection("usercollection");
-    // adminCollectionObj = dbo.collection("admincollection");
-    // articleCollectionObj = dbo.collection("articlecollection");
-    // categoryCollectionObj = dbo.collection("categorycollection");
-    // recipeCollectionObj=dbo.collection("recipecollection");
-    // recent_actions_collectionObj=dbo.collection("recent_actions_collections")
-    // likeArticlesCollectionObj=dbo.collection("likearticlescollection");
-    // likeRecipesCollectionObj=dbo.collection("likerecipescollection");
 
 })
 

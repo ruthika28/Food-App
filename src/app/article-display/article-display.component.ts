@@ -17,7 +17,7 @@ export class ArticleDisplayComponent implements OnInit, OnDestroy {
 
   articleId: string = "";
   createdBy: string = "";
-  articleObj: object;
+  public articleObj: any={};
   isDataLoaded: boolean = false;
   isLiked: boolean;
   noOfLikes: number = 0;

@@ -44,7 +44,7 @@
       <br>
       <h2>Add Ingredients</h2>
       <form [formGroup]="userTable">
-          <table class="table table-border" [ngClass]="{'table-dark': mode}">
+          <table class="table table-border">
             <thead class="text-nowrap">
               <th>Name</th>
               <th>value</th>
@@ -109,7 +109,7 @@
         
         <!--instruction table starts here-->
         <form [formGroup]="userTable1">
-          <table class="table table-border" [ngClass]="{'table-dark': mode}">
+          <table class="table table-border">
             <thead class="text-nowrap">
               <th>Instructions</th>
               <th><button style="float: right;" mat-raised-button type="submit" (click)="addRow1()">Add row</button>

@@ -14,7 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class AdmindashboardComponent implements OnInit {
   username: String;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  constructor(private ls: LoginService, private router: Router, private dataService: DataService, private ra: RecentActionsService) { }
+  constructor(public ls: LoginService, private router: Router, private dataService: DataService, private ra: RecentActionsService) { }
   userobj: object;
   actions: any;
   dataSource: any;
