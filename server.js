@@ -68,7 +68,7 @@ mc.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, (err, cli
 
     //assign port no
     const port = process.env.port;
-    app.listen(port, () => { console.log(`server running on port ${port}`) })
+    app.listen(port||8080, () => { console.log(`server running on port ${port}`) })
 
     // userCollectionObj = dbo.collection("usercollection");
     // adminCollectionObj = dbo.collection("admincollection");
