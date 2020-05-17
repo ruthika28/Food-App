@@ -54,7 +54,7 @@ var dbUrl=process.env.dbUrl;
 mc.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
     if (err) {
         console.log("error in connecting in db");
-    }
+    } else {
     console.log("connected to database");
     dbo = client.db("userdb");
     app.locals.usercollection = dbo.collection("usercollection");
@@ -68,6 +68,6 @@ mc.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, (err, cli
     //assign port no
     const port = process.env.PORT;
     app.listen(port||8080, () => { console.log(`server running on port ${port}`) })
-
+    }
 })
 
