@@ -36,10 +36,10 @@ export class ArticleOperationComponent implements OnInit {
     isImageUploaded: false,
     message: "upload a photo"
   };
-  private imgFile: File = undefined;
-  private success:boolean=false;
-  private filetype = ['image/jpeg', 'image/png', 'image/jpg'];
-  private imageObj: {
+   imgFile: File = undefined;
+   success:boolean=false;
+   filetype = ['image/jpeg', 'image/png', 'image/jpg'];
+  public imageObj: {
     imageUrl: string | ArrayBuffer ,
     publicId: ''
   } = { imageUrl: "", publicId: "" };

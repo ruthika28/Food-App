@@ -12,15 +12,15 @@ import { RecipeOperationService } from '../recipe-operation.service';
 })
 export class RecipeDisplayComponent implements OnInit {
 
-  recipeDataEvent:any;
-  isDataLoaded:boolean=false;
+  public recipeDataEvent:any;
+  public isDataLoaded:boolean=false;
   constructor(private ar:ActivatedRoute,private hc:HttpClient,private ds:DataService,private loginService:LoginService,
     private router:Router,private recipeOperationService:RecipeOperationService) { }
-  recipeId: string = "";
-  createdBy: string = "";
-  recipeObj:object;
-  isLiked: boolean;
-  noOfLikes: number = 0;
+  public recipeId: string = "";
+  public createdBy: string = "";
+  public recipeObj:any={};
+  public isLiked: boolean;
+  public noOfLikes: number = 0;
   ngOnInit() {
     this.recipeDataEvent = this.ds.recipeData.subscribe(data => {
       if (data != null) {  

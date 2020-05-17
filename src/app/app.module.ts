@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +42,8 @@ import { RemoveCategoryComponent } from './remove-category/remove-category.compo
 import { CategoryDisplayComponent } from './category-display/category-display.component';
 import { UserprofileComponent } from './user/userprofile/userprofile.component';
 import { RecipefilterPipe } from './recipe-filter.pipe';
+import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
 
 
 @NgModule({
@@ -51,8 +53,8 @@ import { RecipefilterPipe } from './recipe-filter.pipe';
     ArticlesComponent,
     BrowseComponent,
     LoginComponent,
-    AdmindashboardComponent,
-    UserdashboardComponent,
+    // AdmindashboardComponent,
+    // UserdashboardComponent,
     RegisterComponent,
     ArticleOperationComponent,
     CategoryOperationComponent,
@@ -60,16 +62,18 @@ import { RecipefilterPipe } from './recipe-filter.pipe';
     ArticleDisplayComponent,
     RecipeDisplayComponent,
     RecipeEditComponent,
-    AdminprofileComponent,
+    // AdminprofileComponent,
     MyarticlesComponent,
     MyrecipesComponent,
     RemoveArticleComponent,
     RemoveCategoryComponent,
     CategoryDisplayComponent,
-    UserprofileComponent,
+    // UserprofileComponent,
     RecipefilterPipe
   ],
   imports: [
+    AdminModule,
+    UserModule,
     MatSidenavModule,
     MatInputModule,
     MatDatepickerModule,
@@ -128,6 +132,7 @@ import { RecipefilterPipe } from './recipe-filter.pipe';
       useClass: AuthorizationService,
       multi: true
     }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }
