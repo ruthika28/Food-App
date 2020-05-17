@@ -5,402 +5,137 @@
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <style>
-        .carousel-inner img {
-    width: 100%;
-    height: 100%;
-}
-.rounded-pill-left {
-border-top-left-radius: 50rem !important;
-border-bottom-left-radius: 50rem !important;
-}
-.rounded-pill-right {
-border-top-right-radius: 50rem !important;
-border-bottom-right-radius: 50rem !important;
-}
 
-/* Another classes to use */
-.rounded-t-l-0 {
-border-top-left-radius: 0 !important;
-}
-.rounded-t-r-0 {
-border-top-right-radius: 0 !important;
-}
-.rounded-b-l-0 {
-border-bottom-left-radius: 0 !important;
-}
-.rounded-b-r-0 {
-border-bottom-right-radius: 0 !important;
-}
-.rounded-x-l-0 {
-border-top-left-radius: 0 !important;
-border-bottom-left-radius: 0 !important;
-}
-.rounded-x-r-0 {
-border-top-right-radius: 0 !important;
-border-bottom-right-radius: 0 !important;
-}
-.checked {
-    color: orange;
-  }
-.card-img-top {
-      width: 100%;
-      height: 15vw;
-      object-fit: cover;
-  }
-    </style>
 </head>
 
 <body>
+    <div *ngIf="!model.isDataLoaded" style="height: 500px; margin-left: 45%;">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="loader"></div>
 
-    <div class="container"
-        style="background-image: url('https://images.megapixl.com/6827/68279520.jpg');background-size: cover;">
-        <div class="row">
-            <div class="col-md-4 mt-5"></div>
-            <div class="col-md-4 mt-5">
-                <div class="input-group">
-                    <input class="form-control border rounded-pill-left border-right-0" type="search" value="search"
-                        id="example-search-input">
-                    <span class="input-group-append">
-                        <button class="btn btn-outline-secondary border rounded-pill-right border-left-0" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-4 mt-5"></div>
-        </div>
-        <br><br> <br><br>  <br>
     </div>
+    <div class="jumbotron">
+        <div class="container"
+            style="background-image: url('https://images.megapixl.com/6827/68279520.jpg');background-size: cover;">
+            <br><br> <br><br> <br>
+        </div>
 
-    <div class="container bg-light">
+
+        <br>
         <div class="row">
             <div class="col-2"></div>
             <div class="col-9">
                 <h1 class="display-4 ">What are your favourite cuisines ?</h1>
             </div>
             <div class="col-1"></div>
-        </div><br>
-        <div id="demo" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
+        </div>
+        <!--Carousel starts here-->
+        <mat-carousel [autoplay]="true" interval="5000" maxWidth="auto" proportion="25" slides={{nums.length}}
+            [loop]="true" [hideArrows]="false" [hideIndicators]="true" [useKeyboard]="true" [useMouseWheel]="false"
+            orientation="ltr">
+
+            <mat-carousel-slide #matCarouselSlide *ngFor="let slide of nums; let i = index;let l = count;"
+                overlayColor="#00000000">
+                <div
+                    style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center">
                     <div class="row">
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-american"
-                                    role="button" aria-label="American">
-                                    <img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/american.png"
-                                        class="bubble-image" data-pin-nopin="true">
-                                    <span class="carousel-caption text micro-caps font-bold bubble-text">American</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-asian"
-                                    role="button" aria-label="Asian">
-                                    <img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/asian.png"
-                                        class="bubble-image" data-pin-nopin="true">
-                                    <span class="carousel-caption text micro-caps font-bold bubble-text">Asian</span>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-barbecue-bbq"
-                                    role="button" aria-label="BBQ">
-                                    <img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/barbecue-bbq.png"
-                                        class="bubble-image" data-pin-nopin="true">
-                                    <span class="carousel-caption text micro-caps font-bold bubble-text">BBQ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-cajun"
-                                    role="button" aria-label="Cajun / Creole"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/cajun.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Cajun /
-                                        Creole</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-chinese"
-                                    role="button" aria-label="Chinese"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/chinese.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Chinese</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-cuban"
-                                    role="button" aria-label="Cuban"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/cuban.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Cuban</span>
-                                </div>
+                        <div (click)="gotoC(category)"
+                            *ngFor="let category of  model.categoryList.slice(i,i+6);let j=index">
+                            <div class="col-2"><img style=" width: 150px;
+                    height: 150px;
+                    -webkit-clip-path: circle(50.0% at 50% 50%);
+                    clip-path: circle(50.0% at 50% 50%);" src={{category.imageUrl}}>
+                                <span
+                                    class="carousel-caption ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{category.name}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item ">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-english"
-                                    role="button" aria-label="English"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/english.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">English</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-french"
-                                    role="button" aria-label="French"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/french.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">French</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-german"
-                                    role="button" aria-label="German"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/german.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">German</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-greek"
-                                    role="button" aria-label="Greek"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/greek.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Greek</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-hawaiian"
-                                    role="button" aria-label="Hawaiian"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/hawaiian.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Hawaiian</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-hungarian"
-                                    role="button" aria-label="Hungarian"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/hungarian.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Hungarian</span>
-                                </div>
-                            </div>
-                        </div>
+            </mat-carousel-slide>
+        </mat-carousel>
+        <!--Carousel ends here-->
+        <div>
+            <h2>Recipes</h2>
+            <a routerLink="/browse" class="float-md-right mr-5">See all</a>
+        </div>
+
+
+        <div class="row card-group">
+            <div class="col-4  mb-3 mt-3" *ngFor="let rec of model.recipeList">
+                <div class="card mb-3 mt-3" style="width: 30rem;">
+                    <img class="card-img-top" src={{rec.profileImage}} alt="Card image cap">
+                    <div class="card-desc">
+                        <h5 class="recipe-title mt-2">{{rec.recipe}}</h5>
+                        <hr style="height:1px;width:75%;">
+                        <ul class="recipe-details">
+                            <li class="recipe-details-item time ml-5"><i class="ion ion-ios-clock-outline"></i><span
+                                    class="value">{{rec.time}}</span><span class="title">Minutes</span></li>
+                            <li class="recipe-details-item ingredients"><i class="ion ion-ios-book-outline"></i><span
+                                    class="value">{{rec.ingrlist.length}}</span><span class="title">Ingredients</span>
+                            </li>
+                            <li class="recipe-details-item servings mr-3"><i class="ion ion-ios-heart-outline"></i><span
+                                    class="value">{{rec.recipeLikeCount}}</span><span class="title">Likes</span>
+                            </li>
+                        </ul>
+                        <p class="trimtext card-text">{{rec.brief}}</p>
                     </div>
-                </div>
-                <div class="carousel-item ">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-indian"
-                                    role="button" aria-label="Indian"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/indian.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Indian</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-irish"
-                                    role="button" aria-label="Irish"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/irish.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Irish</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-italian"
-                                    role="button" aria-label="Italian"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/italian.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Italian</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-japanese"
-                                    role="button" aria-label="Japanese"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/japanese.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Japanese</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-kid-friendly"
-                                    role="button" aria-label="Kid-Friendly"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/kid-friendly.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Kid-Friendly</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines"
-                                    data-value="cuisine-mediterranean" role="button" aria-label="Mediterranean"><img
-                                        alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/mediterranean.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Mediterranean</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item ">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-mexican"
-                                    role="button" aria-label="Mexican"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/mexican.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Mexican</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-swedish"
-                                    role="button" aria-label="Swedish"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/swedish.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Swedish</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-portuguese"
-                                    role="button" aria-label="Portuguese"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/portuguese.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Portuguese</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-southern"
-                                    role="button" aria-label="Southern / Soul Food"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/southern.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Southern / Soul
-                                        Food</span></div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-spanish"
-                                    role="button" aria-label="Spanish"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/spanish.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Spanish</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="onboarding-bubble">
-                                <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-thai"
-                                    role="button" aria-label="Thai"><img alt=""
-                                        src="https://x.yummlystatic.com/s/c578c563b/img/bubble/cuisine/thai.png"
-                                        class="bubble-image" data-pin-nopin="true"><span
-                                        class="carousel-caption text micro-caps font-bold bubble-text">Thai</span></div>
-                            </div>
-                        </div>
-                    </div>
+                    <a (click)="gotoR(rec,rec.recipe)" class="button" style="color:white">
+                        Check Recipe
+                    </a>
                 </div>
             </div>
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
         </div>
+
+        <div>
+            <h2>Articles</h2>
+            <a routerLink="/articles" class="float-md-right mr-5">See all</a>
+        </div>
+        <div class="row card-group">
+            <div class="col-4 mb-3 mt-3" *ngFor="let article of model.articleDataList">
+                <div class="card mb-3 mt-3" style="width: 30rem;">
+                    <!-- <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
+                    src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100" height="100"
+                    alt="Card image cap"> -->
+                    <img class="card-img-top" [src]="article.imageUrl" alt="article image">
+                    <div class="card-desc">
+                        <h5 class="trimtext recipe-title mt-2">{{article.title}}</h5>
+                        <hr style="height:1px;width:75%;">
+                        <ul class="recipe-details">
+                            <li class="recipe-details-item ingredients ml-5"><i
+                                    class="ion ion-ios-book-outline"></i><span
+                                    class="value">{{article.category.length}}</span><span
+                                    class="title">Categories</span>
+                            </li>
+                            <li class="recipe-details-item servings ml-5"><i class="ion ion-ios-heart-outline"></i><span
+                                    class="value">{{article.articleLikeCount}}</span><span class="title">Likes</span>
+                            </li>
+                        </ul>
+                        <p class="trimtext" style="text-align: center;">{{article.description}}</p>
+                    </div>
+                    <a (click)="articleDisplay(article,article.title)" class="button" style="color:white">Read
+                        Article</a>
+                    <!-- <div class="card-footer">
+                    <span *ngIf="article.articleLikeCount>0">
+                        <mat-icon style="color:red">favorite</mat-icon>&nbsp;{{article.articleLikeCount}}
+                    </span>
+                    <span *ngIf="article.articleLikeCount == 0">
+                        <mat-icon>favorite_border</mat-icon>
+                    </span>
+                </div> -->
+                </div>
+            </div>
+        </div>
+
     </div>
-    <br><br>
-    <div class="container">
-        <h2>Recipes</h2>
-        <div class="card-deck">
-          <div class="card">
-        <img class="card-img-top" src="https://i.ytimg.com/vi/CH7rQBGRr9s/maxresdefault.jpg" alt="Card image" style="width:100%">
-        <div class="card-body display-5"><a href="#">Cajun Potato</a></div>
-        <div class="card-footer">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        </div>
-        </div>
-          <div class="card ">
-            <img class="card-img-top" src="https://www.archanaskitchen.com/images/archanaskitchen/1-Author/Smitha-Kalluraya/Crispy_Corn_and_bell_peppers_Chaat_400.jpg" alt="Card image" style="width:100%">
-        <div class="card-body display-5"><a href="#">Crispy Corn</a></div>
-        <div class="card-footer">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        </div>
-        </div>
-         <div class="card">
-        <img class="card-img-top" src="https://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/strawberry-chicken-salad-with-pecans.jpg" alt="Card image" style="width:100%">
-        <div class="card-body display-5"><a href="#">Chicken Salad</a></div>
-        <div class="card-footer">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        </div>
-        </div>
-        </div>
-      </div>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Latest compiled and minified CSS -->

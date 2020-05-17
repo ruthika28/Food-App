@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HealthyComponent } from './healthy.component';
+import { RemoveArticleComponent } from './remove-article.component';
 
-describe('HealthyComponent', () => {
-  let component: HealthyComponent;
-  let fixture: ComponentFixture<HealthyComponent>;
+describe('RemoveArticleComponent', () => {
+  let component: RemoveArticleComponent;
+  let fixture: ComponentFixture<RemoveArticleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HealthyComponent ]
+      declarations: [ RemoveArticleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HealthyComponent);
+    fixture = TestBed.createComponent(RemoveArticleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

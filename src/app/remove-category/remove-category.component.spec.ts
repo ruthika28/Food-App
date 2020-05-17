@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VegetarianComponent } from './vegetarian.component';
+import { RemoveCategoryComponent } from './remove-category.component';
 
-describe('VegetarianComponent', () => {
-  let component: VegetarianComponent;
-  let fixture: ComponentFixture<VegetarianComponent>;
+describe('RemoveCategoryComponent', () => {
+  let component: RemoveCategoryComponent;
+  let fixture: ComponentFixture<RemoveCategoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VegetarianComponent ]
+      declarations: [ RemoveCategoryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VegetarianComponent);
+    fixture = TestBed.createComponent(RemoveCategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

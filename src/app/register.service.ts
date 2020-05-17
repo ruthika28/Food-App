@@ -8,10 +8,15 @@ import { Observable } from 'rxjs';
 })
 export class RegisterService {
   //inject http client obj
-  constructor(private hc:HttpClient) { }
+  constructor(private httpClient:HttpClient) { }
   //
   doRegister(userObj):Observable<any>
   {
-     return this.hc.post('/user/register',userObj)
+     return this.httpClient.post('/user/register',userObj)
+  }
+
+  addAdmin(dataObj):Observable<any>
+  {
+    return this.httpClient.post('/admin/addAdmin',dataObj);
   }
 }

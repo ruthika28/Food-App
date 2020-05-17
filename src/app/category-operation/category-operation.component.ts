@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CategoryOperationService } from '../category-operation.service';
 import { CategoryData } from '../data/category-data';
 import { FileUploadService } from '../file-upload.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { RecentActionsService } from '../recent-actions.service';
 
 @Component({
   selector: 'app-category-operation',
@@ -13,10 +14,9 @@ import { LoginService } from '../login.service';
 export class CategoryOperationComponent implements OnInit {
 
   constructor(private categoryOperationService: CategoryOperationService, private fileUploadService: FileUploadService,
-    private router: Router, private loginService: LoginService) { }
-
-  ngOnInit() {
-  }
+    private router: Router, private loginService: LoginService, private recentActionsService: RecentActionsService) { }
+  @ViewChild('fileUploader', { static: false })
+  fileUploader: ElementRef;
   model: any = {
     categoryName: '',
     categoryList: [],
@@ -26,6 +26,18 @@ export class CategoryOperationComponent implements OnInit {
     isImageUploaded: false,
     message: "upload a photo"
   }
+
+  ngOnInit() {
+    const parent = this;
+    parent.categoryOperationService.getCategoryDataList().then(data => {
+      const categoryList = data as CategoryData[];
+      parent.model.categoryList = parent.isListHasValue(categoryList) ? categoryList : [];
+      for (let i = 0; i < parent.model.categoryList.length; i++) {
+        parent.model.categoryNameList.push(parent.model.categoryList[i].name);
+      }
+    });
+  }
+
   private imgFile: File = undefined;
   private filetype = ['image/jpeg', 'image/png', 'image/jpg'];
   private imageObj: {
@@ -51,7 +63,9 @@ export class CategoryOperationComponent implements OnInit {
       this.imgFile = undefined;
       evt.target.files = undefined;
       this.model.base64textString = "";
+      this.fileUploader.nativeElement.value = null;
       this.model.message = "upload a valid photo of type jpg or jpeg or png";
+
     }
   }
 
@@ -64,19 +78,13 @@ export class CategoryOperationComponent implements OnInit {
 
   validateCategoryList() {
     const parent = this;
-    parent.categoryOperationService.getCategoryDataList().then(data => {
-      const categoryList = data as CategoryData[];
-      parent.model.categoryList = parent.isListHasValue(categoryList) ? categoryList : [];
-      for (let i = 0; i < parent.model.categoryList.length; i++) {
-        parent.model.categoryNameList.push(parent.model.categoryList[i].name);
-      }
-      const tempCategoryName = parent.model.categoryName.toLowerCase();
-      if (!(parent.isListHasValue(parent.model.categoryList)) || !(parent.model.categoryNameList.includes(tempCategoryName))) {
-        parent.model.isCategoryExists = false;
-      } else {
-        parent.model.isCategoryExists = true;
-      }
-    });
+    const tempCategoryName = parent.model.categoryName.toLowerCase();
+    if (!(parent.isListHasValue(parent.model.categoryList)) || !(parent.model.categoryNameList.includes(tempCategoryName))) {
+      parent.model.isCategoryExists = false;
+    } else {
+      parent.model.isCategoryExists = true;
+    }
+
   }
 
   isValidDetails() {
@@ -88,15 +96,28 @@ export class CategoryOperationComponent implements OnInit {
       const parent = this;
       parent.getImageUrlForFile().then(data => {
         const request = {
-          'name': parent.model.categoryName.toLowerCase(),
-          'imageUrl': parent.imageObj.imageUrl,
-          'imageId': parent.imageObj.publicId,
-          'createBy': this.loginService.username,
-          'createdOn': new Date()
+          _id: {
+            id: {},
+            name: parent.model.categoryName.toLowerCase()
+          },
+          name: parent.model.categoryName.toLowerCase(),
+          imageUrl: parent.imageObj.imageUrl,
+          imageId: parent.imageObj.publicId,
+          createdBy: parent.loginService.username,
+          createdById: parent.loginService.userid,
+          createdOn: new Date()
         };
-        this.categoryOperationService.addCategory(request).subscribe(res => {
+        parent.categoryOperationService.addCategory(request).subscribe(res => {
           if (res["message"] === "sucessfully added") {
-            console.log(res["message"]);
+            // console.log(res["message"]);
+            let action = {};
+            action['createdById'] = this.loginService.userid;
+            action['createdBy'] = this.loginService.username;
+            action['createdOn'] = new Date();
+            action['ActionDone'] = "category " + this.model.categoryName + " Added";
+            this.recentActionsService.addAction(action).subscribe((res) => {
+              console.log("added recent action", res)
+            });
             alert("sucessfully added the category");
             this.router.navigate(['/admindashboard']);
           }

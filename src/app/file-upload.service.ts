@@ -17,7 +17,7 @@ export class FileUploadService {
       });
       const parent = this;
       return new Promise(function (fulfilled, rejected) {
-        parent.httpClient.post('uploadfile/upload-images', formdata, { headers: myHeaders }).subscribe(data => {
+        parent.httpClient.post('/uploadfile/upload-images', formdata, { headers: myHeaders }).subscribe(data => {
           fulfilled(data);
         },
           error => {

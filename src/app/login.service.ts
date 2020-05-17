@@ -10,6 +10,8 @@ export class LoginService {
   username:String;
   userLoginStatus:boolean;
   adminLoginStatus:boolean;
+  role:String;
+  userid:String;
   //inject HttpClient
   constructor(private hc:HttpClient) {}
   //a method to make http post  
@@ -17,8 +19,21 @@ export class LoginService {
   {
       return this.hc.post('/user/login',userObj);
   }
+
   doLogout()
   {
     localStorage.removeItem("token");
+  }
+
+  readProfile():Observable<any> {
+    return this.hc.get(`/user/readprofile/${this.userid}`);
+  }
+
+  updateProfile(userObj) :Observable<any> {
+    return this.hc.put(`/user/updateprofile/${this.userid}`,userObj);
+  }
+
+  searchuser(username) :Observable<any> {
+    return this.hc.get(`/user/search/${username}`); 
   }
 }
