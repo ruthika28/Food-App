@@ -7,10 +7,10 @@
       </mat-form-field>
       <br>
       <div>
-          <label>Upload Recipe Image</label> <br>
-          <input type="file" name="photo" id="pc" ngModel (input)="getImageFile($event.target.files[0])">
+          <label>Upload Recipe Image</label> <br> 
+          <input type="file" #fileUploader name="photo" id="pc" ngModel (input)="getImageFile($event.target.files[0])">
       </div>
-      <img [src]="imgUrl" alt="">
+      <img [src]="imgUrl" alt="" style="width:500px;height:350px">
       <br>
       <mat-form-field style="width:60vw" class="example-full-width">
           <mat-label>Author</mat-label>
