@@ -48,7 +48,6 @@ app.use((req, res, next) => {
 //to hold db object
 var dbo;
 //database url
-// var dbUrl = "mongodb+srv://project:project@cluster0-donss.mongodb.net/test?retryWrites=true&w=majority";
 var dbUrl=process.env.dbUrl;
 // console.log(process.env.dbUrl);
 
