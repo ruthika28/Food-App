@@ -59,14 +59,14 @@ export class HomeComponent implements OnInit {
       this.nums[i]=(i);
     }
     
-    console.log(this.nums);
+//     console.log(this.nums);
   }
   
   getCategoryList() {
     this.categoryOperationService.getCategoryDataList().then(data => {
       this.model.categoryList = data as CategoryData[];
       this.model.isDataLoaded = true;
-      console.log("cat list is ",this.model.categoryList);
+//       console.log("cat list is ",this.model.categoryList);
       this.car()
     });
   }
