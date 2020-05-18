@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
     let x=this.model.categoryList.length;
     for(let i=0;i<x;i+=1)
     {
-      if(x-i<6)
+      if(x-i<5)
       break;
       this.nums[i]=(i);
     }
