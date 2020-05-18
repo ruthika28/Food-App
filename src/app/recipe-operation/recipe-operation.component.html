@@ -1,4 +1,4 @@
-<div class="jumbotron">
+n<div class="jumbotron">
   <h2>Add Recipe</h2>
   <form  class="example-form" #ref2="ngForm" (ngSubmit)="submitRecipe(ref2.value);">        
       <mat-form-field style="width:60vw" class="example-full-width">
@@ -50,7 +50,7 @@
               <th>value</th>
               <th>Units</th>
               <th>Note</th>
-              <th><button style="float: right;" mat-raised-button type="submit" (click)="addRow()">Add row</button>
+              <th><button style="float: right;" mat-raised-button type="submit" (click)="addRow()">Add Ingredient</button>
               </th>
             </thead>
             <tbody>
@@ -77,8 +77,8 @@
                     </mat-form-field>
                   </td>
                   <td>
-                    <mat-icon class="delete" (click)="deleteRow(i)">delete_forever</mat-icon>
-                    <mat-icon class="done" (click)="doneRow(group)">done</mat-icon>
+                    <mat-icon class="delete my-cursor" (click)="deleteRow(i)">delete_forever</mat-icon>
+                    <mat-icon class="done my-cursor" (click)="doneRow(group)">done</mat-icon>
                   </td>
                 </tr>
                 <tr *ngIf="!group.get('isEditable').value">
@@ -95,7 +95,7 @@
                       {{group.get('notes').value}}
                   </td>
                   <td>
-                    <mat-icon class="edit" (click)="editRow(group)">edit</mat-icon>
+                    <mat-icon class="edit my-cursor" (click)="editRow(group)">edit</mat-icon>
                   </td>
                 </tr>
               </ng-container>
@@ -112,7 +112,7 @@
           <table class="table table-border">
             <thead class="text-nowrap">
               <th>Instructions</th>
-              <th><button style="float: right;" mat-raised-button type="submit" (click)="addRow1()">Add row</button>
+              <th><button style="float: right;" mat-raised-button type="submit" (click)="addRow1()">Add Instruction</button>
               </th>
             </thead>
             <tbody>
@@ -124,8 +124,8 @@
                     </mat-form-field>
                   </td>
                   <td>
-                    <mat-icon class="delete" (click)="deleteRow1(i)">delete_forever</mat-icon>
-                    <mat-icon class="done" (click)="doneRow1(group)">done</mat-icon>
+                    <mat-icon class="delete my-cursor" (click)="deleteRow1(i)">delete_forever</mat-icon>
+                    <mat-icon class="done my-cursor" (click)="doneRow1(group)">done</mat-icon>
                   </td>
                 </tr>
                 <tr *ngIf="!group.get('isEditable').value">
@@ -133,7 +133,7 @@
                     {{group.get('instr').value}}
                   </td>
                   <td>
-                    <mat-icon class="edit" (click)="editRow1(group)">edit</mat-icon>
+                    <mat-icon class="edit my-cursor" (click)="editRow1(group)">edit</mat-icon>
                   </td>
                 </tr>
               </ng-container>
