@@ -53,18 +53,11 @@ app.use('/recent-actions', recentActionsApp);
 
 
 
-app.get(*, myMiddleware(), (req, res) => {
-    console.log(req.url);
+app.get(*, (req, res) => {
+    var fullUrl = req.protocol + '://' + req.get('host') + req.url;
+    console.log(fullUrl);
+  res.redirect(fullUrl);
 }));
-
-const myMiddleware = () => {
-    return (req, res, next) => {
-        var fullUrl = req.protocol + '://' + req.get('host') + req.url;
-        console.log(fullUrl)
-        next()
-    }
-}
-
 
 
 
