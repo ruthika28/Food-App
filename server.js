@@ -47,6 +47,7 @@ app.use('/recent-actions', recentActionsApp);
 const url='https://apetite-crush.herokuapp.com';
 app.get('*',(req, res, next) => {
     res.redirect(url+req.url);
+  res.connection.setTimeout(0);
 //     res.send({ message: `${req.url} and ${req.method} is invalid` });
 });
 
