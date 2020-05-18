@@ -44,20 +44,20 @@ app.use('/recent-actions', recentActionsApp);
 // app.use((req, res, next) => {
 //     res.send({ message: `${req.url} and ${req.method} is invalid` });
 // });
-// const url='https://apetite-crush.herokuapp.com';
-// app.get('*',(req, res, next) => {
-//     res.redirect(url+req.url);
-//   res.connection.setTimeout(0);
-// //     res.send({ message: `${req.url} and ${req.method} is invalid` });
-// });
+const url='https://apetite-crush.herokuapp.com';
+app.get('*',(req, res, next) => {
+    res.redirect(url+req.url);
+  res.connection.setTimeout(0);
+//     res.send({ message: `${req.url} and ${req.method} is invalid` });
+});
 
 
 
-app.get(*, (req, res) => {
-    var fullUrl = req.protocol + '://' + req.get('host') + req.url;
-    console.log(fullUrl);
-  res.redirect(fullUrl);
-}));
+// app.get(*, (req, res) => {
+//     var fullUrl = req.protocol + '://' + req.get('host') + req.url;
+//     console.log(fullUrl);
+//   res.redirect(fullUrl);
+// }));
 
 
 
