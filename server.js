@@ -44,12 +44,29 @@ app.use('/recent-actions', recentActionsApp);
 // app.use((req, res, next) => {
 //     res.send({ message: `${req.url} and ${req.method} is invalid` });
 // });
-const url='https://apetite-crush.herokuapp.com';
-app.get('*',(req, res, next) => {
-    res.redirect(url+req.url);
-  res.connection.setTimeout(0);
-//     res.send({ message: `${req.url} and ${req.method} is invalid` });
-});
+// const url='https://apetite-crush.herokuapp.com';
+// app.get('*',(req, res, next) => {
+//     res.redirect(url+req.url);
+//   res.connection.setTimeout(0);
+// //     res.send({ message: `${req.url} and ${req.method} is invalid` });
+// });
+
+
+
+app.get('/', myMiddleware(), (req, res) => {
+    res.sendFile(__dirname + '/client/dist/index.html')
+}));
+
+const myMiddleware = () => {
+    return (req, res, next) => {
+        var fullUrl = req.protocol + '://' + req.get('host') + req.url;
+        console.log(fullUrl)
+        next()
+    }
+}
+
+
+
 
 //to hold db object
 var dbo;
