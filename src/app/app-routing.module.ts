@@ -22,7 +22,7 @@ import { RemoveCategoryComponent } from './remove-category/remove-category.compo
 import { CategoryDisplayComponent } from './category-display/category-display.component';
 import { UserprofileComponent } from './user/userprofile/userprofile.component';
 
-const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
+const routes: Routes = [{path:'',component:HomeComponent},
 {path:'browse', component:BrowseComponent},
 {path:'home',component:HomeComponent},
 {path:'login',component:LoginComponent},
