@@ -53,8 +53,8 @@ app.use('/recent-actions', recentActionsApp);
 
 
 
-app.get('/', myMiddleware(), (req, res) => {
-    res.sendFile(__dirname + '/client/dist/index.html')
+app.get(*, myMiddleware(), (req, res) => {
+    console.log(req.url);
 }));
 
 const myMiddleware = () => {
