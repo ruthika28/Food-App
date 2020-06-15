@@ -6,7 +6,7 @@ Appetite crush is an open-source project which is hosted on the web, such that e
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
-##Technology Stack
+# Technology Stack
 
 Mongo Db
 Express js
