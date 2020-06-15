@@ -1,5 +1,9 @@
 # FoodApp
 
+Demo: https://apetite-crush.herokuapp.com/
+
+Appetite crush is an open-source project which is hosted on the web, such that everyone can access the world's different cuisines. This website comes with a plethora of articles, suggestions and categories of all cuisines. By this website, we can make or bring all types of dishes to a place where everyone can share.This project is a source for Recipe Builder who can add recipe category, descriptions,Ingredients,featured image, cooking time,and more, and for User registered system for visitors and users who can login to store their preferences and customizations with their own credentials . This website interface includes slider images, widgets for popular dishes, popular authors with a simple search with an available database contained with food recipes which can be browsed by users with all the information.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
 ## Development server
