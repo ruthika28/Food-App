@@ -31,7 +31,7 @@
     "@ngmodule/material-carousel": "^0.6.0",
     "@theo4u/ng-alert": "^2.1.0",
     "@types/jquery": "^3.3.38",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "cloudinary": "^1.21.0",
